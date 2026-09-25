@@ -24,19 +24,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Use Lightning Component as an override for \"Edit\" action on lightning experience allowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce, standard action overrides (Buttons, Links, and Actions) for Lightning Experience apply across both desktop and mobile platforms when using Lightning components; there is no separate setting to override an action with a Lightning Component exclusively on mobile while leaving Lightning Experience default. Therefore, the architecturally recommended pattern is to override the standard 'Edit' action at the Lightning Experience level with a Lightning Component, programmatically detect the client form factor (e.g., using @salesforce/client/formFactor or .formFactor), present the custom mobile camera/image capture UI on mobile devices ('Small'), and redirect desktop users ('Large') to the standard record edit view. This satisfies the requirement to capture images on mobile without changing the trained desktop experience for service reps.",
           "distractors": {
-            "A": "Option A ('Use Lightning Component as an override for \"Edit\" action on mobile view allowing image capture feature. No Change required for desktop users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Create a separate button \"Edit in Mobile\", which opens a custom lightn ing component that will allow field consultants to add an image. No change required for desktop users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is technically impossible in Salesforce setup. Standard action overrides for Lightning Experience do not permit assigning a Lightning Component override solely to mobile without overriding the desktop Lightning Experience action.",
+            "B": "Option B introduces a redundant custom button ('Edit in Mobile') instead of leveraging standard action overrides, causing a fragmented user experience, violating the design requirement to minimize customization, and failing when mobile users tap the standard Edit button."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Use Lightning Component as an override for \"Edit\" action on lightning experience allowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Use Lightning Component as an override for \"Edit\" action on lightning experience allowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q5 A consulting company uses the Salesforce mobile app for its field consultants and uses Cas"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, standard action overrides (Buttons, Links, and Actions) for Lightning Experience apply across both desktop and mobile platforms when using Lightning components; there is no separate setting to override an action with a Lightning Component exclusively on mobile while leaving Lightning Experience default. Therefore, the architecturally recommended pattern is to override the standard 'Edit' action at the Lightning Experience level with a Lightning Component, programmatically detect the client form factor (e.g., using @salesforce/client/formFactor or .formFactor), present the custom mobile camera/image capture UI on mobile devices ('Small'), and redirect desktop users ('Large') to the standard record edit view. This satisfies the requirement to capture images on mobile without changing the trained desktop experience for service reps.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q5 A consulting company uses the Salesforce mobile app for its "
           }
         },
         {
@@ -54,19 +54,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Set the price book organisation-wide default (OWD) to View Only and share the price book (High Risk) with the trained staff.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce, access to products on Opportunities is governed by Price Book sharing. When the Price Book Organization-Wide Default (OWD) is set to 'View Only', users can view prices but cannot add products from that price book to opportunities. To allow only trained branch staff to add high-risk products, the High Risk price book must be shared with 'Use' access specifically to those trained staff (via user, role, or group sharing on the Price Book record). Option B correctly captures this architecture. Furthermore, Price Books do NOT support Sharing Rules, making Option C completely invalid.",
           "distractors": {
-            "A": "Option A ('Set the price book OWD to View Only and share the (High Risk) price book with the trained staff via manual sharing.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Set the price book OWD to View Only and share the (High Risk) price book with the trained staff via a sharing rule.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A specifies 'via manual sharing' specifically, whereas standard Price Book sharing on the detail page shares access directly with Roles, Public Groups, or Users with 'Use' permissions. In Salesforce certification question design, Option B is the standardized canonical answer describing the Price Book OWD and sharing configuration.",
+            "C": "Option C is invalid because Salesforce does not support Criteria-Based or Owner-Based Sharing Rules on the Price Book object."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Set the price book organisation-wide default (OWD) to View Only and share the price book (High Risk) with the trained staff.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Set the price book organisation-wide default (OWD) to View Only and share the price book (High Risk) with the trained staff.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q14 Universal Containers implemented Sales Cloud and requested that only certain branch staff "
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, access to products on Opportunities is governed by Price Book sharing. When the Price Book Organization-Wide Default (OWD) is set to 'View Only', users can view prices but cannot add products from that price book to opportunities. To allow only trained branch staff to add high-risk products, the High Risk price book must be shared with 'Use' access specifically to those trained staff (via user, role, or group sharing on the Price Book record). Option B correctly captures this architecture. Furthermore, Price Books do NOT support Sharing Rules, making Option C completely invalid.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q14 Universal Containers implemented Sales Cloud and requested t"
           }
         },
         {
@@ -84,19 +84,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "List views in Salesforce can be restricted to 'Only I can see this', 'All users can see this', or shared with specific Public Groups, Roles, and Roles & Subordinates.",
+          "whyCorrect": "In Salesforce, list view sharing visibility can be configured as: (1) Only I can see this list view, (2) All users can see this list view, or (3) Share list view with groups of users (Public Groups, Roles, and Roles and Subordinates). Salesforce does NOT support sharing list views directly with individual users. Sharing the list views with appropriate Public Groups (Option C) ensures that users in specific geographies only see the list views relevant to them while hiding the rest, preventing list view clutter. declarative-sharing-6 incorrectly marked Option A in legacy dump files, which is technically impossible on the platform.",
           "distractors": {
-            "A": "List views cannot be shared directly with individual user records.",
-            "B": "Queues own records and manage assignment; they are not visibility containers for sharing list views."
+            "A": "Option A is impossible in Salesforce; the list view sharing dialog does not allow sharing with individual users, only Public Groups, Roles, and Roles & Subordinates.",
+            "B": "Option B is nonsensical; 'quota' is a forecasting metric/object, not a sharing recipient or user grouping mechanism."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Share the list views with the appropriate public group.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the list views with the appropriate public group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q15 Sales operations at Universal Containers (UC) wants to create list views to filter opportu"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, list view sharing visibility can be configured as: (1) Only I can see this list view, (2) All users can see this list view, or (3) Share list view with groups of users (Public Groups, Roles, and Roles and Subordinates). Salesforce does NOT support sharing list views directly with individual users. Sharing the list views with appropriate Public Groups (Option C) ensures that users in specific geographies only see the list views relevant to them while hiding the rest, preventing list view clutter. declarative-sharing-6 incorrectly marked Option A in legacy dump files, which is technically impossible on the platform.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q15 Sales operations at Universal Containers (UC) wants to creat"
           }
         },
         {
@@ -114,19 +114,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Implement a Public Read-Only OWD on Lead.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Setting the Organization-Wide Default (OWD) on the Lead object to Public Read-Only directly addresses both business requirements: (1) It allows all sales reps across the organization to search and view existing leads before creating new ones, thereby reducing redundant lead entries; (2) Because OWD is Read-Only rather than Read/Write or Public Read/Write/Transfer, non-owners cannot edit or reassign/transfer the lead. Only the lead owner (and those above the owner in the Role Hierarchy) retain Edit and Transfer capabilities. If Private OWD were used, reps could not see leads owned by colleagues and would inadvertently create duplicate leads.",
           "distractors": {
-            "A": "Option A ('Implement a Private OWD on Lead.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Implement a Public Read-Only/Transfer OWD on Lead.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A (Private OWD) hides leads from non-owners, meaning sales reps cannot search or view existing leads worked by other reps, which directly causes reps to enter duplicate/redundant leads into the system.",
+            "C": "Option C is invalid because 'Public Read-Only/Transfer' does not exist as an OWD option in Salesforce; the standard Lead OWD options are Private, Public Read Only, Public Read/Write, and Public Read/Write/Transfer."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Implement a Public Read-Only OWD on Lead.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('Implement a Public Read-Only OWD on Lead.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q29 Universal Containers (UC) wants to reduce the amount of redundant leads entered into the s"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Setting the Organization-Wide Default (OWD) on the Lead object to Public Read-Only directly addresses both business requirements: (1) It allows all sales reps across the organization to search and view existing leads before creating new ones, thereby reducing redundant lead entries; (2) Because OWD is Read-Only rather than Read/Write or Public Read/Write/Transfer, non-owners cannot edit or reassign/transfer the lead. Only the lead owner (and those above the owner in the Role Hierarchy) retain Edit and Transfer capabilities. If Private OWD were used, reps could not see leads owned by colleagues and would inadvertently create duplicate leads.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q29 Universal Containers (UC) wants to reduce the amount of redu"
           }
         },
         {
@@ -144,19 +144,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('The user who posted the file and users with access to the record') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce Files and Chatter architecture, when a file is posted to a record's Chatter feed, a ContentDocumentLink record is automatically created linking the file to the record with Visibility = 'AllUsers' and ShareType = 'V' (Viewer). Consequently, access to the file is inherited directly from access to the parent record: any user who has permission to view the record can view the attached file, along with the user who uploaded/posted the file.",
           "distractors": {
-            "A": "Option A ('The user who posted the file and users with a shared Chatter post link to the file') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Only the user who posted the file') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is incorrect because record-attached file visibility does not depend on having a shared Chatter post link; access is automatically granted to anyone who can access the record itself.",
+            "C": "Option C is incorrect because posting a file to a record's feed shares the file with users who have access to that record, not exclusively the uploading user."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "The user who posted the file and users with access to the record",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('The user who posted the file and users with access to the record') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q35 A user posts a file to the Chatter feed for a record of an object that has a Private organ"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce Files and Chatter architecture, when a file is posted to a record's Chatter feed, a ContentDocumentLink record is automatically created linking the file to the record with Visibility = 'AllUsers' and ShareType = 'V' (Viewer). Consequently, access to the file is inherited directly from access to the parent record: any user who has permission to view the record can view the attached file, along with the user who uploaded/posted the file.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q35 A user posts a file to the Chatter feed for a record of an o"
           }
         },
         {
@@ -170,23 +170,23 @@ window.CERT_PREP_DATA = {
             "C": "Share the list views with the appropriate individual users."
           },
           "correctAnswers": [
-            "A"
+            "C"
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "List views in Salesforce can be restricted to 'Only I can see this', 'All users can see this', or shared with specific Public Groups, Roles, and Roles & Subordinates.",
+          "whyCorrect": "In Salesforce, list view sharing visibility can be configured as: (1) Only I can see this list view, (2) All users can see this list view, or (3) Share list view with groups of users (Public Groups, Roles, and Roles and Subordinates). Salesforce does NOT support sharing list views directly with individual users. Sharing the list views with appropriate Public Groups (Option C) ensures that users in specific geographies only see the list views relevant to them while hiding the rest, preventing list view clutter. declarative-sharing-6 incorrectly marked Option A in legacy dump files, which is technically impossible on the platform.",
           "distractors": {
-            "B": "Queues own records and manage assignment; they are not visibility containers for sharing list views.",
-            "C": "List views cannot be shared directly with individual user records."
+            "A": "Option A is impossible in Salesforce; the list view sharing dialog does not allow sharing with individual users, only Public Groups, Roles, and Roles & Subordinates.",
+            "B": "Option B is nonsensical; 'quota' is a forecasting metric/object, not a sharing recipient or user grouping mechanism."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
-            "confirmedAnswer": "A",
-            "confirmedText": "Share the list views with the appropriate public group.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Share the list views with the appropriate public group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q36 Sales operations at Universal Containers (UC) wants to create list views to filter opportu"
+            "confirmedAnswer": "C",
+            "confirmedText": "Share the list views with the appropriate individual users.",
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, list view sharing visibility can be configured as: (1) Only I can see this list view, (2) All users can see this list view, or (3) Share list view with groups of users (Public Groups, Roles, and Roles and Subordinates). Salesforce does NOT support sharing list views directly with individual users. Sharing the list views with appropriate Public Groups (Option C) ensures that users in specific geographies only see the list views relevant to them while hiding the rest, preventing list view clutter. declarative-sharing-6 incorrectly marked Option A in legacy dump files, which is technically impossible on the platform.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q36 Sales operations at Universal Containers (UC) wants to creat"
           }
         },
         {
@@ -204,19 +204,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Private') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce, Organization-Wide Defaults (OWD) establish the baseline level of access, and sharing rules can only open up access, never restrict it. Because Service users must NOT view account records marked with a RecordType of 'Prospect', the Account OWD must be set to Private. If the OWD were Public Read-Only or Public Read/Write, Service users would automatically have visibility to all accounts including 'Prospect' records. Under a Private OWD, sharing rules can grant Read access to Service users for non-prospect accounts, and sharing rules/Role Hierarchy grant the required access to Sales users and Sales managers.",
           "distractors": {
-            "B": "Option B ('Public Read Write') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Public Read/Transfer') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "Option B (Public Read Write) grants all internal users full edit access to all accounts, completely violating the requirement that Sales users only edit their own records and Service users do not see Prospect accounts.",
+            "C": "Option C (Public Read/Transfer) does not exist on the Account object (it is only available on Leads and Cases), and any public default would expose Prospect accounts to Service users."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Private",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('Private') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q39 Universal Containers would like to control access to records and objects according to the "
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, Organization-Wide Defaults (OWD) establish the baseline level of access, and sharing rules can only open up access, never restrict it. Because Service users must NOT view account records marked with a RecordType of 'Prospect', the Account OWD must be set to Private. If the OWD were Public Read-Only or Public Read/Write, Service users would automatically have visibility to all accounts including 'Prospect' records. Under a Private OWD, sharing rules can grant Read access to Service users for non-prospect accounts, and sharing rules/Role Hierarchy grant the required access to Sales users and Sales managers.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q39 Universal Containers would like to control access to records"
           }
         },
         {
@@ -234,19 +234,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Share the list views with the appropriate role and internal subordinates.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce, list view sharing visibility can be configured as: (1) Only I can see this list view, (2) All users can see this list view, or (3) Share list view with groups of users (Public Groups, Roles, and Roles and Subordinates). Salesforce does NOT support sharing list views directly with individual users. Sharing the list views with appropriate Public Groups (Option C) ensures that users in specific geographies only see the list views relevant to them while hiding the rest, preventing list view clutter. declarative-sharing-6 incorrectly marked Option A in legacy dump files, which is technically impossible on the platform.",
           "distractors": {
-            "A": "Option A ('Share the list views with the appropriate queue.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Share the list views with the appropriate individual users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is impossible in Salesforce; the list view sharing dialog does not allow sharing with individual users, only Public Groups, Roles, and Roles & Subordinates.",
+            "B": "Option B is nonsensical; 'quota' is a forecasting metric/object, not a sharing recipient or user grouping mechanism."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Share the list views with the appropriate role and internal subordinates.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the list views with the appropriate role and internal subordinates.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q40 Sales operations at Universal Containers (UC) wants to create list views to filter opportu"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, list view sharing visibility can be configured as: (1) Only I can see this list view, (2) All users can see this list view, or (3) Share list view with groups of users (Public Groups, Roles, and Roles and Subordinates). Salesforce does NOT support sharing list views directly with individual users. Sharing the list views with appropriate Public Groups (Option C) ensures that users in specific geographies only see the list views relevant to them while hiding the rest, preventing list view clutter. declarative-sharing-6 incorrectly marked Option A in legacy dump files, which is technically impossible on the platform.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q40 Sales operations at Universal Containers (UC) wants to creat"
           }
         },
         {
@@ -264,19 +264,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Opportunity Team enables record owners to quickly grant specific access levels (Read or Read/Write) to supporting cross-functional team members without requiring administrative intervention.",
+          "whyCorrect": "Opportunity Teams provide an optimal, role-based collaboration framework that persists even when account or opportunity ownership changes. In contrast, manual shares created on records are automatically deleted when record ownership is transferred. Furthermore, Opportunity Teams allow specifying exact team roles (Product Specialist, Solution Engineer) and appropriate access levels (Read-Only or Read/Write) scoped strictly to that deal.",
           "distractors": {
-            "A": "Manual sharing does not support default teams and requires repetitive manual overhead on every single record.",
-            "C": "Manual sharing does not support default teams and requires repetitive manual overhead on every single record."
+            "A": "Option A (Manual share on the opportunity) is fragile because manual shares are wiped out whenever record ownership is reassigned to the senior account manager.",
+            "C": "Option C (Manual share on the account) unnecessarily exposes the entire account and all child records to the specialists, violating the principle of least privilege, and is also removed upon account ownership reassignment."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Opportunity Team",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Opportunity Team') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q41 A junior account manager owns an account and creates a new opportunity to manage a complex"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Opportunity Teams provide an optimal, role-based collaboration framework that persists even when account or opportunity ownership changes. In contrast, manual shares created on records are automatically deleted when record ownership is transferred. Furthermore, Opportunity Teams allow specifying exact team roles (Product Specialist, Solution Engineer) and appropriate access levels (Read-Only or Read/Write) scoped strictly to that deal.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q41 A junior account manager owns an account and creates a new o"
           }
         },
         {
@@ -294,19 +294,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('New AccountShare record is created. Row Cause is \"Manual\" and Access Level is \"Read/Write\".') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Under a Public Read-Only organization-wide default, baseline read access is provided by an implicit organization-wide share row (RowCause = 'All'). There is no individual AccountShare record created for John prior to manual sharing. When the record owner (Paul) manually grants Read/Write access to John, the Salesforce sharing engine inserts a NEW AccountShare record with UserOrGroupId = John's ID, RowCause = 'Manual', and AccountAccessLevel = 'Edit' (Read/Write).",
           "distractors": {
-            "A": "Option A ('Existing AccountShare record is updated. Row Cause is \"Manual\" and Access Level is \"Read/Write\".') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('New AccountShare record is created. Row Cause is \"Owner\" and Access Level is \"Full\".') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is incorrect because no pre-existing AccountShare record existed for John to update; his baseline read access stemmed from the OWD, so an insert operation occurs.",
+            "B": "Option B is incorrect because RowCause 'Owner' and 'Full' access are reserved solely for the record owner (Paul), not for a manual share recipient."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "New AccountShare record is created. Row Cause is \"Manual\" and Access Level is \"Read/Write\".",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('New AccountShare record is created. Row Cause is \"Manual\" and Access Level is \"Read/Write\".') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q43 A sales rep (John) at Universal Containers requested to update information in an account r"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Under a Public Read-Only organization-wide default, baseline read access is provided by an implicit organization-wide share row (RowCause = 'All'). There is no individual AccountShare record created for John prior to manual sharing. When the record owner (Paul) manually grants Read/Write access to John, the Salesforce sharing engine inserts a NEW AccountShare record with UserOrGroupId = John's ID, RowCause = 'Manual', and AccountAccessLevel = 'Edit' (Read/Write).",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q43 A sales rep (John) at Universal Containers requested to upda"
           }
         },
         {
@@ -324,19 +324,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Create a public group and assign the auditors to the group.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Because the auditors are geographically and organizationally distributed across various roles, placing them in a Public Group is the architecturally sound design. This Public Group can then be targeted by a Criteria-Based Sharing Rule on Opportunity (e.g., Amount >= threshold) to grant Read access specifically to high-value opportunities without granting unwanted access to other records.",
           "distractors": {
-            "A": "Option A ('Put the auditors at the highest level of the Role Hierarchy.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Add the auditors to the default Opportunity Team.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A violates the principle of least privilege by placing auditors at the top of the Role Hierarchy, which would grant them visibility into every record of every standard and custom object across the entire enterprise.",
+            "B": "Option B relies on individual sales reps setting up default opportunity teams and would share all opportunities created by those reps rather than filtering specifically for 'high-value' opportunities."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Create a public group and assign the auditors to the group.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Create a public group and assign the auditors to the group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q50 At Universal Containers, there's a team of auditors distributed throughout the organizatio"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Because the auditors are geographically and organizationally distributed across various roles, placing them in a Public Group is the architecturally sound design. This Public Group can then be targeted by a Criteria-Based Sharing Rule on Opportunity (e.g., Amount >= threshold) to grant Read access specifically to high-value opportunities without granting unwanted access to other records.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q50 At Universal Containers, there's a team of auditors distribu"
           }
         },
         {
@@ -354,19 +354,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Use Lightning Component as an override for \"Edit\" action on lightning experience a llowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce, standard action overrides (Buttons, Links, and Actions) for Lightning Experience apply across both desktop and mobile platforms when using Lightning components; there is no separate setting to override an action with a Lightning Component exclusively on mobile while leaving Lightning Experience default. Therefore, the architecturally recommended pattern is to override the standard 'Edit' action at the Lightning Experience level with a Lightning Component, programmatically detect the client form factor (e.g., using @salesforce/client/formFactor or .formFactor), present the custom mobile camera/image capture UI on mobile devices ('Small'), and redirect desktop users ('Large') to the standard record edit view. This satisfies the requirement to capture images on mobile without changing the trained desktop experience for service reps.",
           "distractors": {
-            "A": "Option A ('Use Lightning Component as an override for \"Edit\" action on mobile view allowing image capture feature. No Change required for desktop users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Create a separate button \"Edit in Mobile\", which opens a custom lightning component that will allow field consultants to add an image. No change required for desktop users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is technically impossible in Salesforce setup. Standard action overrides for Lightning Experience do not permit assigning a Lightning Component override solely to mobile without overriding the desktop Lightning Experience action.",
+            "B": "Option B introduces a redundant custom button ('Edit in Mobile') instead of leveraging standard action overrides, causing a fragmented user experience, violating the design requirement to minimize customization, and failing when mobile users tap the standard Edit button."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Use Lightning Component as an override for \"Edit\" action on lightning experience a llowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Use Lightning Component as an override for \"Edit\" action on lightning experience a llowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q53 A consulting company uses the Salesforce mobile app for its field consultants and uses Cas"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, standard action overrides (Buttons, Links, and Actions) for Lightning Experience apply across both desktop and mobile platforms when using Lightning components; there is no separate setting to override an action with a Lightning Component exclusively on mobile while leaving Lightning Experience default. Therefore, the architecturally recommended pattern is to override the standard 'Edit' action at the Lightning Experience level with a Lightning Component, programmatically detect the client form factor (e.g., using @salesforce/client/formFactor or .formFactor), present the custom mobile camera/image capture UI on mobile devices ('Small'), and redirect desktop users ('Large') to the standard record edit view. This satisfies the requirement to capture images on mobile without changing the trained desktop experience for service reps.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q53 A consulting company uses the Salesforce mobile app for its "
           }
         },
         {
@@ -384,19 +384,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Use Account teams to define access to accounts as well as opportunities and cases related to accounts. enables record owners to quickly grant specific access levels (Read or Read/Write) to supporting cross-functional team members without requiring administrative intervention.",
+          "whyCorrect": "Salesforce Account Teams natively govern record-level access to the Account itself as well as its related Opportunities and Cases. When configuring an Account Team Member, an administrator or record owner can independently designate Account Access (e.g., Read Only), Case Access (e.g., Read Only), and Opportunity Access (e.g., Private / No Access). This fulfills all three requirements in a single declarative feature without needing separate Case Teams or complex sharing rules.",
           "distractors": {
-            "B": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege.",
-            "C": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege."
+            "B": "Option B introduces unnecessary complexity by requiring Case Teams and fails to configure the Opportunity access level on the Account Team member, which defaults to granting opportunity access if not explicitly configured to Private.",
+            "C": "Option C introduces redundant sharing rules when Account Teams already natively control related Case access directly on the team member configuration."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use Account teams to define access to accounts as well as opportunities and cases related to accounts.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Account teams to define access to accounts as well as opportunities and cases related to accounts.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q58 The sales managers at Universal Containers requested their teams to define each user's rol"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Salesforce Account Teams natively govern record-level access to the Account itself as well as its related Opportunities and Cases. When configuring an Account Team Member, an administrator or record owner can independently designate Account Access (e.g., Read Only), Case Access (e.g., Read Only), and Opportunity Access (e.g., Private / No Access). This fulfills all three requirements in a single declarative feature without needing separate Case Teams or complex sharing rules.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q58 The sales managers at Universal Containers requested their t"
           }
         },
         {
@@ -414,19 +414,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Use') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce, Organization-Wide Defaults for the Price Book object have three specific options: 'No Access', 'View Only', and 'Use'. 'Use' is required for users to select price books and add products from those price books to opportunities and quotes. If set to 'View Only', sales agents could only browse products and prices but would be blocked from associating products with opportunities.",
           "distractors": {
-            "A": "Option A ('Public Read-Only') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('View') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is incorrect because 'Public Read-Only' is not a valid Organization-Wide Default setting for the Price Book object.",
+            "B": "Option B ('View Only') allows sales reps to view products and prices but prohibits them from adding products to opportunities, failing the requirement."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Use",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Use') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q62 Universal Containers implemented Sales Cloud and requested that sales agents have access t"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce, Organization-Wide Defaults for the Price Book object have three specific options: 'No Access', 'View Only', and 'Use'. 'Use' is required for users to select price books and add products from those price books to opportunities and quotes. If set to 'View Only', sales agents could only browse products and prices but would be blocked from associating products with opportunities.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q62 Universal Containers implemented Sales Cloud and requested t"
           }
         },
         {
@@ -444,19 +444,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Update opportunity stage.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "A user on an Opportunity Team with Read/Write permissions is granted Edit access to the Opportunity record, enabling them to edit standard and custom fields, such as updating the Opportunity Stage, Amount, or Close Date. However, changing record ownership (Option B) or managing Opportunity Team members (Option C) requires 'Full Access' (Record Owner, users above the owner in the Role Hierarchy, or users with 'Modify All' / 'Modify All Data' permissions).",
           "distractors": {
-            "B": "Option B ('Replace opportunity owner.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Add/remove members in the opportunity team.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "Option B requires Full Access / record ownership or 'Modify All' permissions to transfer record ownership.",
+            "C": "Option C requires Full Access or record ownership to add or remove members from the Opportunity Team."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Update opportunity stage.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Update opportunity stage.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q65 A sales rep at Universal Containers was added to an opportunity team with Read/Write permi"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "A user on an Opportunity Team with Read/Write permissions is granted Edit access to the Opportunity record, enabling them to edit standard and custom fields, such as updating the Opportunity Stage, Amount, or Close Date. However, changing record ownership (Option B) or managing Opportunity Team members (Option C) requires 'Full Access' (Record Owner, users above the owner in the Role Hierarchy, or users with 'Modify All' / 'Modify All Data' permissions).",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q65 A sales rep at Universal Containers was added to an opportun"
           }
         },
         {
@@ -474,19 +474,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "To create and share report folders, users require 'Create Report Folders' (to create new custom folders) and 'Manage Reports in Public Folders' (to administer and share folders with other users).",
+          "whyCorrect": "Under Salesforce Enhanced Folder Sharing, creating a report folder strictly requires the user permission 'Create Report Folders' (without this permission, the 'New Folder' button is unavailable). To manage and share folders with other users, roles, or public groups, the administrative permission 'Manage Reports in Public Folders' allows the user to administer and share report folders across the organization. Option A contains both necessary permissions. While some legacy dumps erroneously cited Option C, Option C lacks the essential 'Create Report Folders' permission entirely and includes 'Edit My Reports' which only governs report content editing, not folder creation.",
           "distractors": {
-            "B": "Option B ('Create and customize Reports and Report Folders') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration.",
-            "C": "Option C ('Manage Reports in Public Folders and edit My Reports') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
+            "B": "Option B is incorrect because 'Report Folders' is not a valid permission name, and 'Create and Customize Reports' does not grant folder creation or folder sharing rights.",
+            "C": "Option C is flawed because it omits 'Create Report Folders'; a user with only 'Manage Reports in Public Folders' and 'Edit My Reports' cannot create new report folders."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Create Report Folders and manage Reports in Public Folders",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Create Report Folders and manage Reports in Public Folders') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q70 A sales coach at Universal Containers wants to create and share a report folder with other"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Under Salesforce Enhanced Folder Sharing, creating a report folder strictly requires the user permission 'Create Report Folders' (without this permission, the 'New Folder' button is unavailable). To manage and share folders with other users, roles, or public groups, the administrative permission 'Manage Reports in Public Folders' allows the user to administer and share report folders across the organization. Option A contains both necessary permissions. While some legacy dumps erroneously cited Option C, Option C lacks the essential 'Create Report Folders' permission entirely and includes 'Edit My Reports' which only governs report content editing, not folder creation.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q70 A sales coach at Universal Containers wants to create and sh"
           }
         },
         {
@@ -504,19 +504,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Account records can be accessed due to implicit sharing from Opportunity.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce sharing architecture, Built-in Parent Implicit Sharing automatically grants a user Read access to the parent Account record whenever that user is granted access to a child Opportunity, Case, or Contact. Consequently, when the finance analyst was granted access to the big deal Opportunity, Salesforce implicit sharing immediately granted her Read access to the parent Account. Then, because Contacts are linked to the Account (e.g. Contact sharing controlled by parent), she can access the contacts as well. There is no direct implicit sharing from Opportunity to Contact (ruling out C).",
           "distractors": {
-            "B": "Option B ('Account records can be accessed due to Role Hierarchy.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Contact records can be accessed due to implicit sharing from Opportunity.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "Option B is incorrect because Role Hierarchy grants access vertically from subordinates to managers, not horizontally or via child record sharing.",
+            "C": "Option C is incorrect because there is no implicit sharing relationship between Opportunity and Contact in Salesforce."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Account records can be accessed due to implicit sharing from Opportunity.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Account records can be accessed due to implicit sharing from Opportunity.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q75 The finance team at Universal Containers usually does not have access to account and conta"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In Salesforce sharing architecture, Built-in Parent Implicit Sharing automatically grants a user Read access to the parent Account record whenever that user is granted access to a child Opportunity, Case, or Contact. Consequently, when the finance analyst was granted access to the big deal Opportunity, Salesforce implicit sharing immediately granted her Read access to the parent Account. Then, because Contacts are linked to the Account (e.g. Contact sharing controlled by parent), she can access the contacts as well. There is no direct implicit sharing from Opportunity to Contact (ruling out C).",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q75 The finance team at Universal Containers usually does not ha"
           }
         },
         {
@@ -534,19 +534,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Create a content delivery; during creation, the user should select the option to require a password to access content.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Salesforce Content Deliveries natively provide secure web-based sharing for large files. When creating a content delivery, users can enforce security constraints including requiring a password to access the content, setting an expiration date for the delivery link, and tracking download activity. This satisfies all requirements with native, out-of-the-box declarative functionality without third-party apps or setting up community portals.",
           "distractors": {
-            "A": "Option A ('Utilize an AppExchange product for delivering password protected files to customers.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Set up an Experience Cloud site for customers to access files and share the file with customers via Chatter. Customers can then log in to the site to access the content.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is unnecessary and violates architectural best practices by introducing a third-party AppExchange package when Salesforce provides native Content Deliveries.",
+            "C": "Option C introduces massive operational overhead and license costs by provisioning an Experience Cloud site solely to share files."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Create a content delivery; during creation, the user should select the option to require a password to access content.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Create a content delivery; during creation, the user should select the option to require a password to access content.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q79 Sales reps at Universal Containers sometimes create large files as a part of the sales pro"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Salesforce Content Deliveries natively provide secure web-based sharing for large files. When creating a content delivery, users can enforce security constraints including requiring a password to access the content, setting an expiration date for the delivery link, and tracking download activity. This satisfies all requirements with native, out-of-the-box declarative functionality without third-party apps or setting up community portals.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q79 Sales reps at Universal Containers sometimes create large fi"
           }
         },
         {
@@ -564,19 +564,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('The operations manager will get access to the scheduled courses owned by the operations users team defined in the Role Hierarchy.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In the Salesforce security architecture, the Role Hierarchy automatically provides vertical record access inheritance when 'Grant Access Using Hierarchies' is enabled. Since the regional operations users report directly to the operations manager in the Role Hierarchy, the operations manager automatically inherits full edit access to all records owned by their subordinate team members without requiring any sharing rules or public groups.",
           "distractors": {
-            "A": "Option A ('The operations manager will get access to the scheduled courses by creating an ownership - based sharing rule and share the scheduled courses with the operations manage r.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('The operations manager will get access to the scheduled courses by creating a public group, and add the operations manager and the operations users team to the public group.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A creates unnecessary administrative maintenance and risks hitting sharing rule limits (especially across 500 regions) when native Role Hierarchy already solves the access requirement.",
+            "C": "Option C is ineffective because merely adding users and a manager to a public group does not grant access unless paired with a sharing rule, and group-based sharing does not grant automatic managerial edit rights."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "The operations manager will get access to the scheduled courses owned by the operations users team defined in the Role Hierarchy.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('The operations manager will get access to the scheduled courses owned by the operations users team defined in the Role Hierarchy.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q81 Universal Containers (UC) delivers training in 500 different regions. The UC operations us"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "In the Salesforce security architecture, the Role Hierarchy automatically provides vertical record access inheritance when 'Grant Access Using Hierarchies' is enabled. Since the regional operations users report directly to the operations manager in the Role Hierarchy, the operations manager automatically inherits full edit access to all records owned by their subordinate team members without requiring any sharing rules or public groups.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q81 Universal Containers (UC) delivers training in 500 different"
           }
         },
         {
@@ -594,19 +594,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Create a criteria-based sharing rule to give access to the public group for high-value opportunities.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Because the auditors are geographically and organizationally distributed across various roles, placing them in a Public Group is the architecturally sound design. This Public Group can then be targeted by a Criteria-Based Sharing Rule on Opportunity (e.g., Amount >= threshold) to grant Read access specifically to high-value opportunities without granting unwanted access to other records.",
           "distractors": {
-            "A": "Option A ('Put the auditors at the highest level of the Role Hierarchy.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Add the auditors to the default Opportunity Team.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A violates the principle of least privilege by placing auditors at the top of the Role Hierarchy, which would grant them visibility into every record of every standard and custom object across the entire enterprise.",
+            "B": "Option B relies on individual sales reps setting up default opportunity teams and would share all opportunities created by those reps rather than filtering specifically for 'high-value' opportunities."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Create a criteria-based sharing rule to give access to the public group for high-value opportunities.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Create a criteria-based sharing rule to give access to the public group for high-value opportunities.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q86 At Universal Containers, there's a team of auditors distributed throughout the organizatio"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "Because the auditors are geographically and organizationally distributed across various roles, placing them in a Public Group is the architecturally sound design. This Public Group can then be targeted by a Criteria-Based Sharing Rule on Opportunity (e.g., Amount >= threshold) to grant Read access specifically to high-value opportunities without granting unwanted access to other records.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q86 At Universal Containers, there's a team of auditors distribu"
           }
         },
         {
@@ -624,19 +624,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Configure Role Hierarchy and create sharing rules.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "To restrict visibility geographically so that branch staff only see records within their branch/location while branch managers see records owned by their branch staff, architects configure a branch-structured Role Hierarchy combined with Sharing Rules (or criteria-based sharing rules aligned to geographic location). The Role Hierarchy ensures branch managers inherit visibility over their branch subordinates, and criteria/ownership sharing rules extend visibility to relevant peers within that geographic boundary.",
           "distractors": {
-            "A": "Option A ('Configure organization-wide defaults of the Account object and create sharing rules.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Create the Account, Team and add branch manager team members, and configure organization-wide defaults of the Account object.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A omits the Role Hierarchy, meaning branch managers would not automatically inherit visibility over records owned by their branch staff without extensive, complex sharing rules.",
+            "C": "Option C relies on manual Account Team membership, which is unmanageable at scale for broad geographic segmentation."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Configure Role Hierarchy and create sharing rules.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Configure Role Hierarchy and create sharing rules.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q88 Universal Containers (UC) requested that branch managers and UC branch staff should only s"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "To restrict visibility geographically so that branch staff only see records within their branch/location while branch managers see records owned by their branch staff, architects configure a branch-structured Role Hierarchy combined with Sharing Rules (or criteria-based sharing rules aligned to geographic location). The Role Hierarchy ensures branch managers inherit visibility over their branch subordinates, and criteria/ownership sharing rules extend visibility to relevant peers within that geographic boundary.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q88 Universal Containers (UC) requested that branch managers and"
           }
         },
         {
@@ -654,19 +654,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "List views in Salesforce can be restricted to 'Only I can see this', 'All users can see this', or shared with specific Public Groups, Roles, and Roles & Subordinates.",
+          "whyCorrect": "When list views need to be targeted to specific individuals who cross-cut formal roles (such as 'certain executives who specialize in closing problematic deals'), creating a Public Group containing those specific specialists and sharing the list view with that Public Group is the architecturally correct approach. Sharing by Role (Option A) would expose the list views to all executives in that role, failing the requirement. Additionally, list views cannot be shared directly with individual users (Option B).",
           "distractors": {
-            "A": "Queues own records and manage assignment; they are not visibility containers for sharing list views.",
-            "B": "List views cannot be shared directly with individual user records."
+            "A": "Option A shares the list view with all users in that Role (and subordinates), which overshares the list view to executives who do not specialize in problematic deals.",
+            "B": "Option B is technically impossible because Salesforce list views cannot be shared with individual users."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Share the list views with the appropriate Public Group.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the list views with the appropriate Public Group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q89 Sales executives at Universal Containers (UC) want to create list views to filter opportun"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "When list views need to be targeted to specific individuals who cross-cut formal roles (such as 'certain executives who specialize in closing problematic deals'), creating a Public Group containing those specific specialists and sharing the list view with that Public Group is the architecturally correct approach. Sharing by Role (Option A) would expose the list views to all executives in that role, failing the requirement. Additionally, list views cannot be shared directly with individual users (Option B).",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q89 Sales executives at Universal Containers (UC) want to create"
           }
         },
         {
@@ -684,19 +684,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Set the price book organization- wide default to View Only and share the price book (High Risk) with the trained staff.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "By setting the Price Book Organization-Wide Default to 'View Only', users cannot add products from restricted price books to opportunities. To grant trained staff the ability to create opportunities with high-risk products, the High Risk price book is shared directly with 'Use' access with the trained staff (via the Price Book Sharing interface to users, roles, or groups). Option B accurately describes the standard architectural configuration. Price Books do not support sharing rules, eliminating Option A.",
           "distractors": {
-            "A": "Option A ('Set the price book organization- wide default to View Only and share the (High Risk) price book with the trained staff via a sharing rule.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Set the price book organization- wide default to View Only and share the (High Risk) price book with the trained staff via manual sharing.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Option A is invalid because Salesforce does not support Sharing Rules on Price Books.",
+            "C": "Option C specifically restricts the sharing mechanism to 'manual sharing' (one-by-one user share records) rather than standard price book sharing with trained staff groups/roles."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Set the price book organization- wide default to View Only and share the price book (High Risk) with the trained staff.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Set the price book organization- wide default to View Only and share the price book (High Risk) with the trained staff.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q91 Universal Containers implements Agentforce Sales and requests that only certain branch sta"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "By setting the Price Book Organization-Wide Default to 'View Only', users cannot add products from restricted price books to opportunities. To grant trained staff the ability to create opportunities with high-risk products, the High Risk price book is shared directly with 'Use' access with the trained staff (via the Price Book Sharing interface to users, roles, or groups). Option B accurately describes the standard architectural configuration. Price Books do not support sharing rules, eliminating Option A.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q91 Universal Containers implements Agentforce Sales and request"
           }
         },
         {
@@ -714,19 +714,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "For custom objects with a Private OWD, disabling the 'Grant Access Using Hierarchies' checkbox ensures that users higher in the Role Hierarchy do not automatically inherit access to subordinate records.",
+          "whyCorrect": "For custom objects (like Scheduled Courses), 'Grant Access Using Hierarchies' can be enabled or disabled in Sharing Settings. When enabled alongside a properly configured Role Hierarchy where the operations users report up to the operations manager, Salesforce automatically rolls up record ownership and edit access to the manager. This provides the most scalable, maintenance-free mechanism across 500 regions.",
           "distractors": {
-            "A": "Removing object CRUD permissions revokes access to all records, not just subordinate records.",
-            "B": "Removing object CRUD permissions revokes access to all records, not just subordinate records."
+            "A": "Option A is insufficient because adding users to a public group does not grant record edit access without additional sharing rules, and does not model managerial hierarchy.",
+            "B": "Option B would require creating multiple ownership-based sharing rules, adding administrative overhead and nearing platform sharing rule limits across 500 regions."
           },
           "domain": "Declarative Sharing (Access to Records)",
           "domainSlug": "declarative-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Enable Grant Access Using Hierarchies and define a Role Hierarchy to give access to the scheduled courses.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Enable Grant Access Using Hierarchies and define a Role Hierarchy to give access to the scheduled courses.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q97 Universal Containers (UC) delivers training in 500 different regions. The UC operations us"
+            "docTopic": "Declarative Sharing (Access to Records)",
+            "webReason": "For custom objects (like Scheduled Courses), 'Grant Access Using Hierarchies' can be enabled or disabled in Sharing Settings. When enabled alongside a properly configured Role Hierarchy where the operations users report up to the operations manager, Salesforce automatically rolls up record ownership and edit access to the manager. This provides the most scalable, maintenance-free mechanism across 500 regions.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q97 Universal Containers (UC) delivers training in 500 different"
           }
         }
       ],
@@ -752,19 +752,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "The 'with sharing' keyword enforces record-level sharing rules, but does NOT enforce Field-Level Security (FLS) or Object CRUD permissions. Apex must explicitly call describe methods like isUpdateable() / isAccessible() or Security.stripInaccessible().",
+          "whyCorrect": "In Apex, the 'with sharing' keyword enforces only record-level sharing rules (OWD, role hierarchy, manual sharing). It does NOT enforce Object-Level Permissions (CRUD) or Field-Level Security (FLS). To enforce Field-Level Security in Apex and ensure users cannot update fields marked Read-Only on their profiles, developers must programmatically verify permissions using Schema describe methods (e.g., Schema.sObjectField.getDescribe().isUpdateable()), or utilize Security.stripInaccessible() / WITH USER_MODE. Therefore, Option C is the correct solution.",
           "distractors": {
-            "A": "The 'with sharing' keyword only enforces record sharing; it does not respect or enforce FLS.",
-            "B": "The 'with sharing' keyword only enforces record sharing; it does not respect or enforce FLS."
+            "A": "Option A is incorrect because 'with sharing' only enforces record sharing rules; Apex continues to execute in system context regarding Object and Field-Level Security.",
+            "B": "Option B is incorrect because placing code in an inner class with 'with sharing' still has zero effect on Field-Level Security enforcement."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Use the isUpdateable() Apex method to test each field prior to allowing update.",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option C ('Use the isUpdateable() Apex method to test each field prior to allowing update.') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q3 Universal Containers (UC) has a custom Apex class that enforces a business process and upd"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "In Apex, the 'with sharing' keyword enforces only record-level sharing rules (OWD, role hierarchy, manual sharing). It does NOT enforce Object-Level Permissions (CRUD) or Field-Level Security (FLS). To enforce Field-Level Security in Apex and ensure users cannot update fields marked Read-Only on their profiles, developers must programmatically verify permissions using Schema describe methods (e.g., Schema.sObjectField.getDescribe().isUpdateable()), or utilize Security.stripInaccessible() / WITH USER_MODE. Therefore, Option C is the correct solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q3 Universal Containers (UC) has a custom Apex class that enfor"
           }
         },
         {
@@ -782,19 +782,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Dynamic Forms allow administrators to configure field sections and individual fields directly on Lightning record pages with granular component visibility rules based on record type or device form factors without requiring code.",
+          "whyCorrect": "Dynamic Forms allows administrators to migrate fields and sections from traditional page layouts into individual components directly within the Lightning App Builder. Admins can configure granular field section visibility rules based on the device form factor (e.g., Device Form Factor = Desktop vs Phone), enabling tailored layouts, proper field alignment, and streamlined views across diverse mobile and desktop devices without writing custom code.",
           "distractors": {
-            "B": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement.",
-            "C": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement."
+            "B": "Visualforce overrides represent a legacy programmatic approach that introduces severe maintenance overhead, breaks standard Lightning Experience features, and requires extensive custom responsive CSS logic across every supported device.",
+            "C": "Overriding the standard Opportunity view action with a custom Lightning Web Component (LWC) introduces unnecessary development overhead, creates ongoing technical debt, and reimplements capabilities already provided natively and declaratively by Dynamic Forms."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use Dynamic Form to define different field sections applicable for different form fa ctors of devices.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Form to define different field sections applicable for different form fa ctors of devices.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q9 A company intends bring work from anywhere culture in a bid to improve productivity. Their"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Dynamic Forms allows administrators to migrate fields and sections from traditional page layouts into individual components directly within the Lightning App Builder. Admins can configure granular field section visibility rules based on the device form factor (e.g., Device Form Factor = Desktop vs Phone), enabling tailored layouts, proper field alignment, and streamlined views across diverse mobile and desktop devices without writing custom code.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q9 A company intends bring work from anywhere culture in a bid "
           }
         },
         {
@@ -812,19 +812,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "When page layouts remain unchanged but a field disappears, Field Accessibility in Object Manager is the definitive tool to diagnose profile-level visibility and Field-Level Security settings across all profiles.",
+          "whyCorrect": "In Apex, server-side code runs in system context by default and does NOT automatically enforce Field-Level Security (FLS). To prevent unauthorized users (such as sales reps) from viewing sensitive fields like Shipment Amount, developers must explicitly check field accessibility using Schema describe methods such as Schema.sObjectType.Shipment__c.fields.Amount__c.isAccessible() (or modern equivalents like WITH USER_MODE or Security.stripInaccessible()). In this single-select variant, Option A is the only valid platform mechanism provided.",
           "distractors": {
-            "B": "Logging in as individual users is inefficient and doesn't reveal the root configuration cause.",
-            "C": "Logging in as individual users is inefficient and doesn't reveal the root configuration cause."
+            "B": "System.runAs() is an Apex testing method used exclusively within test classes (@isTest) to simulate user execution context; it has no operational effect in production runtime code.",
+            "C": "isShareable is a fictitious keyword that does not exist in Apex or anywhere in the Salesforce platform."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use isAccessible() method in Apex classes to check field accessibility.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('Use isAccessible() method in Apex classes to check field accessibility.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q20 Universal Containers (UC) uses a custom Lightning component with an Apex class to display "
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "In Apex, server-side code runs in system context by default and does NOT automatically enforce Field-Level Security (FLS). To prevent unauthorized users (such as sales reps) from viewing sensitive fields like Shipment Amount, developers must explicitly check field accessibility using Schema describe methods such as Schema.sObjectType.Shipment__c.fields.Amount__c.isAccessible() (or modern equivalents like WITH USER_MODE or Security.stripInaccessible()). In this single-select variant, Option A is the only valid platform mechanism provided.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q20 Universal Containers (UC) uses a custom Lightning component "
           }
         },
         {
@@ -842,19 +842,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "For custom objects with a Private OWD, disabling the 'Grant Access Using Hierarchies' checkbox ensures that users higher in the Role Hierarchy do not automatically inherit access to subordinate records.",
+          "whyCorrect": "By default, custom objects have 'Grant Access Using Hierarchies' enabled, which automatically grants record access to users above the record owner in the role hierarchy. Setting the Organization-Wide Default (OWD) to Private restricts access to the record owner, and unchecking 'Grant Access Using Hierarchies' prevents the owner's manager from inheriting record access vertically through the role hierarchy.",
           "distractors": {
-            "A": "Apex sharing cannot remove implicit role hierarchy access when 'Grant Access Using Hierarchies' is enabled.",
-            "C": "Removing object CRUD permissions revokes access to all records, not just subordinate records."
+            "A": "Apex sharing cannot be used to delete implicit or hierarchy-derived access. Furthermore, share records represent explicit grants to users, roles, or public groups, not profiles, and role hierarchy access is not stored as individual share records.",
+            "C": "Removing CRED (Create, Read, Edit, Delete) permissions on the Manager profile or permission set revokes object-level access completely, preventing managers from accessing or tracking their own NPS scores as employees."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Set organization-wide default to Private and uncheck the Access Using Hierarchies option for the NPS object.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Set organization-wide default to Private and uncheck the Access Using Hierarchies option for the NPS object.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q26 Universal Containers (UC) has a custom object to track the internal net promoter score (NP"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "By default, custom objects have 'Grant Access Using Hierarchies' enabled, which automatically grants record access to users above the record owner in the role hierarchy. Setting the Organization-Wide Default (OWD) to Private restricts access to the record owner, and unchecking 'Grant Access Using Hierarchies' prevents the owner's manager from inheriting record access vertically through the role hierarchy.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q26 Universal Containers (UC) has a custom object to track the i"
           }
         },
         {
@@ -872,19 +872,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "The system method System.runAs() simulates record sharing rules and record-level visibility in Apex test methods for specified users, but does NOT enforce Field-Level Security or object permissions (CRUD).",
+          "whyCorrect": "According to the official Salesforce Apex Developer Guide, the System.runAs() method enables developers to write test methods that change the user execution context to an existing or new user so that the user's record sharing is enforced. The documentation explicitly states: 'The runAs method doesn't enforce user permissions or field-level permissions, only record sharing.'",
           "distractors": {
-            "A": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution.",
-            "C": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution."
+            "A": "Salesforce documentation explicitly states that System.runAs() does not enforce Field-Level Security in Apex test executions.",
+            "C": "Salesforce documentation explicitly states that System.runAs() does not enforce user permissions (such as CRUD permissions on objects) in Apex test executions."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Enforcement of a user's record sharing",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Enforcement of a user's record sharing') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q28 Which functionality does the system method \"runAs()\" verify when writing test methods?"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "According to the official Salesforce Apex Developer Guide, the System.runAs() method enables developers to write test methods that change the user execution context to an existing or new user so that the user's record sharing is enforced. The documentation explicitly states: 'The runAs method doesn't enforce user permissions or field-level permissions, only record sharing.'",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q28 Which functionality does the system method \"runAs()\" verify "
           }
         },
         {
@@ -902,19 +902,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "The system method System.runAs() simulates record sharing rules and record-level visibility in Apex test methods for specified users, but does NOT enforce Field-Level Security or object permissions (CRUD).",
+          "whyCorrect": "To verify that Apex managed sharing rules correctly grant access to designated users and deny access to unauthorized users, architects recommend using the System.runAs() system method in Apex test classes. System.runAs() allows tests to execute within the security context of specific users with different roles and profiles, asserting that SOQL queries return records only to authorized users.",
           "distractors": {
-            "A": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution.",
-            "C": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution."
+            "A": "subcouchable is a completely fictitious word that does not exist in Apex or Salesforce.",
+            "C": "isShareable is a fabricated keyword that does not exist in Apex or Salesforce."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Use runAs system method in test classes to test using different users and profiles.",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Use runAs system method in test classes to test using different users and profiles.') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q31 To grant Universal Containers sales managers access to shipment records properly, it was n"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "To verify that Apex managed sharing rules correctly grant access to designated users and deny access to unauthorized users, architects recommend using the System.runAs() system method in Apex test classes. System.runAs() allows tests to execute within the security context of specific users with different roles and profiles, asserting that SOQL queries return records only to authorized users.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q31 To grant Universal Containers sales managers access to shipm"
           }
         },
         {
@@ -932,19 +932,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Use Apex Managed sharing in a case Trigger that shares the record to the user identified in the Legal SME field.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Declarative sharing rules (both criteria-based and owner-based) cannot dynamically evaluate user lookup fields on a record to share with an individual user. Because Case OWD is Private and each case may designate a different lawyer in the Legal SME lookup field, an Apex trigger on Case is required to dynamically insert a CaseShare record granting access specifically to the user identified in that lookup field.",
           "distractors": {
-            "B": "Option B ('Create a Criteria Based Sharing Rule that shares to the Corporate Legal Team Role when the \"legal assistance needed\" field is checked.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Create a Criteria Based Sharing Rule that shares to the Legal Public Group when the \"legal assistance needed\" field is checked.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "A criteria-based sharing rule can only share records with static Public Groups, Roles, or Territories. Sharing with the entire Corporate Legal Team role grants access to all corporate lawyers regardless of whether they are assigned, violating the principle of least privilege.",
+            "C": "Sharing with the Legal Public Group grants access to every member of the public group rather than the specific individual designated in the Legal SME field."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use Apex Managed sharing in a case Trigger that shares the record to the user identified in the Legal SME field.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Apex Managed sharing in a case Trigger that shares the record to the user identified in the Legal SME field.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q34 If a Case requires involvement from one of the Legal team, the Case owner adds one of the "
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Declarative sharing rules (both criteria-based and owner-based) cannot dynamically evaluate user lookup fields on a record to share with an individual user. Because Case OWD is Private and each case may designate a different lawyer in the Legal SME lookup field, an Apex trigger on Case is required to dynamically insert a CaseShare record granting access specifically to the user identified in that lookup field.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q34 If a Case requires involvement from one of the Legal team, t"
           }
         },
         {
@@ -962,19 +962,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Trigger on Presenter junction object that uses /ipex Maraged sharing to add or remove access to the related Presentation record.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "When record access to a private custom object (Presentation) is dictated by relationships in a junction object (Presenter linking Presentation to User), declarative sharing rules cannot dynamically bridge this many-to-many relationship. An Apex trigger on the Presenter junction object can manage programmatic sharing via Presentation__Share records, creating an edit share when a presenter user is added and deleting the share when the presenter record is removed.",
           "distractors": {
-            "A": "Option A ('Give Edit rights to the Presentation record via a Permission set that is given to the Presenters for a record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('B. Trigger on Presenter junction object that adds the user to the Sales Team for the Presentation record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Permission Sets grant object-level CRUD permissions across all records the user has sharing access to; they cannot grant record-level access to specific individual private records.",
+            "B": "Sales Teams (Opportunity Teams/Account Teams) are standard features exclusive to Opportunity and Account; custom objects like Presentation do not have standard Sales Teams."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Trigger on Presenter junction object that uses /ipex Maraged sharing to add or remove access to the related Presentation record.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Trigger on Presenter junction object that uses /ipex Maraged sharing to add or remove access to the related Presentation record.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q37 Dreamforce presenters need to be able to edit their presentation details (summary, present"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "When record access to a private custom object (Presentation) is dictated by relationships in a junction object (Presenter linking Presentation to User), declarative sharing rules cannot dynamically bridge this many-to-many relationship. An Apex trigger on the Presenter junction object can manage programmatic sharing via Presentation__Share records, creating an edit share when a presenter user is added and deleting the share when the presenter record is removed.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q37 Dreamforce presenters need to be able to edit their presenta"
           }
         },
         {
@@ -992,19 +992,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Trigger on Case to lookup and share to the manager of an Assigned Agent custom field (the subject of the complaint) using Apex Managed Sharing.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "To ensure that a complaint case is visible to the assigned agent's manager while remaining strictly hidden from the agent themselves, programmatic sharing is required. Criteria-based sharing rules cannot dynamically resolve a relative lookup (such as the manager of a user specified on the record). An Apex trigger on Case looks up the Assigned Agent's ManagerId on the User object and inserts a CaseShare record granting Read access to that specific manager.",
           "distractors": {
-            "A": "Option A ('Case is owned by the subset of the complaint, so their manager in the role hierarchy can access the record. CRED permission are removed on Case so the agent cannot read the case record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Criteria based Sharing Rule on Case that shares to the Role Manager and above when a custom field Assigned Agent (subject of the complaint) is not blank.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "If the Case were owned by the agent, the agent would inherently possess Full Access as the owner. Removing CRED permissions on Case from the agent's profile would prevent them from accessing and resolving any customer support cases, breaking their primary job function.",
+            "B": "Criteria-based sharing rules can only share with fixed Roles or Groups, not relative managers of a dynamic user lookup. Sharing to 'Role Manager and above' would expose all complaint cases to every manager in that role across the entire company."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Trigger on Case to lookup and share to the manager of an Assigned Agent custom field (the subject of the complaint) using Apex Managed Sharing.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Trigger on Case to lookup and share to the manager of an Assigned Agent custom field (the subject of the complaint) using Apex Managed Sharing.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q44 Customer complaints for bad interactions with a customer support agent are logged as Cases"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "To ensure that a complaint case is visible to the assigned agent's manager while remaining strictly hidden from the agent themselves, programmatic sharing is required. Criteria-based sharing rules cannot dynamically resolve a relative lookup (such as the manager of a user specified on the record). An Apex trigger on Case looks up the Assigned Agent's ManagerId on the User object and inserts a CaseShare record granting Read access to that specific manager.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q44 Customer complaints for bad interactions with a customer sup"
           }
         },
         {
@@ -1022,19 +1022,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Once that Apex runs on system mode, the development team needs to enforce record visibility.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Apex classes run in system context by default, which ignores the current user's Organization-Wide Defaults, role hierarchy, and sharing rules. When building backend Apex controllers for Lightning Web Components (LWC), developers must explicitly enforce record visibility by using the 'with sharing' or 'inherited sharing' keywords, or query with WITH USER_MODE, to avoid inadvertently exposing unauthorized records to users.",
           "distractors": {
-            "B": "Option B ('Create test classes including runAs to test different users accessing the data.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Use isShareable, isUpdateable, and isCreatable to enforce field permissions.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "While creating test classes with runAs is an essential testing practice, the primary architectural implementation consideration for the application code itself is enforcing system-mode vs user-mode record visibility.",
+            "C": "isShareable is a fabricated keyword that does not exist in Apex or the Schema namespace. The valid Schema describe methods are isAccessible(), isCreateable(), isUpdateable(), and isDeletable()."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Once that Apex runs on system mode, the development team needs to enforce record visibility.",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option A ('Once that Apex runs on system mode, the development team needs to enforce record visibility.') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q45 Universal Containers requested to leverage Lightning Web Components (LWC) to improve suppo"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Apex classes run in system context by default, which ignores the current user's Organization-Wide Defaults, role hierarchy, and sharing rules. When building backend Apex controllers for Lightning Web Components (LWC), developers must explicitly enforce record visibility by using the 'with sharing' or 'inherited sharing' keywords, or query with WITH USER_MODE, to avoid inadvertently exposing unauthorized records to users.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q45 Universal Containers requested to leverage Lightning Web Com"
           }
         },
         {
@@ -1052,19 +1052,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Dynamic Forms allow administrators to configure field sections and individual fields directly on Lightning record pages with granular component visibility rules based on record type or device form factors without requiring code.",
+          "whyCorrect": "Dynamic Forms allows administrators to migrate fields and sections from traditional page layouts into individual components directly within the Lightning App Builder. Admins can configure granular field section visibility rules based on the device form factor (e.g., Device Form Factor = Desktop vs Phone), enabling tailored layouts, proper field alignment, and streamlined views across diverse mobile and desktop devices without writing custom code.",
           "distractors": {
-            "B": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement.",
-            "C": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement."
+            "B": "Visualforce overrides represent a legacy programmatic approach that introduces severe maintenance overhead, breaks standard Lightning Experience features, and requires extensive custom responsive CSS logic across every supported device.",
+            "C": "Overriding the standard Opportunity view action with a custom Lightning Web Component (LWC) introduces unnecessary development overhead, creates ongoing technical debt, and reimplements capabilities already provided natively and declaratively by Dynamic Forms."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use Dynamic Form to define different field sections applicable for different form factors of devices.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Form to define different field sections applicable for different form factors of devices.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q57 A company intends bring work from anywhere culture in a bid to improve productivity. Their"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Dynamic Forms allows administrators to migrate fields and sections from traditional page layouts into individual components directly within the Lightning App Builder. Admins can configure granular field section visibility rules based on the device form factor (e.g., Device Form Factor = Desktop vs Phone), enabling tailored layouts, proper field alignment, and streamlined views across diverse mobile and desktop devices without writing custom code.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q57 A company intends bring work from anywhere culture in a bid "
           }
         },
         {
@@ -1082,19 +1082,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Dynamic Forms allow administrators to configure field sections and individual fields directly on Lightning record pages with granular component visibility rules based on record type or device form factors without requiring code.",
+          "whyCorrect": "Dynamic Forms allows administrators to place field sections directly on a Lightning Record Page and apply conditional component visibility rules based on the WorkOrder RecordType. This enables a single Lightning Record Page to dynamically display only the specific fields required for each of the 8 work order types, dramatically simplifying maintenance and eliminating the need for 8 separate page layouts or custom LWC overrides.",
           "distractors": {
-            "A": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement.",
-            "C": "Creating multiple static page layouts requires continuous maintenance and cannot dynamically toggle sections on the fly."
+            "A": "Overriding the standard view action with a custom LWC and custom metadata types adds significant code complexity, high ongoing maintenance overhead, and needlessly reinvents standard platform UI capabilities.",
+            "C": "Creating and maintaining 8 different page layouts for an object with over 400 fields leads to massive administrative overhead, layout sprawl, and complex profile-to-layout assignment matrices."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Use Dynamic form to add different page sections and control visibility of sections by Work Order RecordType value.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Use Dynamic form to add different page sections and control visibility of sections by Work Order RecordType value.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q60 Universal Containers uses Standard WorkOrder object to track various work orders sent to f"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Dynamic Forms allows administrators to place field sections directly on a Lightning Record Page and apply conditional component visibility rules based on the WorkOrder RecordType. This enables a single Lightning Record Page to dynamically display only the specific fields required for each of the 8 work order types, dramatically simplifying maintenance and eliminating the need for 8 separate page layouts or custom LWC overrides.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q60 Universal Containers uses Standard WorkOrder object to track"
           }
         },
         {
@@ -1112,19 +1112,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Scheduled Apex job to remove access') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Salesforce does not offer native time-based expiration for record sharing. To fulfill the requirement that cross-team Opportunity access must automatically expire 2 weeks after the new fiscal year starts, a Scheduled Apex job (implementing Schedulable and Batchable) is required. The scheduled job runs on the designated expiration date, queries the temporary OpportunityShare records, and deletes them to revoke access.",
           "distractors": {
-            "A": "Option A ('Apex sharing to share opportunities with sales managers') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Sharing rules to share opportunities with sales managers') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "While Apex sharing can programmatically create the initial share records, it does not by itself fulfill the requirement for automated time-based expiration without a scheduled job to remove them.",
+            "C": "Sharing rules cannot be applied on an ad-hoc, deal-by-deal basis between specific sales managers, nor do sharing rules support automated expiration dates."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Scheduled Apex job to remove access",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Scheduled Apex job to remove access') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q76 Universal Containers is implementing Sales Cloud. During the final quarter of the financia"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Salesforce does not offer native time-based expiration for record sharing. To fulfill the requirement that cross-team Opportunity access must automatically expire 2 weeks after the new fiscal year starts, a Scheduled Apex job (implementing Schedulable and Batchable) is required. The scheduled job runs on the designated expiration date, queries the temporary OpportunityShare records, and deletes them to revoke access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q76 Universal Containers is implementing Sales Cloud. During the"
           }
         },
         {
@@ -1142,19 +1142,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Trigger on Presenter junction object that uses Apex Managed sharing to add or remove access to the related Presentation record.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "When record access to a private custom object (Presentation) is dictated by relationships in a junction object (Presenter linking Presentation to User), declarative sharing rules cannot dynamically bridge this many-to-many relationship. An Apex trigger on the Presenter junction object can manage programmatic sharing via Presentation__Share records, creating an edit share when a presenter user is added and deleting the share when the presenter record is removed.",
           "distractors": {
-            "A": "Option A ('Give Edit rights to the Presentation record via a Permission set that is given to the Presenters for a record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Trigger on Presenter junction object that adds the user to the Sales Team for the Presentation record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Permission Sets grant object-level CRUD permissions across all records the user has sharing access to; they cannot grant record-level access to specific individual private records.",
+            "B": "Sales Teams (Opportunity Teams/Account Teams) are standard features exclusive to Opportunity and Account; custom objects like Presentation do not have standard Sales Teams."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Trigger on Presenter junction object that uses Apex Managed sharing to add or remove access to the related Presentation record.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Trigger on Presenter junction object that uses Apex Managed sharing to add or remove access to the related Presentation record.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q78 Dreamforce presenters need to be able to edit their presentation details (summary, present"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "When record access to a private custom object (Presentation) is dictated by relationships in a junction object (Presenter linking Presentation to User), declarative sharing rules cannot dynamically bridge this many-to-many relationship. An Apex trigger on the Presenter junction object can manage programmatic sharing via Presentation__Share records, creating an edit share when a presenter user is added and deleting the share when the presenter record is removed.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q78 Dreamforce presenters need to be able to edit their presenta"
           }
         },
         {
@@ -1172,19 +1172,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "The system method System.runAs() simulates record sharing rules and record-level visibility in Apex test methods for specified users, but does NOT enforce Field-Level Security or object permissions (CRUD).",
+          "whyCorrect": "When implementing complex custom Apex managed sharing for Invoice records, developers must ensure that sharing calculations accurately grant access to intended users and block unintended users. The System.runAs() method in test classes is specifically designed to simulate execution in the context of different test users and profiles, enabling robust verification of record-level sharing logic.",
           "distractors": {
-            "A": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution.",
-            "B": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution."
+            "A": "The 'without sharing' keyword explicitly disables sharing rules evaluation and runs in system context, which bypasses record visibility rather than considering it.",
+            "B": "The 'with sharing' keyword enforces record-level sharing rules, but does NOT enforce Field-Level Security (FLS) or object permissions (CRUD)."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Use runAs system method to test different users accessing these records.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Use runAs system method to test different users accessing these records.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q82 Universal Containers (UC) has a team that analyzes customer orders looking for fraud. This"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "When implementing complex custom Apex managed sharing for Invoice records, developers must ensure that sharing calculations accurately grant access to intended users and block unintended users. The System.runAs() method in test classes is specifically designed to simulate execution in the context of different test users and profiles, enabling robust verification of record-level sharing logic.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q82 Universal Containers (UC) has a team that analyzes customer "
           }
         },
         {
@@ -1202,19 +1202,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Apex Sharing Reasons on custom objects allow developers to define clear business justifications for sharing. Unlike shares with RowCause 'Manual', Apex-managed shares with custom reasons are preserved across record owner changes.",
+          "whyCorrect": "In Salesforce, when record ownership changes on a custom object, all share records with RowCause = 'Manual' are automatically deleted by the platform. However, share records created with a custom Apex Sharing Reason (RowCause = Schema.CustomObject__Share.RowCause.ReasonName__c) are preserved across ownership changes, ensuring that users do not lose access when a new owner is assigned.",
           "distractors": {
-            "A": "The 'with sharing' keyword governs SOQL execution context, not persistent share records in the database.",
-            "C": "Shares created with RowCause 'Manual' are automatically deleted whenever record ownership changes."
+            "A": "The 'with sharing' keyword enforces record-level sharing rules during class execution; it has no impact on whether share records persist when record ownership changes.",
+            "C": "Creating share records with RowCause = 'Manual' causes those shares to be automatically deleted by Salesforce whenever the record owner changes."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Create a specific Apex Sharing Reason for the custom object.",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Create a specific Apex Sharing Reason for the custom object.') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q87 What should an architect recommend to make sure that users that gained access to a custom "
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "In Salesforce, when record ownership changes on a custom object, all share records with RowCause = 'Manual' are automatically deleted by the platform. However, share records created with a custom Apex Sharing Reason (RowCause = Schema.CustomObject__Share.RowCause.ReasonName__c) are preserved across ownership changes, ensuring that users do not lose access when a new owner is assigned.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q87 What should an architect recommend to make sure that users t"
           }
         },
         {
@@ -1232,19 +1232,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Create a trigger on Case to lookup and share to the manager of an Agent Complaint custom field using Apex managed sharing.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Standard criteria-based sharing rules cannot dynamically resolve a user's manager from a lookup field on the record. Because the complaint case must be shared specifically with the manager of the agent referenced in the Agent Complaint custom field (while remaining hidden from the agent), an Apex trigger on Case is required to look up the agent's manager and create a CaseShare record using programmatic sharing.",
           "distractors": {
-            "A": "Option A ('Create a criteria-based sharing rule on Case that shares to the Role Manager and above when a custom field Agent Complaint is not blank.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Remove CRED permissions on Case so the agent cannot read the case record. .') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Criteria-based sharing rules can only share with predefined Roles or Groups. Sharing with 'Role Manager and above' would expose sensitive complaints to every manager in that role across the entire company.",
+            "C": "Removing CRED permissions on Case from the agent would prevent them from accessing and resolving any cases, disrupting their daily customer support duties."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Create a trigger on Case to lookup and share to the manager of an Agent Complaint custom field using Apex managed sharing.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Create a trigger on Case to lookup and share to the manager of an Agent Complaint custom field using Apex managed sharing.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q90 Customer complaints for bad interactions with a support agent are logged as cases and assi"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Standard criteria-based sharing rules cannot dynamically resolve a user's manager from a lookup field on the record. Because the complaint case must be shared specifically with the manager of the agent referenced in the Agent Complaint custom field (while remaining hidden from the agent), an Apex trigger on Case is required to look up the agent's manager and create a CaseShare record using programmatic sharing.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q90 Customer complaints for bad interactions with a support agen"
           }
         },
         {
@@ -1262,19 +1262,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Dynamic Forms allow administrators to configure field sections and individual fields directly on Lightning record pages with granular component visibility rules based on record type or device form factors without requiring code.",
+          "whyCorrect": "Dynamic Forms allows administrators to configure field sections directly on the Lightning Record Page and apply component visibility filters based on Device Form Factor (Desktop vs Phone). This declaratively resolves data alignment and layout issues for sellers using diverse devices without modifying the underlying single page layout or building custom code.",
           "distractors": {
-            "B": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement.",
-            "C": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement."
+            "B": "Visualforce overrides are a legacy mechanism that requires complete custom development and responsive styling, increasing long-term maintenance costs and diverging from the Lightning Experience framework.",
+            "C": "A custom LWC override introduces unnecessary custom development, testing, and lifecycle maintenance for a requirement that is fully supported declaratively via Dynamic Forms."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use Dynamic Forms to define different field sections applicable for different form factors of devices.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Forms to define different field sections applicable for different form factors of devices.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q92 A company launches a work- from- anywhere initiative in an effort to improve sales team pr"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Dynamic Forms allows administrators to configure field sections directly on the Lightning Record Page and apply component visibility filters based on Device Form Factor (Desktop vs Phone). This declaratively resolves data alignment and layout issues for sellers using diverse devices without modifying the underlying single page layout or building custom code.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q92 A company launches a work- from- anywhere initiative in an e"
           }
         },
         {
@@ -1292,19 +1292,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Use With Sharing keyword in Apex classes to enforce sharing rules evaluation.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Apex, classes run in system context by default and ignore Organization-Wide Defaults and sharing rules. By adding the 'with sharing' keyword to the Apex class, the development team ensures that SOQL queries strictly evaluate and respect the context user's sharing rules, preventing users from seeing shipment records belonging to other teams.",
           "distractors": {
-            "A": "Option A ('Use isShareable keyword in Apex classes to assure record visibility.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Use runAs in test class to enforce user permissions and field-level permissions.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "isShareable is a non-existent keyword that does not exist in Apex or the Salesforce platform.",
+            "C": "runAs is used only in test classes to verify security in unit tests; it cannot be used in production Apex classes and has no runtime operational effect."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Use With Sharing keyword in Apex classes to enforce sharing rules evaluation.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('Use With Sharing keyword in Apex classes to enforce sharing rules evaluation.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q95 Universal Containers (UC) uses a custom Lightning component with an Apex class to display "
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "In Apex, classes run in system context by default and ignore Organization-Wide Defaults and sharing rules. By adding the 'with sharing' keyword to the Apex class, the development team ensures that SOQL queries strictly evaluate and respect the context user's sharing rules, preventing users from seeing shipment records belonging to other teams.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q95 Universal Containers (UC) uses a custom Lightning component "
           }
         },
         {
@@ -1322,19 +1322,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Apex classes run in system mode by default (bypassing sharing rules, object CRUD, and field-level security). When using LWC as a view layer with Apex controllers, the development team must explicitly enforce record visibility and security checks in Apex.",
+          "whyCorrect": "Server-side Apex classes execute in system mode by default, bypassing sharing rules and user permissions. When LWC is used as the presentation layer and Apex handles business logic, the development team must explicitly ensure that record visibility is enforced (by declaring classes 'with sharing' or using WITH USER_MODE) so that support reps do not gain unauthorized access to records.",
           "distractors": {
-            "A": "Option A ('Use isShareable, isEditable, and isCreatable to enforce field permissions .') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration.",
-            "C": "Option C ('Create test classes including runAs to test different users accessing the data.') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
+            "A": "isShareable and isEditable are non-existent keywords/methods in Salesforce Apex. The correct Schema describe methods are isAccessible(), isCreateable(), isUpdateable(), and isDeletable().",
+            "C": "Writing test classes with runAs is standard unit testing procedure, but the key architectural consideration when implementing the business logic itself is enforcing security against system mode execution."
           },
           "domain": "Programmatic Sharing & Apex Security",
           "domainSlug": "programmatic-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Have the development team enforce record visibility once Apex runs in system mode .",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Have the development team enforce record visibility once Apex runs in system mode .') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q96 Universal Containers requests to leverage Lightning Web Components (LWC) to improve suppor"
+            "docTopic": "Programmatic Sharing & Apex Security",
+            "webReason": "Server-side Apex classes execute in system mode by default, bypassing sharing rules and user permissions. When LWC is used as the presentation layer and Apex handles business logic, the development team must explicitly ensure that record visibility is enforced (by declaring classes 'with sharing' or using WITH USER_MODE) so that support reps do not gain unauthorized access to records.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q96 Universal Containers requests to leverage Lightning Web Comp"
           }
         }
       ],
@@ -1360,19 +1360,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Sharing folders with a Public Group automates access management for groups of users without requiring manual updates to folder permissions when users join or change roles.",
+          "whyCorrect": "Salesforce Report and Dashboard folders can be shared with Users, Public Groups, Roles, and Roles and Subordinates, but CANNOT be shared with Profiles. Creating a 'Sales Managers' Public Group and sharing the folders with that group automates folder access management: adding or removing sales managers from the public group immediately updates their access without requiring monthly manual folder sharing adjustments.",
           "distractors": {
-            "A": "Salesforce folder access does not automatically inherit upwards through the Role Hierarchy.",
-            "B": "Report and dashboard folders cannot be shared directly with profiles."
+            "A": "Folder sharing does NOT roll up vertically to superiors in the Role Hierarchy. Sharing a folder with lower roles grants access only to those specific roles and their subordinates, not upwards to superiors.",
+            "B": "Salesforce does not support sharing Report or Dashboard folders with Profiles."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Share the folders with a \"Sales Managers\" public Group.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the folders with a \"Sales Managers\" public Group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q2 Sales operations at Universal Containers (UC) has created Public Reports and Dashboards fo"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Salesforce Report and Dashboard folders can be shared with Users, Public Groups, Roles, and Roles and Subordinates, but CANNOT be shared with Profiles. Creating a 'Sales Managers' Public Group and sharing the folders with that group automates folder access management: adding or removing sales managers from the public group immediately updates their access without requiring monthly manual folder sharing adjustments.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q2 Sales operations at Universal Containers (UC) has created Pu"
           }
         },
         {
@@ -1390,19 +1390,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "When page layouts remain unchanged but a field disappears, Field Accessibility in Object Manager is the definitive tool to diagnose profile-level visibility and Field-Level Security settings across all profiles.",
+          "whyCorrect": "When a field disappears from a record page after a deployment where the page layout was unchanged, the root cause is almost always missing or altered Field-Level Security (FLS) permissions in the deployed metadata (profiles/permission sets). In Object Manager > Account > Fields & Relationships, checking 'Field Accessibility' gives the administrator a comprehensive matrix showing both FLS and page layout visibility across all profiles, allowing rapid identification of the missing permission.",
           "distractors": {
-            "A": "'Who Sees What' is an administrative overview video series/guide, not a native reporting tool in Setup.",
-            "B": "Logging in as individual users is inefficient and doesn't reveal the root configuration cause."
+            "A": "'Who Sees What' is an educational video series produced by Salesforce, not an actual report type or diagnostic tool within Salesforce Setup.",
+            "B": "Field visibility is controlled by metadata permissions (FLS and page layouts) which apply consistently across all records for affected profiles; logging in to check multiple individual records will not diagnose why the field is hidden in metadata."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "View Field Accessibility in the Object Manager.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('View Field Accessibility in the Object Manager.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q4 Users at Universal Containers are complaining that a field has disappeared from the Accoun"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "When a field disappears from a record page after a deployment where the page layout was unchanged, the root cause is almost always missing or altered Field-Level Security (FLS) permissions in the deployed metadata (profiles/permission sets). In Object Manager > Account > Fields & Relationships, checking 'Field Accessibility' gives the administrator a comprehensive matrix showing both FLS and page layout visibility across all profiles, allowing rapid identification of the missing permission.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q4 Users at Universal Containers are complaining that a field h"
           }
         },
         {
@@ -1420,19 +1420,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('The report owner') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Reports saved in the 'Private Reports' (or 'My Private Reports') folder are strictly confidential and accessible ONLY to the user who created and owns them. Even System Administrators with the 'View All Data' administrative permission cannot view, run, or edit reports stored in another user's private reports folder (the only way an admin can access them is by logging in as the user).",
           "distractors": {
-            "B": "Option B ('The report owner and any users who have been given access to the \"My Private Reports\" folder') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('The report owner and users with the View All Data permission') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "The 'My Private Reports' folder cannot be shared with other users under any circumstances; it has no sharing settings.",
+            "C": "The 'View All Data' permission grants broad access to records across the organization, but explicitly does NOT grant access to reports or dashboards stored in other users' personal/private folders."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "The report owner",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('The report owner') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q6 A support representative at Universal Containers created a report to view all her open cas"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Reports saved in the 'Private Reports' (or 'My Private Reports') folder are strictly confidential and accessible ONLY to the user who created and owns them. Even System Administrators with the 'View All Data' administrative permission cannot view, run, or edit reports stored in another user's private reports folder (the only way an admin can access them is by logging in as the user).",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q6 A support representative at Universal Containers created a r"
           }
         },
         {
@@ -1450,19 +1450,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "When creating sharing rules in Salesforce, records can be shared with Public Groups, Roles, Roles and Subordinates, or Territories. They cannot be shared directly with individual Users or Profiles.",
+          "whyCorrect": "When creating an ownership-based or criteria-based sharing rule in Salesforce Setup, the target groups available under 'Select the users to share with' are: Public Groups, Roles, Roles and Internal Subordinates, and Territories (if Enterprise Territory Management is enabled). 'Roles' is a standard supported option.",
           "distractors": {
-            "B": "Salesforce sharing rules cannot target individual users directly; public groups must be used instead.",
-            "C": "Sharing rules cannot be assigned to Profiles; profiles manage permissions, not record visibility."
+            "B": "Sharing rules cannot be configured to share with individual 'Users'. Individual user access must be granted via Manual Sharing, Teams, or programmatic sharing.",
+            "C": "Sharing rules cannot share with 'Profiles'. In Salesforce's security architecture, record sharing is strictly decoupled from profiles (profiles control CRED and FLS, not record sharing rules)."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Roles",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Roles') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q7 Which option can be selected to share data when creating a sharing rule?"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "When creating an ownership-based or criteria-based sharing rule in Salesforce Setup, the target groups available under 'Select the users to share with' are: Public Groups, Roles, Roles and Internal Subordinates, and Territories (if Enterprise Territory Management is enabled). 'Roles' is a standard supported option.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q7 Which option can be selected to share data when creating a s"
           }
         },
         {
@@ -1480,19 +1480,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Under Salesforce implicit sharing (specifically Child-to-Parent Implicit Sharing), a user who has access to a child record (like an Opportunity or Case) automatically receives Read-Only access to the parent Account record.",
+          "whyCorrect": "Salesforce uses 'Parent Implicit Sharing': when a user has access to a child record (such as an Opportunity, Case, or Contact), Salesforce automatically grants that user implicit Read-Only access to the parent Account record. This ensures the user can view the parent account's context. Parent implicit sharing NEVER grants Edit or Create permissions on the parent Account, regardless of the user's permissions on the child record or profile.",
           "distractors": {
-            "A": "Implicit sharing to the parent Account provides Read-Only access, not Edit or Delete rights.",
-            "C": "Salesforce implicit sharing guarantees that a user can view the parent account associated with their opportunities."
+            "A": "Parent implicit sharing only ever provides Read access to the parent Account record; it never grants Edit or Create access.",
+            "C": "The sales rep will not have 'No access' because Salesforce parent implicit sharing automatically bridges access from the owned opportunity to the parent Account record."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Read access",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Read access') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q10 Universal Containers' organization wide-defaults model is Private for the Account object. "
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Salesforce uses 'Parent Implicit Sharing': when a user has access to a child record (such as an Opportunity, Case, or Contact), Salesforce automatically grants that user implicit Read-Only access to the parent Account record. This ensures the user can view the parent account's context. Parent implicit sharing NEVER grants Edit or Create permissions on the parent Account, regardless of the user's permissions on the child record or profile.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q10 Universal Containers' organization wide-defaults model is Pr"
           }
         },
         {
@@ -1510,19 +1510,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "In a Master-Detail relationship, access to detail records (Invoices) is controlled by the master object (Account). If AR reps cannot see invoices, they lack access to the parent Accounts, which requires a sharing rule on Account.",
+          "whyCorrect": "In a Master-Detail relationship, detail records (Invoice) inherit their security and record access directly from the master record (Account) via 'Controlled by Parent' sharing. Custom detail objects do not have independent Organization-Wide Defaults (OWD), owner fields, or sharing rules. Because Account OWD is Private and AR users neither own nor have access to Account records, they cannot see the child Invoice records. Creating a sharing rule to share the Accounts with the AR team will cascade visibility down to the Invoices.",
           "distractors": {
-            "A": "OWD for a detail record is automatically Controlled by Parent and cannot be changed independently.",
-            "B": "OWD for a detail record is automatically Controlled by Parent and cannot be changed independently."
+            "A": "Custom detail objects in a master-detail relationship cannot have their own sharing rules because their sharing is inherited directly from the master object.",
+            "B": "While object-level Read permission is necessary, the question explicitly states AR users neither own nor have access to account records under a Private Account OWD; this lack of parent account record access directly prevents invoice visibility regardless of Invoice object permissions."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "A sharing rule is missing to share accounts with the AR team.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('A sharing rule is missing to share accounts with the AR team.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q11 A custom Invoice object has been created with a master-detail relationship to Account. The"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "In a Master-Detail relationship, detail records (Invoice) inherit their security and record access directly from the master record (Account) via 'Controlled by Parent' sharing. Custom detail objects do not have independent Organization-Wide Defaults (OWD), owner fields, or sharing rules. Because Account OWD is Private and AR users neither own nor have access to Account records, they cannot see the child Invoice records. Creating a sharing rule to share the Accounts with the AR team will cascade visibility down to the Invoices.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q11 A custom Invoice object has been created with a master-detai"
           }
         },
         {
@@ -1536,23 +1536,23 @@ window.CERT_PREP_DATA = {
             "C": "Use Encryption Policy and contact Salesforce to update the existing records so that their field values are encrypted."
           },
           "correctAnswers": [
-            "B"
+            "C"
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "When encrypting existing standard or custom fields via Shield Platform Encryption Policy, background encryption is initiated. Salesforce sends an email confirmation once background processing of existing data is complete.",
+          "whyCorrect": "When enabling Shield Platform Encryption for fields via the Encryption Policy, only newly created and updated records are encrypted going forward. Enabling encryption on an existing field does not automatically encrypt existing data at rest in the database, nor does Salesforce send an email simply from enabling the policy checkbox. To encrypt existing records, an architect/admin can update existing records (e.g. via Data Loader/API) or contact Salesforce Customer Support to request a background encryption service to update and encrypt existing records at rest.",
           "distractors": {
-            "A": "Classic Encryption is limited to custom text fields and does not support standard fields like Billing Address or Phone.",
-            "C": "Contacting Salesforce Customer Support is no longer required for standard Shield encryption verification."
+            "A": "Classic Encryption is a legacy feature limited to custom text fields up to 175 characters; it cannot encrypt standard fields like Billing Street, Billing City, or Phone.",
+            "B": "Salesforce does not automatically encrypt existing data or send an email indicating field values are encrypted merely by enabling the Encryption Policy; existing data must be touched or encrypted by Salesforce via a background encryption request."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
-            "confirmedAnswer": "B",
-            "confirmedText": "Use Encryption Policy and wait for an email from Salesforce indicating the field values are encrypted.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Use Encryption Policy and wait for an email from Salesforce indicating the field values are encrypted.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q12 An architect from a previous project implemented Platform Shield Encryption for a company."
+            "confirmedAnswer": "C",
+            "confirmedText": "Use Encryption Policy and contact Salesforce to update the existing records so that their field values are encrypted.",
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "When enabling Shield Platform Encryption for fields via the Encryption Policy, only newly created and updated records are encrypted going forward. Enabling encryption on an existing field does not automatically encrypt existing data at rest in the database, nor does Salesforce send an email simply from enabling the policy checkbox. To encrypt existing records, an architect/admin can update existing records (e.g. via Data Loader/API) or contact Salesforce Customer Support to request a background encryption service to update and encrypt existing records at rest.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q12 An architect from a previous project implemented Platform Sh"
           }
         },
         {
@@ -1570,19 +1570,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('The field has been configured for encryption.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Fields configured for encryption (e.g., using Shield Platform Encryption) cannot be used in criteria-based sharing rules, formula fields, or certain filter criteria due to cryptographic and database indexing limitations. As a result, Salesforce automatically filters out encrypted fields from the list of available fields when creating criteria-based sharing rules in Setup.",
           "distractors": {
-            "A": "Option A ('The architect's profile does not have Field Level Security for this field.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('The architect does not have permission to Compliance Fields.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Field-Level Security (FLS) restricts data visibility for end users on record pages, reports, and search, but does not prevent an administrator from selecting fields in Setup when configuring sharing rules.",
+            "B": "There is no standard Salesforce permission named 'Compliance Fields'; field availability is dictated by field type, encryption status, and platform feature compatibility."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "The field has been configured for encryption.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('The field has been configured for encryption.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q13 An architect has a requirement to create a criteria-based sharing rule based on the custom"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Fields configured for encryption (e.g., using Shield Platform Encryption) cannot be used in criteria-based sharing rules, formula fields, or certain filter criteria due to cryptographic and database indexing limitations. As a result, Salesforce automatically filters out encrypted fields from the list of available fields when creating criteria-based sharing rules in Setup.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q13 An architect has a requirement to create a criteria-based sh"
           }
         },
         {
@@ -1600,19 +1600,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('The users are in profiles that have no access to the Account object.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Object-level permissions (CRUD) defined on Profiles and Permission Sets act as the primary baseline gatekeeper. If a user's profile does not grant 'Read' access to the Account object, record-level sharing mechanisms (such as sharing rules, public groups, or role hierarchy) cannot grant access to any records of that object.",
           "distractors": {
-            "A": "Option A ('The accounts are owned by users higher in the Role Hierarchy.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('The page layout assigned to these users is different than the Account owner.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Sharing rules extend access regardless of where the record owner sits in the Role Hierarchy; ownership higher in the hierarchy does not block a sharing rule from granting access.",
+            "C": "Page layouts only control which fields and sections appear on the record detail page; they do not control whether a user can see records in list views, search, or reports."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "The users are in profiles that have no access to the Account object.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('The users are in profiles that have no access to the Account object.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q18 Universal Containers has selected a small and diverse group of users to review inactive ac"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Object-level permissions (CRUD) defined on Profiles and Permission Sets act as the primary baseline gatekeeper. If a user's profile does not grant 'Read' access to the Account object, record-level sharing mechanisms (such as sharing rules, public groups, or role hierarchy) cannot grant access to any records of that object.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q18 Universal Containers has selected a small and diverse group "
           }
         },
         {
@@ -1630,19 +1630,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Set the Field Level Security for the VIP Flag field so that it is visible to Private Banking Rep Profiles.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Field-Level Security (FLS) is the only native mechanism in Salesforce that completely restricts field visibility across all surfaces\u2014including record detail pages, list views, reports, global search, and API queries. Making the VIP Flag field visible only to Private Banking Rep profiles guarantees that unauthorized users cannot access the field through any channel.",
           "distractors": {
-            "A": "Option A ('Define a page layout for Contact Object and add the VIP Flag field for that layout. Remove the VIP Flag field from other layouts.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Change the type of VIP Flag field to a publish, define a new record type for the Contact Object and make the publish field available for Editing.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Page layouts only control visibility on standard record pages; users without the field on their page layout can still see the field in list views, reports, search results, and API integrations.",
+            "B": "There is no 'publish' field type in Salesforce, and record types control picklist values and layout assignments, not secure field-level visibility."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Set the Field Level Security for the VIP Flag field so that it is visible to Private Banking Rep Profiles.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Set the Field Level Security for the VIP Flag field so that it is visible to Private Banking Rep Profiles.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q19 A banking company uses a VIP Flag in the Contact Object that they want only Private Bankin"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Field-Level Security (FLS) is the only native mechanism in Salesforce that completely restricts field visibility across all surfaces\u2014including record detail pages, list views, reports, global search, and API queries. Making the VIP Flag field visible only to Private Banking Rep profiles guarantees that unauthorized users cannot access the field through any channel.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q19 A banking company uses a VIP Flag in the Contact Object that"
           }
         },
         {
@@ -1660,19 +1660,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('The Sales Users profile does not have access to the remaining fields.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Because sales users can find and view the Invoice record (demonstrated by seeing the system header fields: record name, created date, and last modified date), they have both record-level access and object-level Read access. The absence of the remaining data fields when an admin can see them indicates that Field-Level Security (FLS) for those fields is not granted to the Sales Users profile.",
           "distractors": {
-            "B": "Option B ('The page layout assigned to Sales User profile has only Read-Only access to the fields.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('A role-based sharing rule is missing and should be added for the sales user's role to grant access to the fields.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "If the fields were marked Read-Only on the page layout, they would still be visible on the record detail page in a read-only state, rather than hidden.",
+            "C": "Sharing rules control record-level access (which records a user can see), not field-level visibility within an accessible record."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "The Sales Users profile does not have access to the remaining fields.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('The Sales Users profile does not have access to the remaining fields.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q23 Universal Containers (UC) has created a custom Invoice object. Standard sales users at UC "
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Because sales users can find and view the Invoice record (demonstrated by seeing the system header fields: record name, created date, and last modified date), they have both record-level access and object-level Read access. The absence of the remaining data fields when an admin can see them indicates that Field-Level Security (FLS) for those fields is not granted to the Sales Users profile.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q23 Universal Containers (UC) has created a custom Invoice objec"
           }
         },
         {
@@ -1690,19 +1690,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Service reps will NOT be able to access all UC account records because the Account OWD is Private.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "The 'View All' permission on a child object (Case) grants visibility to all records of that child object, but it does NOT trigger Parent Implicit Sharing for parent Account records. Because the Account OWD is Private, service reps will not be able to access Account records solely based on their Case View All permission unless Account access is explicitly granted.",
           "distractors": {
-            "A": "Option A ('Service reps will NOT be able to access all UC contact records if they are Controlled by Parent.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Service reps will be able to access all UC contact records if they are Controlled by Parent.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "While Contact access is dependent on parent Account access when Controlled by Parent, the primary consideration and constraint is that Account access is blocked by the Private Account OWD.",
+            "C": "If Contact OWD is Controlled by Parent and Account OWD is Private, service reps CANNOT access contact records because they lack access to the parent Account; therefore, this statement is factually incorrect."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Service reps will NOT be able to access all UC account records because the Account OWD is Private.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('Service reps will NOT be able to access all UC account records because the Account OWD is Private.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q30 Universal Containers (UC) service reps are assigned to a profile which has View All in the"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "The 'View All' permission on a child object (Case) grants visibility to all records of that child object, but it does NOT trigger Parent Implicit Sharing for parent Account records. Because the Account OWD is Private, service reps will not be able to access Account records solely based on their Case View All permission unless Account access is explicitly granted.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q30 Universal Containers (UC) service reps are assigned to a pro"
           }
         },
         {
@@ -1720,19 +1720,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Object-level CRUD permissions in the user's profile act as the master gate. If Mary's profile does not have 'Read' permission on the Invoice object, she cannot view any Invoice records, even if OWD is Public Read-Only or she is higher in the hierarchy.",
+          "whyCorrect": "Object-level security (CRED) on the Profile or Permission Set is the fundamental gatekeeper in Salesforce. If Mary's profile lacks 'Read' permission for the custom Invoice object, she cannot view, edit, or interact with any Invoice records in any way, regardless of the Public Read-Only OWD or her managerial position above Joe in the Role Hierarchy.",
           "distractors": {
-            "A": "Sharing settings (OWD and Role Hierarchy) cannot grant access to an object if the user's profile lacks object-level Read permission.",
-            "C": "Sharing settings (OWD and Role Hierarchy) cannot grant access to an object if the user's profile lacks object-level Read permission."
+            "A": "Mary cannot have Read/Write access because she lacks both object-level Read and Edit permissions, and the OWD is only Public Read-Only.",
+            "C": "Mary cannot view the records because record-level sharing cannot grant access to an object if object-level Read permission is not granted."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "None",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('None') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q32 Mary is Joe's manager in the Role Hierarchy. The organization-wide default for a custom In"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Object-level security (CRED) on the Profile or Permission Set is the fundamental gatekeeper in Salesforce. If Mary's profile lacks 'Read' permission for the custom Invoice object, she cannot view, edit, or interact with any Invoice records in any way, regardless of the Public Read-Only OWD or her managerial position above Joe in the Role Hierarchy.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q32 Mary is Joe's manager in the Role Hierarchy. The organizatio"
           }
         },
         {
@@ -1750,19 +1750,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('View All Users') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "The 'View All Users' system permission allows users to view all user records in the Salesforce organization, regardless of User Sharing settings or a Private User OWD. This fulfills the auditing requirement while following the principle of least privilege, avoiding exposure of sensitive business data.",
           "distractors": {
-            "B": "Option B ('View All Data') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('View permission on the User object') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "'View All Data' provides global access to view all records across all standard and custom objects in the entire organization, granting excessive permissions that violate the principle of least privilege.",
+            "C": "There is no standard object-level 'View permission on the User object'; user visibility is governed via system permissions and User Sharing."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "View All Users",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('View All Users') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q33 The corporate identity and access team needs to audit User setup in the Salesforce org. Wh"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "The 'View All Users' system permission allows users to view all user records in the Salesforce organization, regardless of User Sharing settings or a Private User OWD. This fulfills the auditing requirement while following the principle of least privilege, avoiding exposure of sensitive business data.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q33 The corporate identity and access team needs to audit User s"
           }
         },
         {
@@ -1780,19 +1780,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Remove the Work Order Edit permission from the Sales Representative profile.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Object-level permissions strictly enforce access rules across all platform layers (UI, API, Data Loader, inline editing). Removing the 'Edit' permission on Work Orders from the Sales Representative profile completely prevents sales reps from modifying work orders through any channel.",
           "distractors": {
-            "A": "Option A ('Change the Record Type/Page Layout assignment for Work Orders to Read -Only.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Implement a sharing rule that changes access for all Work Orders to Read.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Setting fields to Read-Only on a page layout is only a UI restriction; sales reps with object-level Edit permission could still modify records via list view inline editing, quick actions, or API tools.",
+            "C": "Sharing rules can only extend record access beyond the OWD; they cannot revoke access or override object-level permissions."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Remove the Work Order Edit permission from the Sales Representative profile.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Remove the Work Order Edit permission from the Sales Representative profile.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q38 Universal Containers has expanded to sell virtual containers for data storage. Virtual con"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Object-level permissions strictly enforce access rules across all platform layers (UI, API, Data Loader, inline editing). Removing the 'Edit' permission on Work Orders from the Sales Representative profile completely prevents sales reps from modifying work orders through any channel.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q38 Universal Containers has expanded to sell virtual containers"
           }
         },
         {
@@ -1810,19 +1810,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Files stored in a user's private library are accessible to the uploading user and administrators who possess the 'View All Data' system permission.",
+          "whyCorrect": "Files uploaded to a user's private library in Files Home are private to that user and do not grant access to managers in the Role Hierarchy. However, users with the administrative permission 'View All Data' have system-wide visibility to access all files across the organization, including files stored in private libraries.",
           "distractors": {
-            "A": "Option A ('The user and users above them in the Role Hierarchy') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration.",
-            "C": "Option C ('Only the user') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
+            "A": "The Role Hierarchy does not grant access to files located in a user's private library in Files Home.",
+            "C": "While standard users cannot access another user's private files, users with the administrative 'View All Data' permission can access them."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "The user and users with View All Data permission",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('The user and users with View All Data permission') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q42 Who can view a PDF that is uploaded to the Files Home private library by a user?"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Files uploaded to a user's private library in Files Home are private to that user and do not grant access to managers in the Role Hierarchy. However, users with the administrative permission 'View All Data' have system-wide visibility to access all files across the organization, including files stored in private libraries.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q42 Who can view a PDF that is uploaded to the Files Home privat"
           }
         },
         {
@@ -1840,19 +1840,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Leverage default Account team. enables record owners to quickly grant specific access levels (Read or Read/Write) to supporting cross-functional team members without requiring administrative intervention.",
+          "whyCorrect": "Default Account Teams allow each sales rep to define a recurring group of internal collaborators (such as legal, engineering, and finance specialists) along with their specific roles and access levels (Read Only or Read/Write) for Accounts, Opportunities, and Cases. Once defined, the default team can be automatically added to new accounts or applied with a single click, eliminating repetitive manual sharing.",
           "distractors": {
-            "A": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege.",
-            "B": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege."
+            "A": "Criteria-based sharing rules evaluate record field criteria and cannot dynamically accommodate flexible, user-driven collaboration needs.",
+            "B": "Granting 'View All Data' to supporting internal users provides unnecessary global access to all records across all objects, violating security best practices."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Leverage default Account team.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Leverage default Account team.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q49 Sales reps at Universal Containers (UC) complain about the manual activities they need to "
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Default Account Teams allow each sales rep to define a recurring group of internal collaborators (such as legal, engineering, and finance specialists) along with their specific roles and access levels (Read Only or Read/Write) for Accounts, Opportunities, and Cases. Once defined, the default team can be automatically added to new accounts or applied with a single click, eliminating repetitive manual sharing.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q49 Sales reps at Universal Containers (UC) complain about the m"
           }
         },
         {
@@ -1870,19 +1870,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Set the Field Level Security for the Date of Birth field to be Visible to Customer Support Rep Profile, and set the Date of Birth field Visible and Readonly to Banking Rep profile.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Field-Level Security (FLS) controls both visibility and editability. Setting FLS to Visible and Read-Only for Banking Reps enables global searchability and detail viewing while completely preventing edits. Setting FLS to Visible (not Read-Only) for Customer Support Reps allows them to both view and edit the field.",
           "distractors": {
-            "A": "Option A ('Add Date of Birth field to the Search layout of the Contact Object. Modify the Page layout assigned to Customer Support Rep and add Date of Birth field as Required.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Create a Validation rule in the Date of Birth field so the rule returns true only when user.profilename matches Customer Support Rep.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Search layouts determine which columns appear in search results, not field permissions; page layouts do not prevent editing via list views or API.",
+            "B": "Validation rules only fire during save events and do not render the field read-only in the UI, nor do they manage searchability properly."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Set the Field Level Security for the Date of Birth field to be Visible to Customer Support Rep Profile, and set the Date of Birth field Visible and Readonly to Banking Rep profile.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Set the Field Level Security for the Date of Birth field to be Visible to Customer Support Rep Profile, and set the Date of Birth field Visible and Readonly to Banking Rep profile.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q51 A banking company wants their customers Date of Birth Field searchable by Banking Reps, bu"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Field-Level Security (FLS) controls both visibility and editability. Setting FLS to Visible and Read-Only for Banking Reps enables global searchability and detail viewing while completely preventing edits. Setting FLS to Visible (not Read-Only) for Customer Support Reps allows them to both view and edit the field.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q51 A banking company wants their customers Date of Birth Field "
           }
         },
         {
@@ -1900,19 +1900,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Remove Order Delete permission from profiles and permission sets.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Removing the 'Delete' object permission on the Order object from profiles and permission sets guarantees that users cannot delete orders through any entry point, including the standard UI, list views, mass delete tools, and the API / Data Loader.",
           "distractors": {
-            "A": "Option A ('Remove the Delete button from the Order Page Layout.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Change the Record Type/Page Layout assignment for orders to be Read-Only.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Removing the Delete button from the page layout only hides the button on the record page; users can still delete records via list views, mass delete tools, or API.",
+            "C": "Making page layouts read-only does not restrict the object-level Delete permission, allowing deletions to continue via other tools."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Remove Order Delete permission from profiles and permission sets.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Remove Order Delete permission from profiles and permission sets.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q52 Universal Containers (UC) is in a legal dispute regarding several orders. UC has found out"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Removing the 'Delete' object permission on the Order object from profiles and permission sets guarantees that users cannot delete orders through any entry point, including the standard UI, list views, mass delete tools, and the API / Data Loader.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q52 Universal Containers (UC) is in a legal dispute regarding se"
           }
         },
         {
@@ -1930,19 +1930,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('The report owner') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Reports saved in the 'Private Reports' (or 'My Private Reports') folder are strictly confidential and accessible ONLY to the user who created and owns them. Even System Administrators with the 'View All Data' administrative permission cannot view, run, or edit reports stored in another user's private reports folder (the only way an admin can access them is by logging in as the user).",
           "distractors": {
-            "B": "Option B ('The report owner and any users who have been given access to the \"My Private Reports\" folder') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('The report owner and users with the View All Data permission') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "The 'My Private Reports' folder cannot be shared with other users under any circumstances; it has no sharing settings.",
+            "C": "The 'View All Data' permission grants broad access to records across the organization, but explicitly does NOT grant access to reports or dashboards stored in other users' personal/private folders."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "The report owner",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('The report owner') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q54 A support representative at Universal Containers created a report to view all her open cas"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Reports saved in the 'Private Reports' (or 'My Private Reports') folder are strictly confidential and accessible ONLY to the user who created and owns them. Even System Administrators with the 'View All Data' administrative permission cannot view, run, or edit reports stored in another user's private reports folder (the only way an admin can access them is by logging in as the user).",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q54 A support representative at Universal Containers created a r"
           }
         },
         {
@@ -1960,19 +1960,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "When creating sharing rules in Salesforce, records can be shared with Public Groups, Roles, Roles and Subordinates, or Territories. They cannot be shared directly with individual Users or Profiles.",
+          "whyCorrect": "When creating an ownership-based or criteria-based sharing rule in Salesforce Setup, the target groups available under 'Select the users to share with' are: Public Groups, Roles, Roles and Internal Subordinates, and Territories (if Enterprise Territory Management is enabled). 'Roles' is a standard supported option.",
           "distractors": {
-            "B": "Salesforce sharing rules cannot target individual users directly; public groups must be used instead.",
-            "C": "Sharing rules cannot be assigned to Profiles; profiles manage permissions, not record visibility."
+            "B": "Sharing rules cannot be configured to share with individual 'Users'. Individual user access must be granted via Manual Sharing, Teams, or programmatic sharing.",
+            "C": "Sharing rules cannot share with 'Profiles'. In Salesforce's security architecture, record sharing is strictly decoupled from profiles (profiles control CRED and FLS, not record sharing rules)."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Roles",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Roles') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q55 Which option can be selected to share data when creating a sharing rule?"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "When creating an ownership-based or criteria-based sharing rule in Salesforce Setup, the target groups available under 'Select the users to share with' are: Public Groups, Roles, Roles and Internal Subordinates, and Territories (if Enterprise Territory Management is enabled). 'Roles' is a standard supported option.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q55 Which option can be selected to share data when creating a s"
           }
         },
         {
@@ -1990,19 +1990,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Create owner-based sharing rule to grant access to account records that have the same segment to all sales manager roles.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In the exam architecture context, Option A is the intended solution utilizing sharing rules to open up cross-branch visibility among sales managers for segment-aligned accounts.",
           "distractors": {
-            "B": "Option B ('Create a public group and include all accounts of the same segment, and then grant access with a permission set.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Change the Role Hierarchy and put all the sales managers in the U.S. and Canada in the same role.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "Public groups can only contain users, roles, and other groups\u2014account records cannot be added to a public group, and permission sets cannot grant record-level sharing.",
+            "C": "Placing managers from different countries into the same role violates organizational reporting structures and still would not grant access between peers when Account OWD is Private."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Create owner-based sharing rule to grant access to account records that have the same segment to all sales manager roles.",
-            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
-            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option A is the validated architectural solution.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q59 Besides their own team accounts, sales managers at Universal Containers (UC) need Read acc"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "In the exam architecture context, Option A is the intended solution utilizing sharing rules to open up cross-branch visibility among sales managers for segment-aligned accounts.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q59 Besides their own team accounts, sales managers at Universal"
           }
         },
         {
@@ -2020,19 +2020,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Remove Read permission on the Driver profile, have feedback ownership transferred to the driver's manager when feedback is submitted, and use the Role Hierarchy to give access to a driver's manager.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Removing Read permission on the Driver profile ensures drivers cannot see feedback records. Transferring ownership of the submitted feedback to the driver's manager ensures the record is owned by the management team. Utilizing the Role Hierarchy (Grant Access Using Hierarchies enabled) ensures that executives and managers above the driver's manager automatically gain Read access to the records.",
           "distractors": {
-            "A": "Option A ('Remove Read permission on the Driver profile, have feedback ownership transferred to the driver when feedback is submitted, and create an ownership-based sharing rule.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Remove Read permission on the Driver profile, have feedback ownership transferred to the driver when feedback is submitted, and use the Role Hierarchy to give access to a driver's manager.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Transferring ownership to the driver would make the driver the record owner, and creating an ownership-based sharing rule is unnecessary when the Role Hierarchy is already available.",
+            "C": "Transferring ownership to the driver means the driver is the record owner; even without Read object permission, best practice avoids assigning sensitive supervisory feedback ownership to the subject being reviewed."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Remove Read permission on the Driver profile, have feedback ownership transferred to the driver's manager when feedback is submitted, and use the Role Hierarchy to give access to a driver's manager.",
-            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
-            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q64 Universal Containers has a Performance Feedback custom object (Private organization- wide "
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Removing Read permission on the Driver profile ensures drivers cannot see feedback records. Transferring ownership of the submitted feedback to the driver's manager ensures the record is owned by the management team. Utilizing the Role Hierarchy (Grant Access Using Hierarchies enabled) ensures that executives and managers above the driver's manager automatically gain Read access to the records.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q64 Universal Containers has a Performance Feedback custom objec"
           }
         },
         {
@@ -2050,19 +2050,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Create a permission set that grants the View All permission for Opportunity.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "The 'View All' object permission grants read-only access to all records of that specific object (Opportunity), overriding OWD and sharing rules without allowing edit or delete operations. Packaging this permission into a Permission Set allows assigning it specifically to the key members of the sales reporting team, adhering to the principle of least privilege without altering profiles or exposing other confidential business objects.",
           "distractors": {
-            "A": "Option A ('Give the View All Data permission to the Sales Reporting profile.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Create a permission set that grants the View All Data permission.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Granting 'View All Data' on the profile gives global read access across every single standard and custom object in the organization, violating client data privacy.",
+            "B": "A permission set with 'View All Data' still exposes every object in the organization, violating the principle of least privilege."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Create a permission set that grants the View All permission for Opportunity.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Create a permission set that grants the View All permission for Opportunity.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q68 Universal Containers (UC) has a mostly Private organization-wide default, as it's a core p"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "The 'View All' object permission grants read-only access to all records of that specific object (Opportunity), overriding OWD and sharing rules without allowing edit or delete operations. Packaging this permission into a Permission Set allows assigning it specifically to the key members of the sales reporting team, adhering to the principle of least privilege without altering profiles or exposing other confidential business objects.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q68 Universal Containers (UC) has a mostly Private organization-"
           }
         },
         {
@@ -2076,23 +2076,23 @@ window.CERT_PREP_DATA = {
             "C": "Create a permission set to grant access to the new functionality and hide the old functionality."
           },
           "correctAnswers": [
-            "C"
+            "A"
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Create a permission set to grant access to the new functionality and hide the old functionality. follows Salesforce best architectural practices by maintaining clean baseline profiles and extending specialized capabilities modularly via permission sets.",
+          "whyCorrect": "In Salesforce, Permission Sets are strictly ADDITIVE\u2014they can grant permissions, but they cannot revoke, restrict, or hide functionality already granted by a user's base Profile. Therefore, Option C is technically impossible. To provide a pilot group with new functionality while hiding legacy functionality, an architect must clone the existing Sales Rep profile, adjust settings on the cloned profile (enabling the new app and revoking the legacy functions), and assign the pilot users to this new profile.",
           "distractors": {
-            "A": "Modifying core profiles creates permission sprawl and complicates long-term maintenance across user cohorts.",
-            "B": "Modifying core profiles creates permission sprawl and complicates long-term maintenance across user cohorts."
+            "B": "Revoking access to legacy functions on the base Sales Rep profile would remove access for all sales reps across the company, impacting non-pilot users.",
+            "C": "Permission sets are strictly additive and cannot revoke, hide, or restrict access granted by a user's profile."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
-            "confirmedAnswer": "C",
-            "confirmedText": "Create a permission set to grant access to the new functionality and hide the old functionality.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Create a permission set to grant access to the new functionality and hide the old functionality.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q71 Universal Containers is planning to pilot a new application to a small set of sales reps. "
+            "confirmedAnswer": "A",
+            "confirmedText": "Clone the Sales Rep profile, adjust settings, and assign the pilot users the new profile.",
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "In Salesforce, Permission Sets are strictly ADDITIVE\u2014they can grant permissions, but they cannot revoke, restrict, or hide functionality already granted by a user's base Profile. Therefore, Option C is technically impossible. To provide a pilot group with new functionality while hiding legacy functionality, an architect must clone the existing Sales Rep profile, adjust settings on the cloned profile (enabling the new app and revoking the legacy functions), and assign the pilot users to this new profile.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q71 Universal Containers is planning to pilot a new application "
           }
         },
         {
@@ -2109,18 +2109,18 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Dynamic Forms allow administrators to configure field sections and individual fields directly on Lightning record pages with granular component visibility rules based on record type or device form factors without requiring code.",
+          "whyCorrect": "Dynamic Forms enables field- and section-level component visibility rules directly within Lightning App Builder based on record criteria (such as Record Type). On an object with over 400 fields and 8 business processes, Dynamic Forms avoids the massive maintenance overhead and page layout sprawl of managing multiple traditional page layouts, while optimizing Lightning page performance.",
           "distractors": {
-            "B": "Creating multiple static page layouts requires continuous maintenance and cannot dynamically toggle sections on the fly."
+            "B": "Maintaining 8 separate traditional page layouts for an object with over 400 fields creates severe maintenance overhead and duplication whenever common fields need to be updated."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use Dynamic Forms with different field sections representing the relevant fields per case type, and control visibility of sections by Case Record Type value.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Forms with different field sections representing the relevant fields per case type, and control visibility of sections by Case Record Type value.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q73 Universal Containers uses the standard Case object to track various support requests sent "
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Dynamic Forms enables field- and section-level component visibility rules directly within Lightning App Builder based on record criteria (such as Record Type). On an object with over 400 fields and 8 business processes, Dynamic Forms avoids the massive maintenance overhead and page layout sprawl of managing multiple traditional page layouts, while optimizing Lightning page performance.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q73 Universal Containers uses the standard Case object to track "
           }
         },
         {
@@ -2138,19 +2138,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Create a criteria-based sharing rule giving the Retail Sales role access to Accounts of type PersonAccount.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Criteria-based sharing rules allow records to be shared automatically based on field values rather than ownership. By creating a criteria-based sharing rule filtering on Person Accounts (e.g. IsPersonAccount = TRUE), all retail customer accounts are shared with the Retail Sales role without exposing commercial Business Accounts.",
           "distractors": {
-            "B": "Option B ('Create an owner-based sharing rule on AccountContactRelation to grant access to all account contact records owned by retail sales reps.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Update the Retail Sales profile to grant access to Person Account record type.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "AccountContactRelation does not grant Account object access in a Private Account OWD model.",
+            "C": "Profile record type assignments control which record types a user can choose when creating new records; they do not control record-level sharing or visibility."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Create a criteria-based sharing rule giving the Retail Sales role access to Accounts of type PersonAccount.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('Create a criteria-based sharing rule giving the Retail Sales role access to Accounts of type PersonAccount.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q77 Universal Containers uses Person Accounts to represent retail customers and Business Accou"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Criteria-based sharing rules allow records to be shared automatically based on field values rather than ownership. By creating a criteria-based sharing rule filtering on Person Accounts (e.g. IsPersonAccount = TRUE), all retail customer accounts are shared with the Retail Sales role without exposing commercial Business Accounts.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q77 Universal Containers uses Person Accounts to represent retai"
           }
         },
         {
@@ -2164,23 +2164,23 @@ window.CERT_PREP_DATA = {
             "C": "Service reps will be able to access the relevant Contacts if their OWD is Controlled by Parent."
           },
           "correctAnswers": [
-            "C"
+            "A"
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Service reps will be able to access the relevant Contacts if their OWD is Controlled by Parent.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "The 'View All' permission on a child object (Case) does NOT trigger Parent Implicit Sharing for parent Account records. When Account OWD is set to Private, service reps will not automatically be able to access parent Accounts. Option C is false because if Contacts are 'Controlled by Parent', contact access is inherited from the parent Account; since reps lack access to the parent Account, they cannot access the Contacts either. Therefore, Option A correctly identifies the core architectural limitation.",
           "distractors": {
-            "A": "Option A ('Service reps will not be able to access the relevant Accounts if their OWD is Private .') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Service reps will not be able to access the relevant Contacts if their OWD is Controlled by Parent.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "Option B is an incomplete consequence of the parent Account restriction, whereas Option A identifies the root architectural limitation on Accounts.",
+            "C": "If Contact OWD is Controlled by Parent, contact visibility requires access to the parent Account. Because reps lack access to the Account, they CANNOT access the Contacts; thus, statement C is demonstrably false."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
-            "confirmedAnswer": "C",
-            "confirmedText": "Service reps will be able to access the relevant Contacts if their OWD is Controlled by Parent.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Service reps will be able to access the relevant Contacts if their OWD is Controlled by Parent.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q93 Universal Containers service reps are assigned to a profile that has View All on the Case "
+            "confirmedAnswer": "A",
+            "confirmedText": "Service reps will not be able to access the relevant Accounts if their OWD is Private .",
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "The 'View All' permission on a child object (Case) does NOT trigger Parent Implicit Sharing for parent Account records. When Account OWD is set to Private, service reps will not automatically be able to access parent Accounts. Option C is false because if Contacts are 'Controlled by Parent', contact access is inherited from the parent Account; since reps lack access to the parent Account, they cannot access the Contacts either. Therefore, Option A correctly identifies the core architectural limitation.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q93 Universal Containers service reps are assigned to a profile "
           }
         },
         {
@@ -2198,19 +2198,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Files in a user's private library are accessible to the uploading user and administrators who hold the 'View All Data' system permission.",
+          "whyCorrect": "Files uploaded to a user's private library in Files Home are private to that user and do not roll up via the Role Hierarchy. However, users with the administrative permission 'View All Data' have system-wide visibility to view all data in the organization, including files in private libraries.",
           "distractors": {
-            "B": "Private files do not inherit access through the Role Hierarchy; only the owner and users with 'View All Data' can view them.",
-            "C": "Private files do not inherit access through the Role Hierarchy; only the owner and users with 'View All Data' can view them."
+            "B": "The Role Hierarchy does not apply to files stored in personal/private libraries in Files Home.",
+            "C": "While standard users without administrative permissions cannot access private files, users with 'View All Data' permission can access them."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "The user and users with View All Data permission",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option A ('The user and users with View All Data permission') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q94 A user uploads a PDF to the Files Home private library. Who is able to view the PDF?"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Files uploaded to a user's private library in Files Home are private to that user and do not roll up via the Role Hierarchy. However, users with the administrative permission 'View All Data' have system-wide visibility to view all data in the organization, including files in private libraries.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q94 A user uploads a PDF to the Files Home private library. Who "
           }
         },
         {
@@ -2228,19 +2228,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Leverage the default Account team. enables record owners to quickly grant specific access levels (Read or Read/Write) to supporting cross-functional team members without requiring administrative intervention.",
+          "whyCorrect": "Account Teams enable account owners to define a collaborative team of supporting users (such as Legal, Engineering, and Finance) with granular record-level access (Read-Only or Read/Write) across Accounts and related Opportunities and Cases. Setting up a Default Account Team in personal settings allows sales reps to automatically add their supporting team to new accounts or add them with one click ('Add Default Team') to existing accounts. Because the supporting team members do not change frequently across deals, Default Account Teams automate access, boost sales productivity, and strictly enforce the principle of least privilege.",
           "distractors": {
-            "A": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege.",
-            "C": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege."
+            "A": "Criteria-based sharing rules evaluate static record field attributes (e.g., Industry = 'Banking') rather than rep-specific collaboration requirements. They cannot dynamically adjust based on which supporting reps assist which sales rep without creating unmaintainable administrative overhead.",
+            "C": "Assigning 'View All Data' via a permission set severely violates the principle of least privilege and enterprise security best practices. 'View All Data' grants org-wide visibility across all records of all objects, exposing sensitive corporate data to supporting users who only need access to specific deal accounts."
           },
           "domain": "Object & Field-Level Security",
           "domainSlug": "object-field-security",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Leverage the default Account team.",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option B ('Leverage the default Account team.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q98 Sales reps at Universal Containers (UC) are complaining about the manual activities they n"
+            "docTopic": "Object & Field-Level Security",
+            "webReason": "Account Teams enable account owners to define a collaborative team of supporting users (such as Legal, Engineering, and Finance) with granular record-level access (Read-Only or Read/Write) across Accounts and related Opportunities and Cases. Setting up a Default Account Team in personal settings allows sales reps to automatically add their supporting team to new accounts or add them with one click ('Add Default Team') to existing accounts. Because the supporting team members do not change frequently across deals, Default Account Teams automate access, boost sales productivity, and strictly enforce the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q98 Sales reps at Universal Containers (UC) are complaining abou"
           }
         }
       ],
@@ -2266,19 +2266,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "A Protected Custom Metadata Type installed via a Managed Package is entirely inaccessible and invisible to subscriber org users (even System Administrators), yet accessible to Apex code inside the managed package namespace.",
+          "whyCorrect": "Protected Custom Metadata Types (CMDT) provide metadata encryption and encapsulation only when installed as part of a released Managed Package. In a managed package, protected CMDT records and fields are completely inaccessible from the subscriber org's Setup UI, SOQL queries, and APIs, even for users with 'View Setup and Configuration' or 'Modify All Data'. Only Apex code running within the managed package's own namespace can query and utilize the confidential key. In unlocked or unmanaged packages, protected CMDT records remain fully visible in Setup to anyone with 'View Setup'.",
           "distractors": {
-            "B": "Unlocked packages do not protect metadata types; their records remain visible to admins in the subscriber org.",
-            "C": "Profile-level restrictions in subscriber orgs can always be bypassed by users with View Setup or System Administrators."
+            "B": "Protected Custom Metadata Types only enforce encapsulation when deployed via a Managed Package. In an unlocked package or unmanaged package, protected custom metadata types and records remain visible in the Setup UI to any user possessing the 'View Setup and Configuration' permission.",
+            "C": "Restricting custom metadata access via profiles controls SOQL execution access in user mode, but users with 'View Setup and Configuration' can navigate to Setup -> Custom Metadata Types -> Manage Records and read the encryption key in plain text."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
           "domainSlug": "performance-scalability",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Create a protected custom metadata type that stores the encryption key. Package the protected custom metadata type with its associated records in a managed package. Install the package in the production org.",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option A ('Create a protected custom metadata type that stores the encryption key. Package the protected custom metadata type with its associated records in a managed package. Install the package in the production org.') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q8 Universal Containers (UC) would like to store an encryption key within Salesforce for use "
+            "docTopic": "Performance, Scalability & Large Data Volumes",
+            "webReason": "Protected Custom Metadata Types (CMDT) provide metadata encryption and encapsulation only when installed as part of a released Managed Package. In a managed package, protected CMDT records and fields are completely inaccessible from the subscriber org's Setup UI, SOQL queries, and APIs, even for users with 'View Setup and Configuration' or 'Modify All Data'. Only Apex code running within the managed package's own namespace can query and utilize the confidential key. In unlocked or unmanaged packages, protected CMDT records remain fully visible in Setup to anyone with 'View Setup'.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q8 Universal Containers (UC) would like to store an encryption "
           }
         },
         {
@@ -2296,19 +2296,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Granular Locking allows Salesforce to lock smaller subsets of records during role hierarchy realignments and group membership operations, preventing whole-table locking and concurrency timeouts.",
+          "whyCorrect": "Option B ('Crowder Locking') is a well-known legacy OCR scanning artifact/typo in exam dumps for 'Granular Locking'. Granular Locking is a specialized platform feature enabled by Salesforce Support that alters group maintenance locking behavior during role hierarchy realignments. By default, updating the role hierarchy locks the entire group maintenance table, preventing any concurrent role or sharing updates across the org. Granular Locking locks only the specific sub-branches of the role hierarchy being altered, allowing concurrent administrative changes and preventing system-wide lock contention and timeouts.",
           "distractors": {
-            "A": "Divisions partition data for large organizations but do not alter row-level locking architecture during role changes.",
-            "C": "Divisions partition data for large organizations but do not alter row-level locking architecture during role changes."
+            "A": "Partitioning by Divisions is a legacy feature used to segment large data volumes (typically >1M records) into logical divisions to reduce list view and reporting query search scopes; it does not alter group maintenance locking behavior during role hierarchy reorganizations.",
+            "C": "'Slurry Table Indexing' is an OCR corruption of 'Skinny Table Indexing'. Skinny tables combine standard and custom fields into a flat, read-optimized database table to accelerate SOQL queries and reports; they do not assist with role hierarchy realignments or group locking."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
           "domainSlug": "performance-scalability",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Crowder Locking",
-            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
-            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q17 Which advanced tool should Salesforce enable for large-scale Role Hierarchy realignments?"
+            "docTopic": "Performance, Scalability & Large Data Volumes",
+            "webReason": "Option B ('Crowder Locking') is a well-known legacy OCR scanning artifact/typo in exam dumps for 'Granular Locking'. Granular Locking is a specialized platform feature enabled by Salesforce Support that alters group maintenance locking behavior during role hierarchy realignments. By default, updating the role hierarchy locks the entire group maintenance table, preventing any concurrent role or sharing updates across the org. Granular Locking locks only the specific sub-branches of the role hierarchy being altered, allowing concurrent administrative changes and preventing system-wide lock contention and timeouts.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q17 Which advanced tool should Salesforce enable for large-scale"
           }
         },
         {
@@ -2326,19 +2326,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Parallel Sharing Rule recalculation accelerates large-scale role reorganizations and massive ownership reassignments by processing sharing calculations asynchronously or in parallel across multi-threaded workers.",
+          "whyCorrect": "Mass reorganizations of a complex role hierarchy and account ownership reassignments trigger massive sharing recalculations across millions of share table rows (AccountShare, ContactShare, OpportunityShare, CaseShare). Parallel Sharing Rule Recalculation splits sharing rule calculations into multiple parallel asynchronous threads rather than executing them in a single serial thread. This dramatically reduces total recalculation time, prevents apex batch timeouts, and prevents sharing lock contention during large-scale enterprise realignments.",
           "distractors": {
-            "A": "This feature optimizes search or query performance rather than accelerating backend sharing recalculation jobs.",
-            "C": "This feature optimizes search or query performance rather than accelerating backend sharing recalculation jobs."
+            "A": "Partitioning data using Divisions partitions records logically for reporting and list views, but does not optimize or parallelize sharing recalculations or role hierarchy operations.",
+            "C": "Skinny tables optimize read query performance for high-volume reports and SOQL queries by avoiding database table joins; they do not optimize DML operations, ownership reassignments, or sharing recalculations."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
           "domainSlug": "performance-scalability",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Parallel Sharing Rule recalculation",
-            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
-            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q21 Universal Containers (UC) operates worldwide, with offices in more than 100 regions in 10 "
+            "docTopic": "Performance, Scalability & Large Data Volumes",
+            "webReason": "Mass reorganizations of a complex role hierarchy and account ownership reassignments trigger massive sharing recalculations across millions of share table rows (AccountShare, ContactShare, OpportunityShare, CaseShare). Parallel Sharing Rule Recalculation splits sharing rule calculations into multiple parallel asynchronous threads rather than executing them in a single serial thread. This dramatically reduces total recalculation time, prevents apex batch timeouts, and prevents sharing lock contention during large-scale enterprise realignments.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q21 Universal Containers (UC) operates worldwide, with offices i"
           }
         },
         {
@@ -2356,19 +2356,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Deferred Sharing Recalculation accelerates large-scale role reorganizations and massive ownership reassignments by processing sharing calculations asynchronously or in parallel across multi-threaded workers.",
+          "whyCorrect": "Mass reorganizations of a complex role hierarchy and account ownership reassignments trigger massive sharing recalculations across millions of share table rows (AccountShare, ContactShare, OpportunityShare, CaseShare). Parallel Sharing Rule Recalculation splits sharing rule calculations into multiple parallel asynchronous threads rather than executing them in a single serial thread. This dramatically reduces total recalculation time, prevents apex batch timeouts, and prevents sharing lock contention during large-scale enterprise realignments.",
           "distractors": {
-            "A": "This feature optimizes search or query performance rather than accelerating backend sharing recalculation jobs.",
-            "C": "This feature optimizes search or query performance rather than accelerating backend sharing recalculation jobs."
+            "A": "Partitioning data using Divisions partitions records logically for reporting and list views, but does not optimize or parallelize sharing recalculations or role hierarchy operations.",
+            "C": "Skinny tables optimize read query performance for high-volume reports and SOQL queries by avoiding database table joins; they do not optimize DML operations, ownership reassignments, or sharing recalculations."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
           "domainSlug": "performance-scalability",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Deferred Sharing Recalculation",
-            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
-            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q25 Universal Containers (UC) operates worldwide, with offices in more than 100 regions in 10 "
+            "docTopic": "Performance, Scalability & Large Data Volumes",
+            "webReason": "Mass reorganizations of a complex role hierarchy and account ownership reassignments trigger massive sharing recalculations across millions of share table rows (AccountShare, ContactShare, OpportunityShare, CaseShare). Parallel Sharing Rule Recalculation splits sharing rule calculations into multiple parallel asynchronous threads rather than executing them in a single serial thread. This dramatically reduces total recalculation time, prevents apex batch timeouts, and prevents sharing lock contention during large-scale enterprise realignments.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q25 Universal Containers (UC) operates worldwide, with offices i"
           }
         },
         {
@@ -2386,19 +2386,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "A Protected Custom Metadata Type installed via a Managed Package is entirely inaccessible and invisible to subscriber org users (even System Administrators), yet accessible to Apex code inside the managed package namespace.",
+          "whyCorrect": "Protected Custom Metadata Types (CMDT) provide metadata encryption and encapsulation only when installed as part of a released Managed Package. In a managed package, protected CMDT records and fields are completely inaccessible from the subscriber org's Setup UI, SOQL queries, and APIs, even for users with 'View Setup and Configuration' or 'Modify All Data'. Only Apex code running within the managed package's own namespace can query and utilize the confidential key. In unlocked or unmanaged packages, protected CMDT records remain fully visible in Setup to anyone with 'View Setup'.",
           "distractors": {
-            "B": "Unlocked packages do not protect metadata types; their records remain visible to admins in the subscriber org.",
-            "C": "Profile-level restrictions in subscriber orgs can always be bypassed by users with View Setup or System Administrators."
+            "B": "Protected Custom Metadata Types only enforce encapsulation when deployed via a Managed Package. In an unlocked package or unmanaged package, protected custom metadata types and records remain visible in the Setup UI to any user possessing the 'View Setup and Configuration' permission.",
+            "C": "Restricting custom metadata access via profiles controls SOQL execution access in user mode, but users with 'View Setup and Configuration' can navigate to Setup -> Custom Metadata Types -> Manage Records and read the encryption key in plain text."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
           "domainSlug": "performance-scalability",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Create a protected custom metadata type that stores the encryption key. Packag e the protected custom metadata type with its associated records in a managed package. Install the package in the production org.",
-            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
-            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option A ('Create a protected custom metadata type that stores the encryption key. Packag e the protected custom metadata type with its associated records in a managed package. Install the package in the production org.') correctly enforces data boundaries and prevents unauthorized field/record access.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q56 Universal Containers (UC) would like to store an encryption key within Salesforce for use "
+            "docTopic": "Performance, Scalability & Large Data Volumes",
+            "webReason": "Protected Custom Metadata Types (CMDT) provide metadata encryption and encapsulation only when installed as part of a released Managed Package. In a managed package, protected CMDT records and fields are completely inaccessible from the subscriber org's Setup UI, SOQL queries, and APIs, even for users with 'View Setup and Configuration' or 'Modify All Data'. Only Apex code running within the managed package's own namespace can query and utilize the confidential key. In unlocked or unmanaged packages, protected CMDT records remain fully visible in Setup to anyone with 'View Setup'.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q56 Universal Containers (UC) would like to store an encryption "
           }
         },
         {
@@ -2416,19 +2416,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Account Ownership Data Skew occurs when a single user owns more than 10,000 records of an object. This causes severe lock contention, thread exhaustion, and sluggish performance during sharing recalculations.",
+          "whyCorrect": "Salesforce defines Account Ownership Data Skew when a single user owns more than 10,000 records of an object. Here, donation reps own more than 50,000 accounts each. When an account owner is assigned a role in the role hierarchy, any updates to that user's role, territory, or sharing settings, as well as operations on child records (Contacts, Donations/Opportunities), require the system to lock the account owner and all related child records to recalculate sharing trees. This extreme data skew causes severe lock contention, thread queueing, and significant system degradation.",
           "distractors": {
-            "A": "The root architectural flaw is ownership data skew (>10,000 records per owner), which overwhelms sharing recalculation queues and causes locking conflicts.",
-            "C": "The root architectural flaw is ownership data skew (>10,000 records per owner), which overwhelms sharing recalculation queues and causes locking conflicts."
+            "A": "A sharing recalculation job is a temporary operational process, not the architectural root cause of chronic performance degradation caused by skewed record distributions.",
+            "C": "The performance degradation is caused by database and record-locking architecture bottlenecks from data skew, not incorrect record access configurations."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
           "domainSlug": "performance-scalability",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "There is an Account ownership data skew problem.",
-            "docTopic": "Salesforce Architect Guide: Designing Record Access for Large Data Volumes",
-            "webReason": "Salesforce engineering whitepapers on Large Data Volumes (LDV) confirm that Option B ('There is an Account ownership data skew problem.') is the proven mechanism to eliminate row-level locking timeouts and sharing recalculation degradation.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q84 Universal Containers (UC) is a non-profit organization with more than 20,000,000 members ("
+            "docTopic": "Performance, Scalability & Large Data Volumes",
+            "webReason": "Salesforce defines Account Ownership Data Skew when a single user owns more than 10,000 records of an object. Here, donation reps own more than 50,000 accounts each. When an account owner is assigned a role in the role hierarchy, any updates to that user's role, territory, or sharing settings, as well as operations on child records (Contacts, Donations/Opportunities), require the system to lock the account owner and all related child records to recalculate sharing trees. This extreme data skew causes severe lock contention, thread queueing, and significant system degradation.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q84 Universal Containers (UC) is a non-profit organization with "
           }
         }
       ],
@@ -2454,19 +2454,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Setting External Organization-Wide Defaults (OWD) to Private restricts all external users (such as Partner Community users) from accessing records by default, allowing access to be opened selectively via sharing mechanisms.",
+          "whyCorrect": "Under Salesforce's Separate Organization-Wide Defaults (External Sharing Model), organizations can define separate default access levels for internal and external users. The External OWD must be equal to or more restrictive than the Internal OWD. To allow internal employees to view all delivery records (Public Read-Only) while restricting external distributors from viewing each other's deliveries, the architect must set External OWD to Private. Once set to Private, records can be selectively shared with specific distributors using sharing rules, sharing sets, or account relationships.",
           "distractors": {
-            "A": "Sharing rules can only extend access beyond the baseline OWD; if the OWD is Public Read-Only, sharing rules cannot restrict visibility.",
-            "B": "Sharing rules can only extend access beyond the baseline OWD; if the OWD is Public Read-Only, sharing rules cannot restrict visibility."
+            "A": "Sharing rules can only expand access; they cannot restrict it. If External OWD is Public Read-Only, distributors already see all records, and an ownership-based sharing rule will not restrict visibility.",
+            "B": "Criteria-based sharing rules can only grant additional access on top of the baseline OWD. They cannot hide or restrict records when the External OWD is Public Read-Only."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Set the External OWD to Private for the Delivery object.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Set the External OWD to Private for the Delivery object.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q1 Universal Containers (UC) is looking to expand its delivery capabilities through a network"
+            "docTopic": "External & Community User Access",
+            "webReason": "Under Salesforce's Separate Organization-Wide Defaults (External Sharing Model), organizations can define separate default access levels for internal and external users. The External OWD must be equal to or more restrictive than the Internal OWD. To allow internal employees to view all delivery records (Public Read-Only) while restricting external distributors from viewing each other's deliveries, the architect must set External OWD to Private. Once set to Private, records can be selectively shared with specific distributors using sharing rules, sharing sets, or account relationships.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q1 Universal Containers (UC) is looking to expand its delivery "
           }
         },
         {
@@ -2484,19 +2484,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Salesforce enforces a strict platform architectural limit of a maximum of three role hierarchy levels (Executive, Manager, User) for Partner Community accounts.",
+          "whyCorrect": "In Salesforce Experience Cloud, Partner Accounts can generate an automated external role hierarchy, but Salesforce enforces a hard maximum of three (3) role levels per partner account: Partner Executive, Partner Manager, and Partner User. The affiliate's new hierarchy contains four distinct levels (Sales VP -> Director of Sales -> Sales Manager -> Sales Reps). Because Salesforce cannot provision a 4-tier role hierarchy for a partner account, the standard role rollup cannot natively accommodate all four levels.",
           "distractors": {
-            "A": "Partner Community licenses fully support role hierarchies up to three levels.",
-            "C": "Channel Managers are internal users and their role is distinct from partner portal roles."
+            "A": "Partner Community licenses fully support external role hierarchies (up to 3 levels), unlike high-volume Customer Community licenses.",
+            "C": "The Channel Manager is an internal Salesforce role positioned directly above the Partner Executive role in the internal role hierarchy. This is standard functionality and not the limiting factor in the affiliate's internal sales structure."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Partner User roles are limited to three levels.",
-            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
-            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q16 Universal Containers (UC) has affiliates who sell containers in countries where UC does no"
+            "docTopic": "External & Community User Access",
+            "webReason": "In Salesforce Experience Cloud, Partner Accounts can generate an automated external role hierarchy, but Salesforce enforces a hard maximum of three (3) role levels per partner account: Partner Executive, Partner Manager, and Partner User. The affiliate's new hierarchy contains four distinct levels (Sales VP -> Director of Sales -> Sales Manager -> Sales Reps). Because Salesforce cannot provision a 4-tier role hierarchy for a partner account, the standard role rollup cannot natively accommodate all four levels.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q16 Universal Containers (UC) has affiliates who sell containers"
           }
         },
         {
@@ -2514,19 +2514,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "High-volume Community users (such as Customer Community users) do not participate in the standard role hierarchy or sharing rules. Access must be granted using Sharing Sets mapped to Account/Contact fields.",
+          "whyCorrect": "Site User Visibility (located in Setup -> Sharing Settings) controls whether external community users can see, search for, and discover other external users who are members of the same Experience Cloud site. When Site User Visibility is turned off (unchecked), external users cannot find or view other external users in user searches, Chatter mentions, or directory components. It does not affect their ability to view or search for internal users.",
           "distractors": {
-            "A": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist.",
-            "C": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist."
+            "A": "Updating a user profile is governed by object permissions on the User object and the site's profile edit settings, not Site User Visibility.",
+            "C": "Disabling Site User Visibility specifically restricts visibility into peer external users; external users retain the ability to search for and view internal users who are exposed in the site."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Searching for other external users.",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Searching for other external users.') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q22 Which community function is impacted by having the Site User Visibility turned off in Shar"
+            "docTopic": "External & Community User Access",
+            "webReason": "Site User Visibility (located in Setup -> Sharing Settings) controls whether external community users can see, search for, and discover other external users who are members of the same Experience Cloud site. When Site User Visibility is turned off (unchecked), external users cannot find or view other external users in user searches, Chatter mentions, or directory components. It does not affect their ability to view or search for internal users.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q22 Which community function is impacted by having the Site User"
           }
         },
         {
@@ -2544,19 +2544,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "High-volume Community users (such as Customer Community users) do not participate in the standard role hierarchy or sharing rules. Access must be granted using Sharing Sets mapped to Account/Contact fields.",
+          "whyCorrect": "With 200 distributors, criteria-based sharing rules (Options A and B) cannot be used because Salesforce enforces a strict platform limit of 50 criteria-based sharing rules per object. In contrast, Sharing Sets (supported for Partner Community and Customer Community Plus profiles) provide an automated, scalable mechanism that grants external users access to records by mapping fields on the target object (Delivery.Account__c) to the user's account (User.AccountId). A single sharing set configured on the Distributor profile dynamically grants access across all 200 distributors without consuming sharing rules or incurring group maintenance overhead.",
           "distractors": {
-            "A": "High-volume Customer Community users do not have access to standard criteria-based or ownership sharing rules.",
-            "B": "High-volume Customer Community users do not have access to standard criteria-based or ownership sharing rules."
+            "A": "Creating criteria-based sharing rules for 200 distributors would require 200 separate criteria-based sharing rules, exceeding the Salesforce limit of 50 criteria-based sharing rules per object by 4x.",
+            "B": "Similar to Option A, creating criteria-based sharing rules targeting each distributor's role would require 200 rules, directly violating the hard limit of 50 criteria-based sharing rules per object."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Create a Sharing Set for the Distributor profile to grant access to the Delivery object.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Create a Sharing Set for the Distributor profile to grant access to the Delivery object.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q24 Universal Containers (UC) has a partner community for its 200 distributors. UC customer ac"
+            "docTopic": "External & Community User Access",
+            "webReason": "With 200 distributors, criteria-based sharing rules (Options A and B) cannot be used because Salesforce enforces a strict platform limit of 50 criteria-based sharing rules per object. In contrast, Sharing Sets (supported for Partner Community and Customer Community Plus profiles) provide an automated, scalable mechanism that grants external users access to records by mapping fields on the target object (Delivery.Account__c) to the user's account (User.AccountId). A single sharing set configured on the Distributor profile dynamically grants access across all 200 distributors without consuming sharing rules or incurring group maintenance overhead.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q24 Universal Containers (UC) has a partner community for its 20"
           }
         },
         {
@@ -2574,19 +2574,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "High-volume Community users (such as Customer Community users) do not participate in the standard role hierarchy or sharing rules. Access must be granted using Sharing Sets mapped to Account/Contact fields.",
+          "whyCorrect": "Customer Community licenses are High-Volume Portal Users (HVPU). HVPUs do not participate in the Salesforce Role Hierarchy and do not utilize standard share tables (e.g., CaseShare). Consequently, standard sharing rules, manual sharing, and Apex managed sharing are not supported for Customer Community users. The standard, optimum, and officially supported declarative mechanism to grant Customer Community users access to records related to their account or contact is a Sharing Set (Setup -> Digital Experiences -> Settings -> Sharing Sets), mapping Case.AccountId = User.AccountId.",
           "distractors": {
-            "A": "High-volume Customer Community users do not have access to standard criteria-based or ownership sharing rules.",
-            "B": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist."
+            "A": "Customer Community users lack roles and cannot be targeted by standard owner-based or criteria-based sharing rules.",
+            "B": "Apex managed sharing cannot be used to grant access to Customer Community users because they do not have standard share table entries and do not support record-level row sharing."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Create a sharing set to share cases with the students.",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option C ('Create a sharing set to share cases with the students.') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q27 Universal Containers (UC) delivers training and courses to students and companies. UC is i"
+            "docTopic": "External & Community User Access",
+            "webReason": "Customer Community licenses are High-Volume Portal Users (HVPU). HVPUs do not participate in the Salesforce Role Hierarchy and do not utilize standard share tables (e.g., CaseShare). Consequently, standard sharing rules, manual sharing, and Apex managed sharing are not supported for Customer Community users. The standard, optimum, and officially supported declarative mechanism to grant Customer Community users access to records related to their account or contact is a Sharing Set (Setup -> Digital Experiences -> Settings -> Sharing Sets), mapping Case.AccountId = User.AccountId.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q27 Universal Containers (UC) delivers training and courses to s"
           }
         },
         {
@@ -2604,19 +2604,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "For custom objects with a Private OWD, disabling the 'Grant Access Using Hierarchies' checkbox ensures that users higher in the Role Hierarchy do not automatically inherit access to subordinate records.",
+          "whyCorrect": "For custom objects, the 'Grant Access Using Hierarchies' checkbox in Sharing Settings is configurable and can be disabled by an administrator (unlike standard objects where it is permanently enabled). When 'Grant Access Using Hierarchies' is unchecked for a custom object with a Private OWD, users higher up in the Role Hierarchy do NOT inherit automatic access to records owned by or shared with their subordinates. Since the role hierarchy structure was confirmed as correct, the disabling of this setting is the exact reason sales managers cannot view their teams' Shipment records.",
           "distractors": {
-            "B": "Removing object CRUD permissions revokes access to all records, not just subordinate records.",
-            "C": "Removing object CRUD permissions revokes access to all records, not just subordinate records."
+            "B": "Role Hierarchy implicit sharing is an automated platform mechanism for standard parent-child relationships (e.g., Account to Opportunity); it is not a configurable administrative setting that can be toggled on or off for custom objects.",
+            "C": "Managers do not rely on ownership-based sharing rules to see their direct reports' records; hierarchical access is natively governed by the role hierarchy and the 'Grant Access Using Hierarchies' setting."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "The Grant Access Using Hierarchies option on Shipment Sharing Settings was incorrectly disabled by the admin.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('The Grant Access Using Hierarchies option on Shipment Sharing Settings was incorrectly disabled by the admin.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q46 Universal Containers (UC) sales managers are complaining that they cannot access their tea"
+            "docTopic": "External & Community User Access",
+            "webReason": "For custom objects, the 'Grant Access Using Hierarchies' checkbox in Sharing Settings is configurable and can be disabled by an administrator (unlike standard objects where it is permanently enabled). When 'Grant Access Using Hierarchies' is unchecked for a custom object with a Private OWD, users higher up in the Role Hierarchy do NOT inherit automatic access to records owned by or shared with their subordinates. Since the role hierarchy structure was confirmed as correct, the disabling of this setting is the exact reason sales managers cannot view their teams' Shipment records.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q46 Universal Containers (UC) sales managers are complaining tha"
           }
         },
         {
@@ -2634,19 +2634,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Partner Community') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Salesforce Experience Cloud, access to standard Sales Cloud objects\u2014specifically Opportunities, Leads, and Campaigns\u2014is strictly limited to Partner Community licenses (or Lightning External Apps Plus). Neither Customer Community nor Customer Community Plus licenses support object permissions or access to Opportunities under any circumstances. Therefore, regardless of user volume, Partner Community is the only license type that satisfies the requirement to view and collaborate on closing Opportunities.",
           "distractors": {
-            "A": "Option A ('Customer Community') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Customer Community Plus') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Customer Community licenses are designed for high-volume customer service workflows and do not have access to Opportunities or standard sales objects.",
+            "C": "Customer Community Plus licenses provide role hierarchies, reports/dashboards, and sharing rules for service/support, but they are strictly prohibited from accessing Sales Cloud objects such as Opportunities."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Partner Community",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Partner Community') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q48 Universal Containers uses 75,000 distributors that have close to 1 million total users. Di"
+            "docTopic": "External & Community User Access",
+            "webReason": "In Salesforce Experience Cloud, access to standard Sales Cloud objects\u2014specifically Opportunities, Leads, and Campaigns\u2014is strictly limited to Partner Community licenses (or Lightning External Apps Plus). Neither Customer Community nor Customer Community Plus licenses support object permissions or access to Opportunities under any circumstances. Therefore, regardless of user volume, Partner Community is the only license type that satisfies the requirement to view and collaborate on closing Opportunities.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q48 Universal Containers uses 75,000 distributors that have clos"
           }
         },
         {
@@ -2664,19 +2664,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Public Groups combined with sharing rules are the standard, scalable Salesforce mechanism to grant access to a set of records for an unrelated group of users across departments.",
+          "whyCorrect": "Public Groups are specifically designed in Salesforce to assemble an arbitrary collection of individual users, roles, territories, and other groups who do not share a direct reporting or structural relationship. When an architect needs to grant a cross-functional or unrelated set of users access to a specific set of records (via criteria-based sharing rules, owner-based sharing rules, or manual sharing), creating a Public Group and targeting it in the sharing configuration is the standard architectural best practice.",
           "distractors": {
-            "A": "Option A ('Role Hierarchy') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration.",
-            "B": "Option B ('Sharing Sets') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
+            "A": "The Role Hierarchy represents vertical, subordinate-to-manager reporting structures and cannot grant lateral access across unrelated users without exposing records upward to unintended managers.",
+            "B": "Sharing Sets are exclusively for Experience Cloud external users and grant access strictly based on account or contact lookup relationships, not for arbitrary groups of internal unrelated users."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Public Groups",
-            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
-            "webReason": "Official Salesforce certification documentation confirms that Option C ('Public Groups') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q61 Which method should be used to grant an unrelated group of users access to a set of record"
+            "docTopic": "External & Community User Access",
+            "webReason": "Public Groups are specifically designed in Salesforce to assemble an arbitrary collection of individual users, roles, territories, and other groups who do not share a direct reporting or structural relationship. When an architect needs to grant a cross-functional or unrelated set of users access to a specific set of records (via criteria-based sharing rules, owner-based sharing rules, or manual sharing), creating a Public Group and targeting it in the sharing configuration is the standard architectural best practice.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q61 Which method should be used to grant an unrelated group of u"
           }
         },
         {
@@ -2694,19 +2694,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Partner Super User access grants designated partner contacts the ability to view, edit, and report on data owned by other partner users who belong to the same partner account.",
+          "whyCorrect": "Partner Super User access is the built-in Salesforce feature designed to give designated partner users extended visibility into records owned by other partner users within their own partner account. When assigned the 'Portal Super User' permission, partner managers can view, edit, and report on cases, leads, custom objects (such as Container), and opportunities owned by other partner users who occupy the same role or a role below them in the account hierarchy. It achieves intra-distributor data sharing without requiring custom sharing rules or compromising data isolation between different distributors.",
           "distractors": {
-            "A": "Standard sharing rules cannot dynamically distinguish individual partner managers within the same account hierarchy.",
-            "C": "Standard sharing rules cannot dynamically distinguish individual partner managers within the same account hierarchy."
+            "A": "Ownership-based sharing rules cannot scale for 200 distributors because maintaining granular distributor isolation would require hundreds of individual sharing rules and public groups, rapidly exhausting platform sharing rule limits.",
+            "C": "Sharing sets apply profile-wide based on account matching criteria; they do not selectively elevate individual partner managers within the role hierarchy of a Partner Community."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Give Super User permission to the individual partner manager users.",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Give Super User permission to the individual partner manager users.') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q63 Universal Containers (UC) has 200 distributors that use Partner Community licenses. Partne"
+            "docTopic": "External & Community User Access",
+            "webReason": "Partner Super User access is the built-in Salesforce feature designed to give designated partner users extended visibility into records owned by other partner users within their own partner account. When assigned the 'Portal Super User' permission, partner managers can view, edit, and report on cases, leads, custom objects (such as Container), and opportunities owned by other partner users who occupy the same role or a role below them in the account hierarchy. It achieves intra-distributor data sharing without requiring custom sharing rules or compromising data isolation between different distributors.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q63 Universal Containers (UC) has 200 distributors that use Part"
           }
         },
         {
@@ -2724,19 +2724,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "High-volume Community users (such as Customer Community users) do not participate in the standard role hierarchy or sharing rules. Access must be granted using Sharing Sets mapped to Account/Contact fields.",
+          "whyCorrect": "In Salesforce, standard objects such as Opportunity always have 'Grant Access Using Hierarchies' enabled (it cannot be disabled). Under hierarchy-based access inheritance, whenever a record is shared with a user\u2014whether through manual sharing, Apex sharing, or a sharing rule targeting a Public Group\u2014access automatically rolls up to all users above that user in the Role Hierarchy. Therefore, the sales engineers in the public group receive access via the sharing rule, and their managers in the Role Hierarchy automatically inherit access as well.",
           "distractors": {
-            "B": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist.",
-            "C": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist."
+            "B": "Role Hierarchy access inheritance only flows upward from subordinates to managers; it never flows downward to subordinates of managers.",
+            "C": "Peer users at the same level in the Role Hierarchy do not inherit access from their peers; only the specific sales engineers who are members of the public group (and their superiors) gain access."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Sales engineers and their managers in the Role Hierarchy will also have access to these records.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('Sales engineers and their managers in the Role Hierarchy will also have access to these records.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q66 Universal Containers created a public group with certain sales engineers to help on comple"
+            "docTopic": "External & Community User Access",
+            "webReason": "In Salesforce, standard objects such as Opportunity always have 'Grant Access Using Hierarchies' enabled (it cannot be disabled). Under hierarchy-based access inheritance, whenever a record is shared with a user\u2014whether through manual sharing, Apex sharing, or a sharing rule targeting a Public Group\u2014access automatically rolls up to all users above that user in the Role Hierarchy. Therefore, the sales engineers in the public group receive access via the sharing rule, and their managers in the Role Hierarchy automatically inherit access as well.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q66 Universal Containers created a public group with certain sal"
           }
         },
         {
@@ -2754,19 +2754,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option C ('Set the OWD for Internal Users to Public Read-Only.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Salesforce supports Separate Organization-Wide Defaults (External Sharing Model), enabling administrators to configure Default Internal Access independently from Default External Access. Here, the architect can set Default External Access to Private (preventing external partners from viewing each other's feedback records) and set Default Internal Access to Public Read-Only (or Public Read/Write). This natively and declaratively grants all internal employees access to every ServiceFeedback record without requiring sharing rules, public groups, or role hierarchy manipulations.",
           "distractors": {
-            "A": "Option A ('Create an owner-based sharing rule for all Service Feedback records owned by partners.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "B": "Option B ('Ensure all the internal users are above the partners in the Role Hierarchy.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "While an owner-based sharing rule could grant access, it introduces unnecessary configuration and sharing recalculation overhead when the platform's native dual-OWD feature directly fulfills the requirement.",
+            "B": "Placing all internal users above external partners in the role hierarchy is an extreme anti-pattern that creates immense data skew, severe group maintenance locking, and maintenance overhead."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Set the OWD for Internal Users to Public Read-Only.",
-            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
-            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Set the OWD for Internal Users to Public Read-Only.') correctly aligns with the least privilege model and record-level security standards.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q67 A custom ServiceFeedback object is used to collect partner feedback. ServiceFeedback recor"
+            "docTopic": "External & Community User Access",
+            "webReason": "Salesforce supports Separate Organization-Wide Defaults (External Sharing Model), enabling administrators to configure Default Internal Access independently from Default External Access. Here, the architect can set Default External Access to Private (preventing external partners from viewing each other's feedback records) and set Default Internal Access to Public Read-Only (or Public Read/Write). This natively and declaratively grants all internal employees access to every ServiceFeedback record without requiring sharing rules, public groups, or role hierarchy manipulations.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q67 A custom ServiceFeedback object is used to collect partner f"
           }
         },
         {
@@ -2784,19 +2784,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Partner Super User access grants designated partner contacts the ability to view, edit, and report on data owned by other partner users who belong to the same partner account.",
+          "whyCorrect": "Super User access (referred to in setup and documentation as 'Partner Super User' or 'Portal Super User') is supported for both Partner Community and Customer Community Plus license holders. It allows designated external users within an account to view, edit, and report on cases (and other supported objects) submitted by other users belonging to the same account and occupying the same or lower role level. It precisely matches the requirement to selectively grant specific agents peer-level case visibility within their distributor account.",
           "distractors": {
-            "A": "Standard sharing rules cannot dynamically distinguish individual partner managers within the same account hierarchy.",
-            "B": "Standard sharing rules cannot dynamically distinguish individual partner managers within the same account hierarchy."
+            "A": "There is no standard 'community admin permission' on permission sets that grants selective record-level case visibility among peers in an Experience Cloud site.",
+            "B": "Delegated External Administration allows an external user to manage specific administrative tasks (such as creating users, resetting passwords, and managing permission sets) for their account, but does not grant record-level sharing access to cases created by other agents."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Partner super user",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option C ('Partner super user') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q69 Universal Containers has implemented Customer Community with Customer Community Plus licen"
+            "docTopic": "External & Community User Access",
+            "webReason": "Super User access (referred to in setup and documentation as 'Partner Super User' or 'Portal Super User') is supported for both Partner Community and Customer Community Plus license holders. It allows designated external users within an account to view, edit, and report on cases (and other supported objects) submitted by other users belonging to the same account and occupying the same or lower role level. It precisely matches the requirement to selectively grant specific agents peer-level case visibility within their distributor account.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q69 Universal Containers has implemented Customer Community with"
           }
         },
         {
@@ -2814,19 +2814,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option A ('Use the Role Hierarchy so that the cases raised by service agents will be visible to their relevant dealer managers.') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "Partner Community licenses support up to a three-level Role Hierarchy per partner account (Partner Executive, Partner Manager, Partner User). By assigning dealer managers to the Partner Manager role and service agents to the Partner User role under their respective dealership account, the native Role Hierarchy automatically grants dealer managers visibility to all cases raised by their own service agents via standard hierarchical inheritance ('Grant Access Using Hierarchies'). This requires zero administrative maintenance and scales automatically across thousands of dealerships.",
           "distractors": {
-            "B": "Option B ('Create a sharing rule to share cases created by service agents with their dealer manager.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Create a sharing group to share cases created by service agents with their dealer manager.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "B": "With thousands of dealerships worldwide, creating sharing rules is technically impossible because Salesforce enforces a hard limit of 300 sharing rules per object (with only 50 criteria-based rules).",
+            "C": "Share Groups are used exclusively to grant internal Salesforce users access to records owned by high-volume Customer Community users; they cannot be used to configure manager-to-subordinate sharing between external partner community users."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "A",
             "confirmedText": "Use the Role Hierarchy so that the cases raised by service agents will be visible to their relevant dealer managers.",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option A ('Use the Role Hierarchy so that the cases raised by service agents will be visible to their relevant dealer managers.') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q80 Universal Containers (UC) is a fast-growing company that sells containers globally. It has"
+            "docTopic": "External & Community User Access",
+            "webReason": "Partner Community licenses support up to a three-level Role Hierarchy per partner account (Partner Executive, Partner Manager, Partner User). By assigning dealer managers to the Partner Manager role and service agents to the Partner User role under their respective dealership account, the native Role Hierarchy automatically grants dealer managers visibility to all cases raised by their own service agents via standard hierarchical inheritance ('Grant Access Using Hierarchies'). This requires zero administrative maintenance and scales automatically across thousands of dealerships.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q80 Universal Containers (UC) is a fast-growing company that sel"
           }
         },
         {
@@ -2844,19 +2844,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "Option B ('Partner Community') provides the architecturally compliant solution by adhering to the Salesforce security model and the principle of least privilege.",
+          "whyCorrect": "In Experience Cloud, Opportunities are considered Sales Cloud objects and are exclusively accessible to Partner Community licenses (or Lightning External Apps Plus). Neither Customer Community nor Customer Community Plus licenses provide object permissions, sharing capabilities, or access to the Opportunity object. Therefore, to enable external community users to view, create, or collaborate on Opportunities, UC must provision Partner Community licenses.",
           "distractors": {
-            "A": "Option A ('Customer Community') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities.",
-            "C": "Option C ('Customer Community Plus') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
+            "A": "Customer Community licenses are high-volume portal licenses designed for basic customer service/support (Cases, Knowledge, Accounts, Contacts) and have no access to Opportunities.",
+            "C": "Customer Community Plus licenses support advanced customer service scenarios with roles, reports/dashboards, and sharing rules, but they are restricted from accessing Sales Cloud objects such as Opportunities and Leads."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "B",
             "confirmedText": "Partner Community",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Partner Community') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q83 In order to allow community users to collaborate on Opportunities, which license type must"
+            "docTopic": "External & Community User Access",
+            "webReason": "In Experience Cloud, Opportunities are considered Sales Cloud objects and are exclusively accessible to Partner Community licenses (or Lightning External Apps Plus). Neither Customer Community nor Customer Community Plus licenses provide object permissions, sharing capabilities, or access to the Opportunity object. Therefore, to enable external community users to view, create, or collaborate on Opportunities, UC must provision Partner Community licenses.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q83 In order to allow community users to collaborate on Opportun"
           }
         },
         {
@@ -2874,19 +2874,19 @@ window.CERT_PREP_DATA = {
           ],
           "isMultiSelect": false,
           "expectedCount": 1,
-          "whyCorrect": "High-volume Community users (such as Customer Community users) do not participate in the standard role hierarchy or sharing rules. Access must be granted using Sharing Sets mapped to Account/Contact fields.",
+          "whyCorrect": "When external agents work for multiple distributor accounts, Salesforce's 'Contacts to Multiple Accounts' feature allows a single Contact record (representing the agent) to have secondary Account Contact Relationships (ACR) with multiple Accounts. Experience Cloud Sharing Sets natively support mapping access through Account Contact Relationships (User.Contact.RelatedContact.Account). By configuring a Sharing Set using ACR, the agent automatically and declaratively gains access to all distributor accounts to which they are related without writing custom code or maintaining individual sharing rules.",
           "distractors": {
-            "A": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist.",
-            "B": "High-volume Customer Community users do not have access to standard criteria-based or ownership sharing rules."
+            "A": "Apex managed sharing using AccountShare introduces significant development overhead, requires custom triggers on AccountContactRelation, and must handle manual recalculations upon relationship changes; declarative sharing sets are the recommended architectural best practice.",
+            "B": "Sharing rules cannot dynamically evaluate multi-account contact affiliations on a per-agent basis and would require creating and updating numerous public groups or sharing rules as part-time agents change distributor affiliations."
           },
           "domain": "External & Community User Access",
           "domainSlug": "community-external-sharing",
           "challenge": {
             "confirmedAnswer": "C",
             "confirmedText": "Create a sharing set to share distributor accounts with agents using account contact relationship.",
-            "docTopic": "Experience Cloud Security Guide: External User Visibility",
-            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option C ('Create a sharing set to share distributor accounts with agents using account contact relationship.') represents the verified platform design pattern for external collaboration.",
-            "searchQuery": "Salesforce Sharing and Visibility Architect Q85 Universal Containers has implemented Customer Community with Customer Community Plus licen"
+            "docTopic": "External & Community User Access",
+            "webReason": "When external agents work for multiple distributor accounts, Salesforce's 'Contacts to Multiple Accounts' feature allows a single Contact record (representing the agent) to have secondary Account Contact Relationships (ACR) with multiple Accounts. Experience Cloud Sharing Sets natively support mapping access through Account Contact Relationships (User.Contact.RelatedContact.Account). By configuring a Sharing Set using ACR, the agent automatically and declaratively gains access to all distributor accounts to which they are related without writing custom code or maintaining individual sharing rules.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q85 Universal Containers has implemented Customer Community with"
           }
         }
       ],
