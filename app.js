@@ -243,7 +243,7 @@
     renderCurrentQuestion();
   }
 
-  // --- Circle Navigator: Last 5 & Next 2 ---
+  // --- Circle Navigator: All Questions with Auto-Focus on [currentIndex - 5 ... currentIndex + 2] ---
   function renderCircleNav() {
     if (!el.circleNavRow) return;
     el.circleNavRow.innerHTML = '';
@@ -251,11 +251,7 @@
     const total = state.activeQuestions.length;
     if (total === 0) return;
 
-    // Window: Math.max(0, currentIndex - 5) to Math.min(total - 1, currentIndex + 2)
-    const start = Math.max(0, state.currentIndex - 5);
-    const end = Math.min(total - 1, state.currentIndex + 2);
-
-    for (let i = start; i <= end; i++) {
+    for (let i = 0; i < total; i++) {
       const targetQ = state.activeQuestions[i];
       const circleBtn = document.createElement('button');
       circleBtn.type = 'button';
@@ -290,6 +286,30 @@
 
       el.circleNavRow.appendChild(circleBtn);
     }
+
+    // Smoothly scroll row so the last 5 and next 2 questions are in view
+    scrollActiveCircleIntoFocus();
+  }
+
+  function scrollActiveCircleIntoFocus() {
+    if (!el.circleNavRow || !el.circleNavRow.children.length) return;
+
+    requestAnimationFrame(() => {
+      const focusIndex = Math.max(0, state.currentIndex - 5);
+      const targetCircle = el.circleNavRow.children[focusIndex];
+
+      if (targetCircle) {
+        const rowRect = el.circleNavRow.getBoundingClientRect();
+        const circleRect = targetCircle.getBoundingClientRect();
+        const scrollDelta = circleRect.left - rowRect.left - 10;
+        const newScrollLeft = el.circleNavRow.scrollLeft + scrollDelta;
+
+        el.circleNavRow.scrollTo({
+          left: Math.max(0, newScrollLeft),
+          behavior: 'smooth'
+        });
+      }
+    });
   }
 
   // --- Speech Synthesis (Text-to-Speech) ---

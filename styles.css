@@ -1173,15 +1173,31 @@ button {
 .circle-nav-row {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.2rem 0.1rem;
+  padding: 0.45rem 0.25rem 0.6rem 0.25rem;
   scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.circle-nav-row::-webkit-scrollbar {
+  height: 5px;
+}
+
+.circle-nav-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.circle-nav-row::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: var(--radius-full);
 }
 
 .nav-circle {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
