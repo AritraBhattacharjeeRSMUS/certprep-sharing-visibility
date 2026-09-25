@@ -156,7 +156,25 @@
             <span id="questionRefTag" class="question-ref-label">Ref: Q1</span>
           </div>
           <div class="toolbar-actions">
-            <button id="btnSpeakQuestion" class="action-btn speech-btn" type="button" title="Listen Question & Options (Gemini Neural Voice)" aria-label="Read Question & Options">
+            <!-- Voice Model & Reading Speed Controls -->
+            <div class="voice-controls-row">
+              <div class="speech-ctrl-group" title="Select Voice Model">
+                <select id="speechVoiceSelect" class="speech-select voice-select" aria-label="Select Voice Model">
+                  <option value="">Natural Voice (Auto)</option>
+                </select>
+              </div>
+
+              <div class="speech-ctrl-group" title="Adjust Speech Speed">
+                <select id="speechSpeedSelect" class="speech-select speed-select" aria-label="Reading Speed">
+                  <option value="0.78">0.78x (Very Slow)</option>
+                  <option value="0.84" selected>0.84x (Slow - Natural)</option>
+                  <option value="0.90">0.90x (Relaxed)</option>
+                  <option value="1.0">1.0x (Normal)</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="btnSpeakQuestion" class="action-btn speech-btn" type="button" title="Read Question & Options (Text to Speech)" aria-label="Read Question & Options">
               <svg class="speaker-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
