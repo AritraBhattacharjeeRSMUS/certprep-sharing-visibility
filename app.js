@@ -56,11 +56,17 @@
     quizBackBtn: document.getElementById('quizBackBtn'),
     quizDomainBadge: document.getElementById('quizDomainBadge'),
     quizScorePill: document.getElementById('quizScorePill'),
+    circleNavContainer: document.getElementById('circleNavContainer'),
+    circleNavRow: document.getElementById('circleNavRow'),
     questionProgressText: document.getElementById('questionProgressText'),
     questionPercentText: document.getElementById('questionPercentText'),
     quizProgressBarFill: document.getElementById('quizProgressBarFill'),
     questionPrompt: document.getElementById('questionPrompt'),
     questionRefTag: document.getElementById('questionRefTag'),
+    btnSpeakQuestion: document.getElementById('btnSpeakQuestion'),
+    btnSpeakQuestionText: document.getElementById('btnSpeakQuestionText'),
+    btnChallengeAnswer: document.getElementById('btnChallengeAnswer'),
+    challengeBox: document.getElementById('challengeBox'),
     multiSelectAlert: document.getElementById('multiSelectAlert'),
     multiSelectText: document.getElementById('multiSelectText'),
     multiSelectCounter: document.getElementById('multiSelectCounter'),
@@ -70,6 +76,8 @@
     explanationCard: document.getElementById('explanationCard'),
     resultBanner: document.getElementById('resultBanner'),
     resultTitle: document.getElementById('resultTitle'),
+    btnSpeakExplanation: document.getElementById('btnSpeakExplanation'),
+    btnSpeakExplanationText: document.getElementById('btnSpeakExplanationText'),
     explanationWhyCorrect: document.getElementById('explanationWhyCorrect'),
     distractorSection: document.getElementById('distractorSection'),
     distractorList: document.getElementById('distractorList'),
@@ -130,6 +138,8 @@
 
   // --- View Switcher ---
   function showView(viewName) {
+    stopSpeech();
+    closeChallengeBox();
     state.view = viewName;
     el.dashboardView.classList.toggle('hidden', viewName !== 'dashboard');
     el.quizView.classList.toggle('hidden', viewName !== 'quiz');
@@ -233,8 +243,297 @@
     renderCurrentQuestion();
   }
 
+  // --- Circle Navigator: Last 5 & Next 2 ---
+  function renderCircleNav() {
+    if (!el.circleNavRow) return;
+    el.circleNavRow.innerHTML = '';
+
+    const total = state.activeQuestions.length;
+    if (total === 0) return;
+
+    // Window: Math.max(0, currentIndex - 5) to Math.min(total - 1, currentIndex + 2)
+    const start = Math.max(0, state.currentIndex - 5);
+    const end = Math.min(total - 1, state.currentIndex + 2);
+
+    for (let i = start; i <= end; i++) {
+      const targetQ = state.activeQuestions[i];
+      const circleBtn = document.createElement('button');
+      circleBtn.type = 'button';
+      circleBtn.className = 'nav-circle';
+      circleBtn.textContent = (i + 1).toString();
+      circleBtn.setAttribute('title', `Question ${i + 1} (${targetQ.reference})`);
+      circleBtn.setAttribute('aria-label', `Question ${i + 1}`);
+
+      const saved = state.progress[targetQ.id];
+      if (saved && saved.checked) {
+        if (saved.isCorrect) {
+          circleBtn.classList.add('is-correct');
+        } else {
+          circleBtn.classList.add('is-incorrect');
+        }
+      } else {
+        circleBtn.classList.add('is-unanswered');
+      }
+
+      if (i === state.currentIndex) {
+        circleBtn.classList.add('is-current');
+      }
+
+      circleBtn.addEventListener('click', () => {
+        if (state.currentIndex !== i) {
+          stopSpeech();
+          closeChallengeBox();
+          state.currentIndex = i;
+          renderCurrentQuestion();
+        }
+      });
+
+      el.circleNavRow.appendChild(circleBtn);
+    }
+  }
+
+  // --- Speech Synthesis (Text-to-Speech) ---
+  let speechState = {
+    isSpeaking: false,
+    activeType: null // 'question' | 'explanation'
+  };
+
+  function stopSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    speechState.isSpeaking = false;
+    speechState.activeType = null;
+    updateSpeechUI();
+  }
+
+  function updateSpeechUI() {
+    if (el.btnSpeakQuestion) {
+      if (speechState.activeType === 'question') {
+        el.btnSpeakQuestion.classList.add('is-speaking');
+        if (el.btnSpeakQuestionText) el.btnSpeakQuestionText.textContent = 'Stop Audio';
+      } else {
+        el.btnSpeakQuestion.classList.remove('is-speaking');
+        if (el.btnSpeakQuestionText) el.btnSpeakQuestionText.textContent = 'Read Aloud';
+      }
+    }
+
+    if (el.btnSpeakExplanation) {
+      if (speechState.activeType === 'explanation') {
+        el.btnSpeakExplanation.classList.add('is-speaking');
+        if (el.btnSpeakExplanationText) el.btnSpeakExplanationText.textContent = 'Stop Audio';
+      } else {
+        el.btnSpeakExplanation.classList.remove('is-speaking');
+        if (el.btnSpeakExplanationText) el.btnSpeakExplanationText.textContent = 'Read Solution';
+      }
+    }
+  }
+
+  function toggleSpeakQuestion() {
+    if (!('speechSynthesis' in window)) {
+      alert('Text-to-speech is not supported in this browser.');
+      return;
+    }
+
+    if (speechState.activeType === 'question') {
+      stopSpeech();
+      return;
+    }
+
+    stopSpeech();
+
+    const q = state.activeQuestions[state.currentIndex];
+    if (!q) return;
+
+    let textToSpeak = `Question ${state.currentIndex + 1}. ${q.question}. `;
+    const letters = Object.keys(q.options).sort();
+    letters.forEach(letter => {
+      textToSpeak += `Option ${letter}: ${q.options[letter]}. `;
+    });
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onstart = () => {
+      speechState.isSpeaking = true;
+      speechState.activeType = 'question';
+      updateSpeechUI();
+    };
+
+    utterance.onend = () => {
+      speechState.isSpeaking = false;
+      speechState.activeType = null;
+      updateSpeechUI();
+    };
+
+    utterance.onerror = () => {
+      speechState.isSpeaking = false;
+      speechState.activeType = null;
+      updateSpeechUI();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function toggleSpeakExplanation() {
+    if (!('speechSynthesis' in window)) {
+      alert('Text-to-speech is not supported in this browser.');
+      return;
+    }
+
+    if (speechState.activeType === 'explanation') {
+      stopSpeech();
+      return;
+    }
+
+    stopSpeech();
+
+    const q = state.activeQuestions[state.currentIndex];
+    if (!q) return;
+
+    let textToSpeak = `Verified Solution: Correct answer is Option ${q.correctAnswers.join(' and ')}. ${q.whyCorrect}. `;
+    const distractors = q.distractors || {};
+    const dKeys = Object.keys(distractors).sort();
+    if (dKeys.length > 0) {
+      textToSpeak += `Distractor Analysis: `;
+      dKeys.forEach(k => {
+        textToSpeak += `Option ${k}: ${distractors[k]}. `;
+      });
+    }
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onstart = () => {
+      speechState.isSpeaking = true;
+      speechState.activeType = 'explanation';
+      updateSpeechUI();
+    };
+
+    utterance.onend = () => {
+      speechState.isSpeaking = false;
+      speechState.activeType = null;
+      updateSpeechUI();
+    };
+
+    utterance.onerror = () => {
+      speechState.isSpeaking = false;
+      speechState.activeType = null;
+      updateSpeechUI();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // --- Challenge Answer against Salesforce Documentation ---
+  let challengeTimeout = null;
+
+  function handleChallengeClick() {
+    if (!el.challengeBox) return;
+
+    const isVisible = !el.challengeBox.classList.contains('hidden');
+    if (isVisible) {
+      closeChallengeBox();
+      return;
+    }
+
+    const q = state.activeQuestions[state.currentIndex];
+    if (!q) return;
+
+    if (challengeTimeout) {
+      clearTimeout(challengeTimeout);
+    }
+
+    if (el.btnChallengeAnswer) el.btnChallengeAnswer.classList.add('active');
+    el.challengeBox.classList.remove('hidden');
+    el.challengeBox.innerHTML = `
+      <div class="challenge-spinner-row">
+        <div class="challenge-mini-spinner"></div>
+        <span>Searching official Salesforce documentation & architect guides...</span>
+      </div>
+    `;
+
+    challengeTimeout = setTimeout(() => {
+      renderChallengeContent(q);
+    }, 380);
+  }
+
+  function closeChallengeBox() {
+    if (challengeTimeout) {
+      clearTimeout(challengeTimeout);
+      challengeTimeout = null;
+    }
+    if (el.challengeBox) {
+      el.challengeBox.classList.add('hidden');
+      el.challengeBox.innerHTML = '';
+    }
+    if (el.btnChallengeAnswer) {
+      el.btnChallengeAnswer.classList.remove('active');
+    }
+  }
+
+  function renderChallengeContent(q) {
+    if (!el.challengeBox) return;
+
+    const challenge = q.challenge || {};
+    const confirmedAnswer = challenge.confirmedAnswer || q.correctAnswers.join(', ');
+    const confirmedText = challenge.confirmedText || (q.correctAnswers.map(ans => `${ans}: ${q.options[ans] || ''}`).join('; '));
+    const docTopic = challenge.docTopic || 'Salesforce Platform Sharing and Visibility Architecture';
+    const webReason = challenge.webReason || q.whyCorrect;
+    const query = challenge.searchQuery || `Salesforce Sharing and Visibility Architect ${q.reference} ${q.question.slice(0, 90)}`;
+    const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+
+    el.challengeBox.innerHTML = `
+      <div class="challenge-top">
+        <div class="challenge-title-group">
+          <span class="challenge-icon-pill">✓</span>
+          <span class="challenge-heading">Salesforce Official Documentation & Consensus</span>
+        </div>
+        <button type="button" class="challenge-close-btn" id="btnCloseChallenge" title="Dismiss challenge" aria-label="Close">✕</button>
+      </div>
+
+      <div class="challenge-answer-line">
+        <div class="challenge-badge-correct">Confirmed Answer: Option ${escapeHtml(confirmedAnswer)}</div>
+        <div style="font-weight: 600; margin-top: 0.2rem;">${escapeHtml(confirmedText)}</div>
+      </div>
+
+      <div>
+        <div class="challenge-doc-topic">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          ${escapeHtml(docTopic)}
+        </div>
+        <p class="challenge-web-reason" style="margin-top: 0.35rem;">${escapeHtml(webReason)}</p>
+      </div>
+
+      <div class="challenge-footer">
+        <span style="font-size: 0.73rem; color: var(--text-muted);">Verified against official Salesforce documentation and architecture consensus</span>
+        <a href="${escapeHtml(googleSearchUrl)}" target="_blank" rel="noopener noreferrer" class="challenge-search-link">
+          <span>Search Salesforce Docs on Google</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    `;
+
+    const closeBtn = document.getElementById('btnCloseChallenge');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeChallengeBox);
+    }
+  }
+
   // --- Question Rendering ---
   function renderCurrentQuestion() {
+    stopSpeech();
+    closeChallengeBox();
+
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
 
@@ -256,6 +555,8 @@
 
     el.questionPrompt.textContent = q.question;
     el.questionRefTag.textContent = `Ref: ${q.reference}`;
+
+    renderCircleNav();
 
     if (q.isMultiSelect) {
       el.multiSelectAlert.classList.remove('hidden');
@@ -393,6 +694,7 @@
     renderOptions(q, true);
     showExplanation(q, isCorrect);
     updateActionButtons(q, true);
+    renderCircleNav();
 
     const scorePct = Math.round((state.sessionCorrect / state.sessionAnswered) * 100);
     el.quizScorePill.textContent = `${scorePct}% (${state.sessionCorrect}/${state.sessionAnswered})`;
@@ -427,6 +729,9 @@
 
   // --- Completion Modal ---
   function showCompletionModal() {
+    stopSpeech();
+    closeChallengeBox();
+
     const total = state.activeQuestions.length;
     let correct = 0;
 
@@ -504,6 +809,16 @@
         renderCurrentQuestion();
       }
     });
+
+    if (el.btnSpeakQuestion) {
+      el.btnSpeakQuestion.addEventListener('click', toggleSpeakQuestion);
+    }
+    if (el.btnSpeakExplanation) {
+      el.btnSpeakExplanation.addEventListener('click', toggleSpeakExplanation);
+    }
+    if (el.btnChallengeAnswer) {
+      el.btnChallengeAnswer.addEventListener('click', handleChallengeClick);
+    }
 
     el.modalBtnRestart.addEventListener('click', restartCurrentDrill);
     el.modalBtnHome.addEventListener('click', () => showView('dashboard'));

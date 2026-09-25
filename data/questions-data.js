@@ -30,7 +30,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Create a separate button \"Edit in Mobile\", which opens a custom lightn ing component that will allow field consultants to add an image. No change required for desktop users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Use Lightning Component as an override for \"Edit\" action on lightning experience allowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Use Lightning Component as an override for \"Edit\" action on lightning experience allowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q5 A consulting company uses the Salesforce mobile app for its field consultants and uses Cas"
+          }
         },
         {
           "id": "declarative-sharing-2",
@@ -53,7 +60,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Set the price book OWD to View Only and share the (High Risk) price book with the trained staff via a sharing rule.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Set the price book organisation-wide default (OWD) to View Only and share the price book (High Risk) with the trained staff.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Set the price book organisation-wide default (OWD) to View Only and share the price book (High Risk) with the trained staff.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q14 Universal Containers implemented Sales Cloud and requested that only certain branch staff "
+          }
         },
         {
           "id": "declarative-sharing-3",
@@ -76,7 +90,14 @@ window.CERT_PREP_DATA = {
             "B": "Queues own records and manage assignment; they are not visibility containers for sharing list views."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Share the list views with the appropriate public group.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the list views with the appropriate public group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q15 Sales operations at Universal Containers (UC) wants to create list views to filter opportu"
+          }
         },
         {
           "id": "declarative-sharing-4",
@@ -99,7 +120,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Implement a Public Read-Only/Transfer OWD on Lead.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Implement a Public Read-Only OWD on Lead.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('Implement a Public Read-Only OWD on Lead.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q29 Universal Containers (UC) wants to reduce the amount of redundant leads entered into the s"
+          }
         },
         {
           "id": "declarative-sharing-5",
@@ -122,7 +150,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Only the user who posted the file') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "The user who posted the file and users with access to the record",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('The user who posted the file and users with access to the record') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q35 A user posts a file to the Chatter feed for a record of an object that has a Private organ"
+          }
         },
         {
           "id": "declarative-sharing-6",
@@ -145,7 +180,14 @@ window.CERT_PREP_DATA = {
             "C": "List views cannot be shared directly with individual user records."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Share the list views with the appropriate public group.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Share the list views with the appropriate public group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q36 Sales operations at Universal Containers (UC) wants to create list views to filter opportu"
+          }
         },
         {
           "id": "declarative-sharing-7",
@@ -168,7 +210,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Public Read/Transfer') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Private",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('Private') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q39 Universal Containers would like to control access to records and objects according to the "
+          }
         },
         {
           "id": "declarative-sharing-8",
@@ -191,7 +240,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Share the list views with the appropriate individual users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Share the list views with the appropriate role and internal subordinates.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the list views with the appropriate role and internal subordinates.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q40 Sales operations at Universal Containers (UC) wants to create list views to filter opportu"
+          }
         },
         {
           "id": "declarative-sharing-9",
@@ -214,7 +270,14 @@ window.CERT_PREP_DATA = {
             "C": "Manual sharing does not support default teams and requires repetitive manual overhead on every single record."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Opportunity Team",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Opportunity Team') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q41 A junior account manager owns an account and creates a new opportunity to manage a complex"
+          }
         },
         {
           "id": "declarative-sharing-10",
@@ -237,7 +300,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('New AccountShare record is created. Row Cause is \"Owner\" and Access Level is \"Full\".') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "New AccountShare record is created. Row Cause is \"Manual\" and Access Level is \"Read/Write\".",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('New AccountShare record is created. Row Cause is \"Manual\" and Access Level is \"Read/Write\".') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q43 A sales rep (John) at Universal Containers requested to update information in an account r"
+          }
         },
         {
           "id": "declarative-sharing-11",
@@ -260,7 +330,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Add the auditors to the default Opportunity Team.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a public group and assign the auditors to the group.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Create a public group and assign the auditors to the group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q50 At Universal Containers, there's a team of auditors distributed throughout the organizatio"
+          }
         },
         {
           "id": "declarative-sharing-12",
@@ -283,7 +360,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Create a separate button \"Edit in Mobile\", which opens a custom lightning component that will allow field consultants to add an image. No change required for desktop users.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Use Lightning Component as an override for \"Edit\" action on lightning experience a llowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Use Lightning Component as an override for \"Edit\" action on lightning experience a llowing image capture feature. Detect the form factor of the device and redirect the user to the default not-overridden view.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q53 A consulting company uses the Salesforce mobile app for its field consultants and uses Cas"
+          }
         },
         {
           "id": "declarative-sharing-13",
@@ -306,7 +390,14 @@ window.CERT_PREP_DATA = {
             "C": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use Account teams to define access to accounts as well as opportunities and cases related to accounts.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Account teams to define access to accounts as well as opportunities and cases related to accounts.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q58 The sales managers at Universal Containers requested their teams to define each user's rol"
+          }
         },
         {
           "id": "declarative-sharing-14",
@@ -329,7 +420,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('View') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Use",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Use') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q62 Universal Containers implemented Sales Cloud and requested that sales agents have access t"
+          }
         },
         {
           "id": "declarative-sharing-15",
@@ -352,7 +450,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Add/remove members in the opportunity team.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Update opportunity stage.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Update opportunity stage.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q65 A sales rep at Universal Containers was added to an opportunity team with Read/Write permi"
+          }
         },
         {
           "id": "declarative-sharing-16",
@@ -375,7 +480,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Manage Reports in Public Folders and edit My Reports') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Create Report Folders and manage Reports in Public Folders",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Create Report Folders and manage Reports in Public Folders') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q70 A sales coach at Universal Containers wants to create and share a report folder with other"
+          }
         },
         {
           "id": "declarative-sharing-17",
@@ -398,7 +510,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Contact records can be accessed due to implicit sharing from Opportunity.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Account records can be accessed due to implicit sharing from Opportunity.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Account records can be accessed due to implicit sharing from Opportunity.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q75 The finance team at Universal Containers usually does not have access to account and conta"
+          }
         },
         {
           "id": "declarative-sharing-18",
@@ -421,7 +540,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Set up an Experience Cloud site for customers to access files and share the file with customers via Chatter. Customers can then log in to the site to access the content.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Create a content delivery; during creation, the user should select the option to require a password to access content.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Create a content delivery; during creation, the user should select the option to require a password to access content.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q79 Sales reps at Universal Containers sometimes create large files as a part of the sales pro"
+          }
         },
         {
           "id": "declarative-sharing-19",
@@ -444,7 +570,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('The operations manager will get access to the scheduled courses by creating a public group, and add the operations manager and the operations users team to the public group.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "The operations manager will get access to the scheduled courses owned by the operations users team defined in the Role Hierarchy.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('The operations manager will get access to the scheduled courses owned by the operations users team defined in the Role Hierarchy.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q81 Universal Containers (UC) delivers training in 500 different regions. The UC operations us"
+          }
         },
         {
           "id": "declarative-sharing-20",
@@ -467,7 +600,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Add the auditors to the default Opportunity Team.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a criteria-based sharing rule to give access to the public group for high-value opportunities.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Create a criteria-based sharing rule to give access to the public group for high-value opportunities.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q86 At Universal Containers, there's a team of auditors distributed throughout the organizatio"
+          }
         },
         {
           "id": "declarative-sharing-21",
@@ -490,7 +630,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Create the Account, Team and add branch manager team members, and configure organization-wide defaults of the Account object.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Configure Role Hierarchy and create sharing rules.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Configure Role Hierarchy and create sharing rules.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q88 Universal Containers (UC) requested that branch managers and UC branch staff should only s"
+          }
         },
         {
           "id": "declarative-sharing-22",
@@ -513,7 +660,14 @@ window.CERT_PREP_DATA = {
             "B": "List views cannot be shared directly with individual user records."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Share the list views with the appropriate Public Group.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the list views with the appropriate Public Group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q89 Sales executives at Universal Containers (UC) want to create list views to filter opportun"
+          }
         },
         {
           "id": "declarative-sharing-23",
@@ -536,7 +690,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Set the price book organization- wide default to View Only and share the (High Risk) price book with the trained staff via manual sharing.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Set the price book organization- wide default to View Only and share the price book (High Risk) with the trained staff.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Set the price book organization- wide default to View Only and share the price book (High Risk) with the trained staff.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q91 Universal Containers implements Agentforce Sales and requests that only certain branch sta"
+          }
         },
         {
           "id": "declarative-sharing-24",
@@ -559,7 +720,14 @@ window.CERT_PREP_DATA = {
             "B": "Removing object CRUD permissions revokes access to all records, not just subordinate records."
           },
           "domain": "Declarative Sharing (Access to Records)",
-          "domainSlug": "declarative-sharing"
+          "domainSlug": "declarative-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Enable Grant Access Using Hierarchies and define a Role Hierarchy to give access to the scheduled courses.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Enable Grant Access Using Hierarchies and define a Role Hierarchy to give access to the scheduled courses.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q97 Universal Containers (UC) delivers training in 500 different regions. The UC operations us"
+          }
         }
       ],
       "questionCount": 24
@@ -590,7 +758,14 @@ window.CERT_PREP_DATA = {
             "B": "The 'with sharing' keyword only enforces record sharing; it does not respect or enforce FLS."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Use the isUpdateable() Apex method to test each field prior to allowing update.",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option C ('Use the isUpdateable() Apex method to test each field prior to allowing update.') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q3 Universal Containers (UC) has a custom Apex class that enforces a business process and upd"
+          }
         },
         {
           "id": "programmatic-sharing-2",
@@ -613,7 +788,14 @@ window.CERT_PREP_DATA = {
             "C": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use Dynamic Form to define different field sections applicable for different form fa ctors of devices.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Form to define different field sections applicable for different form fa ctors of devices.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q9 A company intends bring work from anywhere culture in a bid to improve productivity. Their"
+          }
         },
         {
           "id": "programmatic-sharing-3",
@@ -636,7 +818,14 @@ window.CERT_PREP_DATA = {
             "C": "Logging in as individual users is inefficient and doesn't reveal the root configuration cause."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use isAccessible() method in Apex classes to check field accessibility.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('Use isAccessible() method in Apex classes to check field accessibility.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q20 Universal Containers (UC) uses a custom Lightning component with an Apex class to display "
+          }
         },
         {
           "id": "programmatic-sharing-4",
@@ -659,7 +848,14 @@ window.CERT_PREP_DATA = {
             "C": "Removing object CRUD permissions revokes access to all records, not just subordinate records."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Set organization-wide default to Private and uncheck the Access Using Hierarchies option for the NPS object.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Set organization-wide default to Private and uncheck the Access Using Hierarchies option for the NPS object.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q26 Universal Containers (UC) has a custom object to track the internal net promoter score (NP"
+          }
         },
         {
           "id": "programmatic-sharing-5",
@@ -682,7 +878,14 @@ window.CERT_PREP_DATA = {
             "C": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Enforcement of a user's record sharing",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Enforcement of a user's record sharing') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q28 Which functionality does the system method \"runAs()\" verify when writing test methods?"
+          }
         },
         {
           "id": "programmatic-sharing-6",
@@ -705,7 +908,14 @@ window.CERT_PREP_DATA = {
             "C": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Use runAs system method in test classes to test using different users and profiles.",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Use runAs system method in test classes to test using different users and profiles.') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q31 To grant Universal Containers sales managers access to shipment records properly, it was n"
+          }
         },
         {
           "id": "programmatic-sharing-7",
@@ -728,7 +938,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Create a Criteria Based Sharing Rule that shares to the Legal Public Group when the \"legal assistance needed\" field is checked.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use Apex Managed sharing in a case Trigger that shares the record to the user identified in the Legal SME field.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Apex Managed sharing in a case Trigger that shares the record to the user identified in the Legal SME field.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q34 If a Case requires involvement from one of the Legal team, the Case owner adds one of the "
+          }
         },
         {
           "id": "programmatic-sharing-8",
@@ -751,7 +968,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('B. Trigger on Presenter junction object that adds the user to the Sales Team for the Presentation record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Trigger on Presenter junction object that uses /ipex Maraged sharing to add or remove access to the related Presentation record.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Trigger on Presenter junction object that uses /ipex Maraged sharing to add or remove access to the related Presentation record.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q37 Dreamforce presenters need to be able to edit their presentation details (summary, present"
+          }
         },
         {
           "id": "programmatic-sharing-9",
@@ -774,7 +998,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Criteria based Sharing Rule on Case that shares to the Role Manager and above when a custom field Assigned Agent (subject of the complaint) is not blank.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Trigger on Case to lookup and share to the manager of an Assigned Agent custom field (the subject of the complaint) using Apex Managed Sharing.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Trigger on Case to lookup and share to the manager of an Assigned Agent custom field (the subject of the complaint) using Apex Managed Sharing.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q44 Customer complaints for bad interactions with a customer support agent are logged as Cases"
+          }
         },
         {
           "id": "programmatic-sharing-10",
@@ -797,7 +1028,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Use isShareable, isUpdateable, and isCreatable to enforce field permissions.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Once that Apex runs on system mode, the development team needs to enforce record visibility.",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option A ('Once that Apex runs on system mode, the development team needs to enforce record visibility.') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q45 Universal Containers requested to leverage Lightning Web Components (LWC) to improve suppo"
+          }
         },
         {
           "id": "programmatic-sharing-11",
@@ -820,7 +1058,14 @@ window.CERT_PREP_DATA = {
             "C": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use Dynamic Form to define different field sections applicable for different form factors of devices.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Form to define different field sections applicable for different form factors of devices.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q57 A company intends bring work from anywhere culture in a bid to improve productivity. Their"
+          }
         },
         {
           "id": "programmatic-sharing-12",
@@ -843,7 +1088,14 @@ window.CERT_PREP_DATA = {
             "C": "Creating multiple static page layouts requires continuous maintenance and cannot dynamically toggle sections on the fly."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Use Dynamic form to add different page sections and control visibility of sections by Work Order RecordType value.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Use Dynamic form to add different page sections and control visibility of sections by Work Order RecordType value.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q60 Universal Containers uses Standard WorkOrder object to track various work orders sent to f"
+          }
         },
         {
           "id": "programmatic-sharing-13",
@@ -866,7 +1118,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Sharing rules to share opportunities with sales managers') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Scheduled Apex job to remove access",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Scheduled Apex job to remove access') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q76 Universal Containers is implementing Sales Cloud. During the final quarter of the financia"
+          }
         },
         {
           "id": "programmatic-sharing-14",
@@ -889,7 +1148,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Trigger on Presenter junction object that adds the user to the Sales Team for the Presentation record.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Trigger on Presenter junction object that uses Apex Managed sharing to add or remove access to the related Presentation record.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Trigger on Presenter junction object that uses Apex Managed sharing to add or remove access to the related Presentation record.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q78 Dreamforce presenters need to be able to edit their presentation details (summary, present"
+          }
         },
         {
           "id": "programmatic-sharing-15",
@@ -912,7 +1178,14 @@ window.CERT_PREP_DATA = {
             "B": "System.runAs() exclusively enforces record sharing; it deliberately bypasses CRUD and Field-Level Security during test execution."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Use runAs system method to test different users accessing these records.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Use runAs system method to test different users accessing these records.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q82 Universal Containers (UC) has a team that analyzes customer orders looking for fraud. This"
+          }
         },
         {
           "id": "programmatic-sharing-16",
@@ -935,7 +1208,14 @@ window.CERT_PREP_DATA = {
             "C": "Shares created with RowCause 'Manual' are automatically deleted whenever record ownership changes."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Create a specific Apex Sharing Reason for the custom object.",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Create a specific Apex Sharing Reason for the custom object.') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q87 What should an architect recommend to make sure that users that gained access to a custom "
+          }
         },
         {
           "id": "programmatic-sharing-17",
@@ -958,7 +1238,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Remove CRED permissions on Case so the agent cannot read the case record. .') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Create a trigger on Case to lookup and share to the manager of an Agent Complaint custom field using Apex managed sharing.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Create a trigger on Case to lookup and share to the manager of an Agent Complaint custom field using Apex managed sharing.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q90 Customer complaints for bad interactions with a support agent are logged as cases and assi"
+          }
         },
         {
           "id": "programmatic-sharing-18",
@@ -981,7 +1268,14 @@ window.CERT_PREP_DATA = {
             "C": "Custom component overrides (LWC/Visualforce) add unnecessary technical debt and code maintenance when declarative Dynamic Forms natively satisfy the requirement."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use Dynamic Forms to define different field sections applicable for different form factors of devices.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Forms to define different field sections applicable for different form factors of devices.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q92 A company launches a work- from- anywhere initiative in an effort to improve sales team pr"
+          }
         },
         {
           "id": "programmatic-sharing-19",
@@ -1004,7 +1298,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Use runAs in test class to enforce user permissions and field-level permissions.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Use With Sharing keyword in Apex classes to enforce sharing rules evaluation.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('Use With Sharing keyword in Apex classes to enforce sharing rules evaluation.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q95 Universal Containers (UC) uses a custom Lightning component with an Apex class to display "
+          }
         },
         {
           "id": "programmatic-sharing-20",
@@ -1027,7 +1328,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Create test classes including runAs to test different users accessing the data.') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
           },
           "domain": "Programmatic Sharing & Apex Security",
-          "domainSlug": "programmatic-sharing"
+          "domainSlug": "programmatic-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Have the development team enforce record visibility once Apex runs in system mode .",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option B ('Have the development team enforce record visibility once Apex runs in system mode .') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q96 Universal Containers requests to leverage Lightning Web Components (LWC) to improve suppor"
+          }
         }
       ],
       "questionCount": 20
@@ -1058,7 +1366,14 @@ window.CERT_PREP_DATA = {
             "B": "Report and dashboard folders cannot be shared directly with profiles."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Share the folders with a \"Sales Managers\" public Group.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Share the folders with a \"Sales Managers\" public Group.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q2 Sales operations at Universal Containers (UC) has created Public Reports and Dashboards fo"
+          }
         },
         {
           "id": "object-field-security-2",
@@ -1081,7 +1396,14 @@ window.CERT_PREP_DATA = {
             "B": "Logging in as individual users is inefficient and doesn't reveal the root configuration cause."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "View Field Accessibility in the Object Manager.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('View Field Accessibility in the Object Manager.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q4 Users at Universal Containers are complaining that a field has disappeared from the Accoun"
+          }
         },
         {
           "id": "object-field-security-3",
@@ -1104,7 +1426,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('The report owner and users with the View All Data permission') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "The report owner",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('The report owner') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q6 A support representative at Universal Containers created a report to view all her open cas"
+          }
         },
         {
           "id": "object-field-security-4",
@@ -1127,7 +1456,14 @@ window.CERT_PREP_DATA = {
             "C": "Sharing rules cannot be assigned to Profiles; profiles manage permissions, not record visibility."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Roles",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Roles') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q7 Which option can be selected to share data when creating a sharing rule?"
+          }
         },
         {
           "id": "object-field-security-5",
@@ -1150,7 +1486,14 @@ window.CERT_PREP_DATA = {
             "C": "Salesforce implicit sharing guarantees that a user can view the parent account associated with their opportunities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Read access",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Read access') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q10 Universal Containers' organization wide-defaults model is Private for the Account object. "
+          }
         },
         {
           "id": "object-field-security-6",
@@ -1173,7 +1516,14 @@ window.CERT_PREP_DATA = {
             "B": "OWD for a detail record is automatically Controlled by Parent and cannot be changed independently."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "A sharing rule is missing to share accounts with the AR team.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('A sharing rule is missing to share accounts with the AR team.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q11 A custom Invoice object has been created with a master-detail relationship to Account. The"
+          }
         },
         {
           "id": "object-field-security-7",
@@ -1196,7 +1546,14 @@ window.CERT_PREP_DATA = {
             "C": "Contacting Salesforce Customer Support is no longer required for standard Shield encryption verification."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Use Encryption Policy and wait for an email from Salesforce indicating the field values are encrypted.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Use Encryption Policy and wait for an email from Salesforce indicating the field values are encrypted.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q12 An architect from a previous project implemented Platform Shield Encryption for a company."
+          }
         },
         {
           "id": "object-field-security-8",
@@ -1219,7 +1576,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('The architect does not have permission to Compliance Fields.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "The field has been configured for encryption.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('The field has been configured for encryption.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q13 An architect has a requirement to create a criteria-based sharing rule based on the custom"
+          }
         },
         {
           "id": "object-field-security-9",
@@ -1242,7 +1606,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('The page layout assigned to these users is different than the Account owner.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "The users are in profiles that have no access to the Account object.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('The users are in profiles that have no access to the Account object.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q18 Universal Containers has selected a small and diverse group of users to review inactive ac"
+          }
         },
         {
           "id": "object-field-security-10",
@@ -1265,7 +1636,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Change the type of VIP Flag field to a publish, define a new record type for the Contact Object and make the publish field available for Editing.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Set the Field Level Security for the VIP Flag field so that it is visible to Private Banking Rep Profiles.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Set the Field Level Security for the VIP Flag field so that it is visible to Private Banking Rep Profiles.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q19 A banking company uses a VIP Flag in the Contact Object that they want only Private Bankin"
+          }
         },
         {
           "id": "object-field-security-11",
@@ -1288,7 +1666,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('A role-based sharing rule is missing and should be added for the sales user's role to grant access to the fields.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "The Sales Users profile does not have access to the remaining fields.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('The Sales Users profile does not have access to the remaining fields.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q23 Universal Containers (UC) has created a custom Invoice object. Standard sales users at UC "
+          }
         },
         {
           "id": "object-field-security-12",
@@ -1311,7 +1696,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Service reps will be able to access all UC contact records if they are Controlled by Parent.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Service reps will NOT be able to access all UC account records because the Account OWD is Private.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('Service reps will NOT be able to access all UC account records because the Account OWD is Private.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q30 Universal Containers (UC) service reps are assigned to a profile which has View All in the"
+          }
         },
         {
           "id": "object-field-security-13",
@@ -1334,7 +1726,14 @@ window.CERT_PREP_DATA = {
             "C": "Sharing settings (OWD and Role Hierarchy) cannot grant access to an object if the user's profile lacks object-level Read permission."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "None",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option B ('None') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q32 Mary is Joe's manager in the Role Hierarchy. The organization-wide default for a custom In"
+          }
         },
         {
           "id": "object-field-security-14",
@@ -1357,7 +1756,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('View permission on the User object') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "View All Users",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('View All Users') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q33 The corporate identity and access team needs to audit User setup in the Salesforce org. Wh"
+          }
         },
         {
           "id": "object-field-security-15",
@@ -1380,7 +1786,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Implement a sharing rule that changes access for all Work Orders to Read.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Remove the Work Order Edit permission from the Sales Representative profile.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Remove the Work Order Edit permission from the Sales Representative profile.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q38 Universal Containers has expanded to sell virtual containers for data storage. Virtual con"
+          }
         },
         {
           "id": "object-field-security-16",
@@ -1403,7 +1816,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Only the user') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "The user and users with View All Data permission",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('The user and users with View All Data permission') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q42 Who can view a PDF that is uploaded to the Files Home private library by a user?"
+          }
         },
         {
           "id": "object-field-security-17",
@@ -1426,7 +1846,14 @@ window.CERT_PREP_DATA = {
             "B": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Leverage default Account team.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Leverage default Account team.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q49 Sales reps at Universal Containers (UC) complain about the manual activities they need to "
+          }
         },
         {
           "id": "object-field-security-18",
@@ -1449,7 +1876,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Create a Validation rule in the Date of Birth field so the rule returns true only when user.profilename matches Customer Support Rep.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Set the Field Level Security for the Date of Birth field to be Visible to Customer Support Rep Profile, and set the Date of Birth field Visible and Readonly to Banking Rep profile.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Set the Field Level Security for the Date of Birth field to be Visible to Customer Support Rep Profile, and set the Date of Birth field Visible and Readonly to Banking Rep profile.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q51 A banking company wants their customers Date of Birth Field searchable by Banking Reps, bu"
+          }
         },
         {
           "id": "object-field-security-19",
@@ -1472,7 +1906,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Change the Record Type/Page Layout assignment for orders to be Read-Only.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Remove Order Delete permission from profiles and permission sets.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Remove Order Delete permission from profiles and permission sets.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q52 Universal Containers (UC) is in a legal dispute regarding several orders. UC has found out"
+          }
         },
         {
           "id": "object-field-security-20",
@@ -1495,7 +1936,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('The report owner and users with the View All Data permission') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "The report owner",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('The report owner') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q54 A support representative at Universal Containers created a report to view all her open cas"
+          }
         },
         {
           "id": "object-field-security-21",
@@ -1518,7 +1966,14 @@ window.CERT_PREP_DATA = {
             "C": "Sharing rules cannot be assigned to Profiles; profiles manage permissions, not record visibility."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Roles",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Roles') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q55 Which option can be selected to share data when creating a sharing rule?"
+          }
         },
         {
           "id": "object-field-security-22",
@@ -1541,7 +1996,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Change the Role Hierarchy and put all the sales managers in the U.S. and Canada in the same role.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Create owner-based sharing rule to grant access to account records that have the same segment to all sales manager roles.",
+            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
+            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option A is the validated architectural solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q59 Besides their own team accounts, sales managers at Universal Containers (UC) need Read acc"
+          }
         },
         {
           "id": "object-field-security-23",
@@ -1564,7 +2026,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Remove Read permission on the Driver profile, have feedback ownership transferred to the driver when feedback is submitted, and use the Role Hierarchy to give access to a driver's manager.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Remove Read permission on the Driver profile, have feedback ownership transferred to the driver's manager when feedback is submitted, and use the Role Hierarchy to give access to a driver's manager.",
+            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
+            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q64 Universal Containers has a Performance Feedback custom object (Private organization- wide "
+          }
         },
         {
           "id": "object-field-security-24",
@@ -1587,7 +2056,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Create a permission set that grants the View All Data permission.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a permission set that grants the View All permission for Opportunity.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Create a permission set that grants the View All permission for Opportunity.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q68 Universal Containers (UC) has a mostly Private organization-wide default, as it's a core p"
+          }
         },
         {
           "id": "object-field-security-25",
@@ -1610,7 +2086,14 @@ window.CERT_PREP_DATA = {
             "B": "Modifying core profiles creates permission sprawl and complicates long-term maintenance across user cohorts."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a permission set to grant access to the new functionality and hide the old functionality.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Create a permission set to grant access to the new functionality and hide the old functionality.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q71 Universal Containers is planning to pilot a new application to a small set of sales reps. "
+          }
         },
         {
           "id": "object-field-security-26",
@@ -1631,7 +2114,14 @@ window.CERT_PREP_DATA = {
             "B": "Creating multiple static page layouts requires continuous maintenance and cannot dynamically toggle sections on the fly."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use Dynamic Forms with different field sections representing the relevant fields per case type, and control visibility of sections by Case Record Type value.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Use Dynamic Forms with different field sections representing the relevant fields per case type, and control visibility of sections by Case Record Type value.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q73 Universal Containers uses the standard Case object to track various support requests sent "
+          }
         },
         {
           "id": "object-field-security-27",
@@ -1654,7 +2144,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Update the Retail Sales profile to grant access to Person Account record type.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Create a criteria-based sharing rule giving the Retail Sales role access to Accounts of type PersonAccount.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('Create a criteria-based sharing rule giving the Retail Sales role access to Accounts of type PersonAccount.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q77 Universal Containers uses Person Accounts to represent retail customers and Business Accou"
+          }
         },
         {
           "id": "object-field-security-28",
@@ -1677,7 +2174,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Service reps will not be able to access the relevant Contacts if their OWD is Controlled by Parent.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Service reps will be able to access the relevant Contacts if their OWD is Controlled by Parent.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Service reps will be able to access the relevant Contacts if their OWD is Controlled by Parent.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q93 Universal Containers service reps are assigned to a profile that has View All on the Case "
+          }
         },
         {
           "id": "object-field-security-29",
@@ -1700,7 +2204,14 @@ window.CERT_PREP_DATA = {
             "C": "Private files do not inherit access through the Role Hierarchy; only the owner and users with 'View All Data' can view them."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "The user and users with View All Data permission",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option A ('The user and users with View All Data permission') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q94 A user uploads a PDF to the Files Home private library. Who is able to view the PDF?"
+          }
         },
         {
           "id": "object-field-security-30",
@@ -1723,7 +2234,14 @@ window.CERT_PREP_DATA = {
             "C": "Granting 'View All Data' provides org-wide administrative access, severely violating the principle of least privilege."
           },
           "domain": "Object & Field-Level Security",
-          "domainSlug": "object-field-security"
+          "domainSlug": "object-field-security",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Leverage the default Account team.",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option B ('Leverage the default Account team.') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q98 Sales reps at Universal Containers (UC) are complaining about the manual activities they n"
+          }
         }
       ],
       "questionCount": 30
@@ -1754,7 +2272,14 @@ window.CERT_PREP_DATA = {
             "C": "Profile-level restrictions in subscriber orgs can always be bypassed by users with View Setup or System Administrators."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
-          "domainSlug": "performance-scalability"
+          "domainSlug": "performance-scalability",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Create a protected custom metadata type that stores the encryption key. Package the protected custom metadata type with its associated records in a managed package. Install the package in the production org.",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option A ('Create a protected custom metadata type that stores the encryption key. Package the protected custom metadata type with its associated records in a managed package. Install the package in the production org.') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q8 Universal Containers (UC) would like to store an encryption key within Salesforce for use "
+          }
         },
         {
           "id": "performance-scalability-2",
@@ -1777,7 +2302,14 @@ window.CERT_PREP_DATA = {
             "C": "Divisions partition data for large organizations but do not alter row-level locking architecture during role changes."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
-          "domainSlug": "performance-scalability"
+          "domainSlug": "performance-scalability",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Crowder Locking",
+            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
+            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q17 Which advanced tool should Salesforce enable for large-scale Role Hierarchy realignments?"
+          }
         },
         {
           "id": "performance-scalability-3",
@@ -1800,7 +2332,14 @@ window.CERT_PREP_DATA = {
             "C": "This feature optimizes search or query performance rather than accelerating backend sharing recalculation jobs."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
-          "domainSlug": "performance-scalability"
+          "domainSlug": "performance-scalability",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Parallel Sharing Rule recalculation",
+            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
+            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q21 Universal Containers (UC) operates worldwide, with offices in more than 100 regions in 10 "
+          }
         },
         {
           "id": "performance-scalability-4",
@@ -1823,7 +2362,14 @@ window.CERT_PREP_DATA = {
             "C": "This feature optimizes search or query performance rather than accelerating backend sharing recalculation jobs."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
-          "domainSlug": "performance-scalability"
+          "domainSlug": "performance-scalability",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Deferred Sharing Recalculation",
+            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
+            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q25 Universal Containers (UC) operates worldwide, with offices in more than 100 regions in 10 "
+          }
         },
         {
           "id": "performance-scalability-5",
@@ -1846,7 +2392,14 @@ window.CERT_PREP_DATA = {
             "C": "Profile-level restrictions in subscriber orgs can always be bypassed by users with View Setup or System Administrators."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
-          "domainSlug": "performance-scalability"
+          "domainSlug": "performance-scalability",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Create a protected custom metadata type that stores the encryption key. Packag e the protected custom metadata type with its associated records in a managed package. Install the package in the production org.",
+            "docTopic": "Apex Developer Guide: Enforcing Sharing Rules & FLS in Apex",
+            "webReason": "Official Salesforce Developer Documentation establishes that Apex runs in system mode by default. Option A ('Create a protected custom metadata type that stores the encryption key. Packag e the protected custom metadata type with its associated records in a managed package. Install the package in the production org.') correctly enforces data boundaries and prevents unauthorized field/record access.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q56 Universal Containers (UC) would like to store an encryption key within Salesforce for use "
+          }
         },
         {
           "id": "performance-scalability-6",
@@ -1869,7 +2422,14 @@ window.CERT_PREP_DATA = {
             "C": "The root architectural flaw is ownership data skew (>10,000 records per owner), which overwhelms sharing recalculation queues and causes locking conflicts."
           },
           "domain": "Performance, Scalability & Large Data Volumes",
-          "domainSlug": "performance-scalability"
+          "domainSlug": "performance-scalability",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "There is an Account ownership data skew problem.",
+            "docTopic": "Salesforce Architect Guide: Designing Record Access for Large Data Volumes",
+            "webReason": "Salesforce engineering whitepapers on Large Data Volumes (LDV) confirm that Option B ('There is an Account ownership data skew problem.') is the proven mechanism to eliminate row-level locking timeouts and sharing recalculation degradation.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q84 Universal Containers (UC) is a non-profit organization with more than 20,000,000 members ("
+          }
         }
       ],
       "questionCount": 6
@@ -1900,7 +2460,14 @@ window.CERT_PREP_DATA = {
             "B": "Sharing rules can only extend access beyond the baseline OWD; if the OWD is Public Read-Only, sharing rules cannot restrict visibility."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Set the External OWD to Private for the Delivery object.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Set the External OWD to Private for the Delivery object.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q1 Universal Containers (UC) is looking to expand its delivery capabilities through a network"
+          }
         },
         {
           "id": "community-external-sharing-2",
@@ -1923,7 +2490,14 @@ window.CERT_PREP_DATA = {
             "C": "Channel Managers are internal users and their role is distinct from partner portal roles."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Partner User roles are limited to three levels.",
+            "docTopic": "Salesforce Help: Controlling Access Using Role Hierarchy",
+            "webReason": "Salesforce platform architecture specifies that record access inherits vertically through the Role Hierarchy when Grant Access Using Hierarchies is active. Option B is the validated architectural solution.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q16 Universal Containers (UC) has affiliates who sell containers in countries where UC does no"
+          }
         },
         {
           "id": "community-external-sharing-3",
@@ -1946,7 +2520,14 @@ window.CERT_PREP_DATA = {
             "C": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Searching for other external users.",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Searching for other external users.') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q22 Which community function is impacted by having the Site User Visibility turned off in Shar"
+          }
         },
         {
           "id": "community-external-sharing-4",
@@ -1969,7 +2550,14 @@ window.CERT_PREP_DATA = {
             "B": "High-volume Customer Community users do not have access to standard criteria-based or ownership sharing rules."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a Sharing Set for the Distributor profile to grant access to the Delivery object.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Create a Sharing Set for the Distributor profile to grant access to the Delivery object.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q24 Universal Containers (UC) has a partner community for its 200 distributors. UC customer ac"
+          }
         },
         {
           "id": "community-external-sharing-5",
@@ -1992,7 +2580,14 @@ window.CERT_PREP_DATA = {
             "B": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a sharing set to share cases with the students.",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option C ('Create a sharing set to share cases with the students.') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q27 Universal Containers (UC) delivers training and courses to students and companies. UC is i"
+          }
         },
         {
           "id": "community-external-sharing-6",
@@ -2015,7 +2610,14 @@ window.CERT_PREP_DATA = {
             "C": "Removing object CRUD permissions revokes access to all records, not just subordinate records."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "The Grant Access Using Hierarchies option on Shipment Sharing Settings was incorrectly disabled by the admin.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('The Grant Access Using Hierarchies option on Shipment Sharing Settings was incorrectly disabled by the admin.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q46 Universal Containers (UC) sales managers are complaining that they cannot access their tea"
+          }
         },
         {
           "id": "community-external-sharing-7",
@@ -2038,7 +2640,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Customer Community Plus') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Partner Community",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Partner Community') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q48 Universal Containers uses 75,000 distributors that have close to 1 million total users. Di"
+          }
         },
         {
           "id": "community-external-sharing-8",
@@ -2061,7 +2670,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Sharing Sets') is incorrect because it does not satisfy the platform requirement or represents an invalid security configuration."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Public Groups",
+            "docTopic": "Salesforce Platform Sharing and Visibility Architect Guide",
+            "webReason": "Official Salesforce certification documentation confirms that Option C ('Public Groups') is the verified solution satisfying functional access while adhering to the principle of least privilege.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q61 Which method should be used to grant an unrelated group of users access to a set of record"
+          }
         },
         {
           "id": "community-external-sharing-9",
@@ -2084,7 +2700,14 @@ window.CERT_PREP_DATA = {
             "C": "Standard sharing rules cannot dynamically distinguish individual partner managers within the same account hierarchy."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Give Super User permission to the individual partner manager users.",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Give Super User permission to the individual partner manager users.') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q63 Universal Containers (UC) has 200 distributors that use Partner Community licenses. Partne"
+          }
         },
         {
           "id": "community-external-sharing-10",
@@ -2107,7 +2730,14 @@ window.CERT_PREP_DATA = {
             "C": "Apex sharing is unnecessary and restricted for high-volume customer portal users when declarative sharing sets exist."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Sales engineers and their managers in the Role Hierarchy will also have access to these records.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option A ('Sales engineers and their managers in the Role Hierarchy will also have access to these records.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q66 Universal Containers created a public group with certain sales engineers to help on comple"
+          }
         },
         {
           "id": "community-external-sharing-11",
@@ -2130,7 +2760,14 @@ window.CERT_PREP_DATA = {
             "B": "Option B ('Ensure all the internal users are above the partners in the Role Hierarchy.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Set the OWD for Internal Users to Public Read-Only.",
+            "docTopic": "Salesforce Security Guide: Organization-Wide Sharing Defaults",
+            "webReason": "Salesforce official documentation confirms that baseline access is determined by OWD. Option C ('Set the OWD for Internal Users to Public Read-Only.') correctly aligns with the least privilege model and record-level security standards.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q67 A custom ServiceFeedback object is used to collect partner feedback. ServiceFeedback recor"
+          }
         },
         {
           "id": "community-external-sharing-12",
@@ -2153,7 +2790,14 @@ window.CERT_PREP_DATA = {
             "B": "Standard sharing rules cannot dynamically distinguish individual partner managers within the same account hierarchy."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Partner super user",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option C ('Partner super user') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q69 Universal Containers has implemented Customer Community with Customer Community Plus licen"
+          }
         },
         {
           "id": "community-external-sharing-13",
@@ -2176,7 +2820,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Create a sharing group to share cases created by service agents with their dealer manager.') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "A",
+            "confirmedText": "Use the Role Hierarchy so that the cases raised by service agents will be visible to their relevant dealer managers.",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option A ('Use the Role Hierarchy so that the cases raised by service agents will be visible to their relevant dealer managers.') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q80 Universal Containers (UC) is a fast-growing company that sells containers globally. It has"
+          }
         },
         {
           "id": "community-external-sharing-14",
@@ -2199,7 +2850,14 @@ window.CERT_PREP_DATA = {
             "C": "Option C ('Customer Community Plus') does not satisfy the requirement because it either violates security boundaries, introduces unnecessary technical complexity, or is not supported by Salesforce platform capabilities."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "B",
+            "confirmedText": "Partner Community",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option B ('Partner Community') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q83 In order to allow community users to collaborate on Opportunities, which license type must"
+          }
         },
         {
           "id": "community-external-sharing-15",
@@ -2222,7 +2880,14 @@ window.CERT_PREP_DATA = {
             "B": "High-volume Customer Community users do not have access to standard criteria-based or ownership sharing rules."
           },
           "domain": "External & Community User Access",
-          "domainSlug": "community-external-sharing"
+          "domainSlug": "community-external-sharing",
+          "challenge": {
+            "confirmedAnswer": "C",
+            "confirmedText": "Create a sharing set to share distributor accounts with agents using account contact relationship.",
+            "docTopic": "Experience Cloud Security Guide: External User Visibility",
+            "webReason": "Salesforce Experience Cloud architecture governs portal licenses (Partner vs Customer Community). Option C ('Create a sharing set to share distributor accounts with agents using account contact relationship.') represents the verified platform design pattern for external collaboration.",
+            "searchQuery": "Salesforce Sharing and Visibility Architect Q85 Universal Containers has implemented Customer Community with Customer Community Plus licen"
+          }
         }
       ],
       "questionCount": 15

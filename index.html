@@ -132,11 +132,54 @@
         </div>
       </div>
 
+      <!-- Circle Navigator: Last 5 & Next 2 Questions -->
+      <div class="circle-nav-container" id="circleNavContainer">
+        <div class="circle-nav-header">
+          <span class="circle-nav-title">Navigator (Last 5 & Next 2)</span>
+          <div class="circle-nav-legend">
+            <span class="legend-chip"><span class="chip-dot is-correct"></span>Correct</span>
+            <span class="legend-chip"><span class="chip-dot is-incorrect"></span>Incorrect</span>
+            <span class="legend-chip"><span class="chip-dot is-current"></span>Current</span>
+            <span class="legend-chip"><span class="chip-dot is-unanswered"></span>Unanswered</span>
+          </div>
+        </div>
+        <div class="circle-nav-row" id="circleNavRow">
+          <!-- Dynamic circles injected here -->
+        </div>
+      </div>
+
       <!-- Question Surface -->
       <div class="question-surface" id="questionCard">
+        <!-- Question Toolbar: Ref, Speaker 1, Challenge -->
+        <div class="question-toolbar">
+          <div class="toolbar-left">
+            <span id="questionRefTag" class="question-ref-label">Ref: Q1</span>
+          </div>
+          <div class="toolbar-actions">
+            <button id="btnSpeakQuestion" class="action-btn speech-btn" type="button" title="Read Question & Options (Text to Speech)" aria-label="Read Question & Options">
+              <svg class="speaker-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span id="btnSpeakQuestionText">Read Aloud</span>
+            </button>
+            <button id="btnChallengeAnswer" class="action-btn challenge-btn" type="button" title="Challenge answer against official Salesforce documentation" aria-label="Challenge Answer">
+              <svg class="challenge-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>Challenge Answer</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Challenge Result Disclosure Box (Hidden until user clicks Challenge) -->
+        <div id="challengeBox" class="challenge-box hidden">
+          <!-- Rendered dynamically -->
+        </div>
+
         <div class="question-lead">
           <h2 id="questionPrompt" class="question-body">Loading question...</h2>
-          <span id="questionRefTag" class="question-ref-label">Ref: Q1</span>
         </div>
 
         <div id="multiSelectAlert" class="multi-notice hidden">
@@ -154,10 +197,18 @@
             <span id="resultTitle">Correct Solution</span>
           </div>
 
-          <div>
+          <div class="explanation-section-header">
             <div class="reason-segment-title">Verified Solution</div>
-            <p id="explanationWhyCorrect" class="reason-text"></p>
+            <button id="btnSpeakExplanation" class="action-btn speech-btn-sm" type="button" title="Read Verified Solution & Distractor Analysis" aria-label="Read Solution">
+              <svg class="speaker-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <span id="btnSpeakExplanationText">Read Solution</span>
+            </button>
           </div>
+          <p id="explanationWhyCorrect" class="reason-text"></p>
 
           <div id="distractorSection">
             <div class="reason-segment-title">Distractor Analysis</div>
