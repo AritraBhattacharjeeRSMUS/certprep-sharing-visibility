@@ -8,9 +8,7 @@
   const STORAGE_KEYS = {
     THEME: 'cert_prep_theme_v2',
     PROGRESS: 'cert_prep_progress_v2',
-    LAST_SEQUENTIAL_INDEX: 'cert_prep_last_sequential_index',
-    VOICE_NAME: 'cert_prep_voice_name',
-    SPEECH_RATE: 'cert_prep_speech_rate'
+    LAST_SEQUENTIAL_INDEX: 'cert_prep_last_sequential_index'
   };
 
   // State
@@ -65,8 +63,6 @@
     quizProgressBarFill: document.getElementById('quizProgressBarFill'),
     questionPrompt: document.getElementById('questionPrompt'),
     questionRefTag: document.getElementById('questionRefTag'),
-    speechVoiceSelect: document.getElementById('speechVoiceSelect'),
-    speechSpeedSelect: document.getElementById('speechSpeedSelect'),
     btnSpeakQuestion: document.getElementById('btnSpeakQuestion'),
     btnSpeakQuestionText: document.getElementById('btnSpeakQuestionText'),
     btnChallengeAnswer: document.getElementById('btnChallengeAnswer'),
@@ -316,206 +312,26 @@
     });
   }
 
-  // --- Realistic Human-Like Speech Synthesis ---
-  // --- Realistic Human-Like Speech Synthesis Engine ---
-  let speechState = {
-    isSpeaking: false,
-    activeType: null // 'question' | 'explanation'
-  };
-  let cachedNaturalVoice = null;
-  let speechKeepAliveTimer = null;
-  let speechQueue = [];
-  let speechQueueIndex = 0;
-  let speechPauseTimer = null;
-
-  function getAvailableVoices() {
-    if (!('speechSynthesis' in window)) return [];
-    return window.speechSynthesis.getVoices() || [];
-  }
-
-  function getVoiceScore(voice) {
-    const name = (voice.name || '').toLowerCase();
-    const lang = (voice.lang || '').toLowerCase();
-    let score = 0;
-
-    // Highest rank: Online / Neural / Natural modern models
-    if (name.includes('natural')) score += 150;
-    if (name.includes('neural')) score += 140;
-    if (name.includes('enhanced')) score += 120;
-    if (name.includes('premium')) score += 110;
-    if (name.includes('siri')) score += 105;
-    if (name.includes('online')) score += 100;
-
-    // Studio-quality Google & Apple voices
-    if (name.includes('google uk english female')) score += 95;
-    if (name.includes('google us english')) score += 90;
-    if (name.includes('google uk english male')) score += 85;
-    if (name.includes('daniel')) score += 80;
-    if (name.includes('ava') || name.includes('samantha') || name.includes('zoe') || name.includes('karen')) score += 70;
-    if (name.includes('alex')) score += 60;
-    if (name.includes('google')) score += 50;
-
-    // Dialect
-    if (lang === 'en-us') score += 15;
-    else if (lang === 'en-gb') score += 12;
-    else if (lang.startsWith('en')) score += 8;
-
-    // Penalize legacy robotic and novelty voices
-    if (name.includes('compact')) score -= 80;
-    if (name.includes('bad news') || name.includes('bahh') || name.includes('bells') || name.includes('boing') ||
-        name.includes('cellos') || name.includes('deranged') || name.includes('fred') || name.includes('good news') ||
-        name.includes('hysterical') || name.includes('pipe organ') || name.includes('trinoids') ||
-        name.includes('whisper') || name.includes('zarvox') || name.includes('albert') || name.includes('junior')) {
-      score -= 300;
-    }
-
-    return score;
-  }
-
-  function populateVoiceDropdown() {
-    if (!el.speechVoiceSelect) return;
-    const voices = getAvailableVoices();
-    if (!voices.length) return;
-
-    const enVoices = voices.filter(v => v.lang && v.lang.startsWith('en'));
-    const pool = enVoices.length > 0 ? enVoices : voices;
-    const sorted = [...pool].sort((a, b) => getVoiceScore(b) - getVoiceScore(a));
-
-    const savedVoiceName = localStorage.getItem(STORAGE_KEYS.VOICE_NAME);
-
-    el.speechVoiceSelect.innerHTML = '';
-    sorted.forEach((v, idx) => {
-      const opt = document.createElement('option');
-      opt.value = v.name;
-      opt.textContent = `${v.name} (${v.lang})`;
-      if (savedVoiceName ? v.name === savedVoiceName : idx === 0) {
-        opt.selected = true;
-      }
-      el.speechVoiceSelect.appendChild(opt);
-    });
-
-    if (savedVoiceName) {
-      cachedNaturalVoice = sorted.find(v => v.name === savedVoiceName) || sorted[0];
-    } else {
-      cachedNaturalVoice = sorted[0];
-    }
-
-    // Restore saved speed rate
-    const savedRate = localStorage.getItem(STORAGE_KEYS.SPEECH_RATE);
-    if (savedRate && el.speechSpeedSelect) {
-      el.speechSpeedSelect.value = savedRate;
-    }
-  }
-
-  function getSelectedVoice() {
-    const voices = getAvailableVoices();
-    if (!voices.length) return null;
-
-    if (el.speechVoiceSelect && el.speechVoiceSelect.value) {
-      const matched = voices.find(v => v.name === el.speechVoiceSelect.value);
-      if (matched) return matched;
-    }
-
-    const savedName = localStorage.getItem(STORAGE_KEYS.VOICE_NAME);
-    if (savedName) {
-      const matched = voices.find(v => v.name === savedName);
-      if (matched) return matched;
-    }
-
-    if (cachedNaturalVoice) return cachedNaturalVoice;
-    const enVoices = voices.filter(v => v.lang && v.lang.startsWith('en'));
-    const pool = enVoices.length > 0 ? enVoices : voices;
-    const sorted = [...pool].sort((a, b) => getVoiceScore(b) - getVoiceScore(a));
-    return sorted[0] || null;
-  }
-
-  function getSpeechRate() {
-    if (el.speechSpeedSelect && el.speechSpeedSelect.value) {
-      const parsed = parseFloat(el.speechSpeedSelect.value);
-      if (!isNaN(parsed) && parsed > 0.4 && parsed < 2.0) {
-        return parsed;
-      }
-    }
-    const saved = localStorage.getItem(STORAGE_KEYS.SPEECH_RATE);
-    if (saved) {
-      const parsed = parseFloat(saved);
-      if (!isNaN(parsed) && parsed > 0.4 && parsed < 2.0) {
-        return parsed;
-      }
-    }
-    return 0.84; // Default slow and deliberate instructor reading
-  }
-
-  function startKeepAlive() {
-    clearInterval(speechKeepAliveTimer);
-    speechKeepAliveTimer = setInterval(() => {
-      if (window.speechSynthesis && window.speechSynthesis.speaking) {
-        window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
-      } else {
-        clearInterval(speechKeepAliveTimer);
-      }
-    }, 9000);
-  }
-
-  function clearKeepAlive() {
-    if (speechKeepAliveTimer) {
-      clearInterval(speechKeepAliveTimer);
-      speechKeepAliveTimer = null;
-    }
-  }
-
-  function formatTextForNaturalSpeech(text) {
-    if (!text) return '';
-    return text
-      // Technical acronym phonetic expansions for natural human pronunciation
-      .replace(/\bOWD\b/g, 'O-W-D')
-      .replace(/\bFLS\b/g, 'Field Level Security')
-      .replace(/\bLWC\b/g, 'L-W-C')
-      .replace(/\bCRUD\b/g, 'C-R-U-D')
-      .replace(/\bAPIs\b/g, 'A-P-I-s')
-      .replace(/\bAPI\b/g, 'A-P-I')
-      .replace(/\bSSO\b/g, 'Single Sign-On')
-      .replace(/\bMFA\b/g, 'Multi-Factor Authentication')
-      .replace(/\bLDV\b/g, 'Large Data Volume')
-      .replace(/\bROPC\b/g, 'R-O-P-C')
-      .replace(/\bJWT\b/g, 'J-W-T')
-      .replace(/\bSAML\b/g, 'S-A-M-L')
-      .replace(/\bPoLP\b/g, 'Principle of Least Privilege')
-      .replace(/\bOAuth\b/g, 'O-Auth')
-      .replace(/\bOIDC\b/g, 'O-I-D-C')
-      .replace(/\bIT\b/g, 'I-T')
-      .replace(/\bUI\b/g, 'user interface')
-      .replace(/\be\.g\.,/gi, 'for example,')
-      .replace(/\be\.g\./gi, 'for example,')
-      .replace(/\bi\.e\.,/gi, 'that is,')
-      .replace(/\bi\.e\./gi, 'that is,')
-      .replace(/\bvs\.?\b/gi, 'versus')
-      .replace(/Option ([A-Z]):/g, 'Option $1.')
-      .replace(/["“”]/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
+  // --- Gemini Neural Audio Engine ---
+  let activeAudio = null;
+  let activeAudioType = null; // 'question' | 'explanation'
 
   function stopSpeech() {
-    clearKeepAlive();
-    if (speechPauseTimer) {
-      clearTimeout(speechPauseTimer);
-      speechPauseTimer = null;
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+      activeAudio = null;
     }
-    speechQueue = [];
-    speechQueueIndex = 0;
+    activeAudioType = null;
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
-    speechState.isSpeaking = false;
-    speechState.activeType = null;
     updateSpeechUI();
   }
 
   function updateSpeechUI() {
     if (el.btnSpeakQuestion) {
-      if (speechState.activeType === 'question') {
+      if (activeAudioType === 'question') {
         el.btnSpeakQuestion.classList.add('is-speaking');
         if (el.btnSpeakQuestionText) el.btnSpeakQuestionText.textContent = 'Stop Audio';
       } else {
@@ -525,7 +341,7 @@
     }
 
     if (el.btnSpeakExplanation) {
-      if (speechState.activeType === 'explanation') {
+      if (activeAudioType === 'explanation') {
         el.btnSpeakExplanation.classList.add('is-speaking');
         if (el.btnSpeakExplanationText) el.btnSpeakExplanationText.textContent = 'Stop Audio';
       } else {
@@ -535,160 +351,48 @@
     }
   }
 
-  function startSegmentedSpeech(segments, type) {
-    stopSpeech();
-    if (!segments || segments.length === 0) return;
-
-    speechQueue = segments;
-    speechQueueIndex = 0;
-    speechState.isSpeaking = true;
-    speechState.activeType = type;
-    updateSpeechUI();
-    startKeepAlive();
-    playNextSpeechSegment();
-  }
-
-  function playNextSpeechSegment() {
-    if (!speechState.isSpeaking) return;
-    if (speechQueueIndex >= speechQueue.length) {
+  function playNeuralAudio(audioPath, type) {
+    if (activeAudioType === type) {
       stopSpeech();
       return;
     }
 
-    const segment = speechQueue[speechQueueIndex];
-    speechQueueIndex++;
+    stopSpeech();
 
-    const utterance = new SpeechSynthesisUtterance(segment.text);
-    const selectedVoice = getSelectedVoice();
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
-      utterance.lang = selectedVoice.lang || 'en-US';
-    }
+    const audio = new Audio(audioPath);
+    activeAudio = audio;
+    activeAudioType = type;
+    updateSpeechUI();
 
-    utterance.rate = getSpeechRate();
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-
-    utterance.onend = () => {
-      if (!speechState.isSpeaking) return;
-      if (speechQueueIndex < speechQueue.length) {
-        speechPauseTimer = setTimeout(() => {
-          playNextSpeechSegment();
-        }, segment.pauseAfter || 300);
-      } else {
-        stopSpeech();
-      }
+    audio.onended = () => {
+      stopSpeech();
     };
 
-    utterance.onerror = () => {
-      if (!speechState.isSpeaking) return;
-      if (speechQueueIndex < speechQueue.length) {
-        speechPauseTimer = setTimeout(() => {
-          playNextSpeechSegment();
-        }, 150);
-      } else {
-        stopSpeech();
-      }
+    audio.onerror = (e) => {
+      console.warn('Audio playback error for:', audioPath, e);
+      stopSpeech();
     };
 
-    window.speechSynthesis.speak(utterance);
-  }
-
-  function prepareQuestionSegments(q, questionIndex) {
-    const segments = [];
-    segments.push({ text: `Question ${questionIndex + 1}.`, pauseAfter: 350 });
-
-    const cleanedPrompt = formatTextForNaturalSpeech(q.question);
-    const sentences = cleanedPrompt.match(/[^.!?]+[.!?]+|\S+/g) || [cleanedPrompt];
-    sentences.forEach((sentence, idx) => {
-      const s = sentence.trim();
-      if (!s) return;
-      const isLast = idx === sentences.length - 1;
-      segments.push({
-        text: s,
-        pauseAfter: isLast ? 480 : 250
-      });
+    audio.play().catch(err => {
+      console.warn('Audio play interrupted or blocked:', err);
+      stopSpeech();
     });
-
-    const letters = Object.keys(q.options).sort();
-    letters.forEach(letter => {
-      const optText = formatTextForNaturalSpeech(q.options[letter]);
-      segments.push({
-        text: `Option ${letter}. ${optText}`,
-        pauseAfter: 400
-      });
-    });
-
-    return segments;
-  }
-
-  function prepareExplanationSegments(q) {
-    const segments = [];
-    const correctText = q.correctAnswers.join(' and ');
-    segments.push({ text: `Verified Solution. Correct Answer is Option ${correctText}.`, pauseAfter: 420 });
-
-    const cleanedWhy = formatTextForNaturalSpeech(q.whyCorrect);
-    const sentences = cleanedWhy.match(/[^.!?]+[.!?]+|\S+/g) || [cleanedWhy];
-    sentences.forEach((sentence, idx) => {
-      const s = sentence.trim();
-      if (!s) return;
-      const isLast = idx === sentences.length - 1;
-      segments.push({
-        text: s,
-        pauseAfter: isLast ? 480 : 250
-      });
-    });
-
-    const distractors = q.distractors || {};
-    const dKeys = Object.keys(distractors).sort();
-    if (dKeys.length > 0) {
-      segments.push({ text: `Distractor Analysis.`, pauseAfter: 350 });
-      dKeys.forEach(k => {
-        const distText = formatTextForNaturalSpeech(distractors[k]);
-        segments.push({
-          text: `Option ${k}. ${distText}`,
-          pauseAfter: 400
-        });
-      });
-    }
-
-    return segments;
   }
 
   function toggleSpeakQuestion() {
-    if (!('speechSynthesis' in window)) {
-      alert('Text-to-speech is not supported in this browser.');
-      return;
-    }
-
-    if (speechState.activeType === 'question') {
-      stopSpeech();
-      return;
-    }
-
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
 
-    const segments = prepareQuestionSegments(q, state.currentIndex);
-    startSegmentedSpeech(segments, 'question');
+    const audioSrc = `audio/${q.id}_question.mp3`;
+    playNeuralAudio(audioSrc, 'question');
   }
 
   function toggleSpeakExplanation() {
-    if (!('speechSynthesis' in window)) {
-      alert('Text-to-speech is not supported in this browser.');
-      return;
-    }
-
-    if (speechState.activeType === 'explanation') {
-      stopSpeech();
-      return;
-    }
-
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
 
-    const segments = prepareExplanationSegments(q);
-    startSegmentedSpeech(segments, 'explanation');
+    const audioSrc = `audio/${q.id}_explanation.mp3`;
+    playNeuralAudio(audioSrc, 'explanation');
   }
 
   // --- Challenge Answer against Salesforce Documentation ---
@@ -1074,30 +778,6 @@
       }
     });
 
-    if (el.speechVoiceSelect) {
-      el.speechVoiceSelect.addEventListener('change', (e) => {
-        if (e.target.value) {
-          localStorage.setItem(STORAGE_KEYS.VOICE_NAME, e.target.value);
-          const voices = getAvailableVoices();
-          cachedNaturalVoice = voices.find(v => v.name === e.target.value) || null;
-        }
-        if (speechState.isSpeaking) {
-          stopSpeech();
-        }
-      });
-    }
-
-    if (el.speechSpeedSelect) {
-      el.speechSpeedSelect.addEventListener('change', (e) => {
-        if (e.target.value) {
-          localStorage.setItem(STORAGE_KEYS.SPEECH_RATE, e.target.value);
-        }
-        if (speechState.isSpeaking) {
-          stopSpeech();
-        }
-      });
-    }
-
     if (el.btnSpeakQuestion) {
       el.btnSpeakQuestion.addEventListener('click', toggleSpeakQuestion);
     }
@@ -1128,13 +808,6 @@
     applyTheme(state.theme);
     initEvents();
     renderDashboard();
-
-    if ('speechSynthesis' in window) {
-      populateVoiceDropdown();
-      window.speechSynthesis.addEventListener('voiceschanged', () => {
-        populateVoiceDropdown();
-      });
-    }
   }
 
   if (document.readyState === 'loading') {
