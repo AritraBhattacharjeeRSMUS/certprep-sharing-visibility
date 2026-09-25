@@ -1,0 +1,7 @@
+# Ignore large PDF files
+*.pdf
+*.png
+*.json
+*.py
+*.swift
+batch_ocr
