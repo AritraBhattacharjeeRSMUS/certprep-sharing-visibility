@@ -1,5 +1,5 @@
 /**
- * Salesforce Certified Platform Sharing and Visibility Architect (ARC-101) Practice & Revision Application
+ * Salesforce Certified Platform Sharing and Visibility Architect (ARC-101) Practice Application
  */
 
 (function () {
@@ -7,33 +7,26 @@
 
   const STORAGE_KEYS = {
     THEME: 'cert_prep_theme_v2',
-    PROGRESS: 'cert_prep_progress_v2',
-    BOOKMARKS: 'cert_prep_bookmarks_v2'
+    PROGRESS: 'cert_prep_progress_v2'
   };
 
   // State
   let state = {
     theme: localStorage.getItem(STORAGE_KEYS.THEME) || 'dark',
     progress: JSON.parse(localStorage.getItem(STORAGE_KEYS.PROGRESS) || '{}'),
-    bookmarks: new Set(JSON.parse(localStorage.getItem(STORAGE_KEYS.BOOKMARKS) || '[]')),
     
     // View state
-    activeTab: 'practice', // 'practice' | 'revision'
-    view: 'dashboard',     // 'dashboard' | 'quiz' | 'revision'
+    view: 'dashboard', // 'dashboard' | 'quiz'
     
     // Active session
-    mode: '', // 'domain' | 'shuffled' | 'bookmarks'
-    activeDomainTitle: '',
+    mode: '', // 'sequential' | 'shuffled'
+    activeTitle: '',
     activeQuestions: [],
     currentIndex: 0,
     selectedOptions: new Set(),
     
     sessionCorrect: 0,
-    sessionAnswered: 0,
-
-    // Revision filters
-    revisionSearch: '',
-    revisionTopic: 'all'
+    sessionAnswered: 0
   };
 
   // DOM Elements
@@ -43,13 +36,10 @@
     themeIconSun: document.getElementById('themeIconSun'),
     themeIconMoon: document.getElementById('themeIconMoon'),
     navBrandBtn: document.getElementById('navBrandBtn'),
-    tabPracticeBtn: document.getElementById('tabPracticeBtn'),
-    tabRevisionBtn: document.getElementById('tabRevisionBtn'),
 
     // Views
     dashboardView: document.getElementById('dashboardView'),
     quizView: document.getElementById('quizView'),
-    revisionView: document.getElementById('revisionView'),
 
     // Dashboard
     statTotalQuestions: document.getElementById('statTotalQuestions'),
@@ -57,18 +47,14 @@
     statAnsweredSub: document.getElementById('statAnsweredSub'),
     statAccuracy: document.getElementById('statAccuracy'),
     statCorrectSub: document.getElementById('statCorrectSub'),
-    statBookmarkedCount: document.getElementById('statBookmarkedCount'),
+    btnStartSequential: document.getElementById('btnStartSequential'),
     btnStartShuffled: document.getElementById('btnStartShuffled'),
-    btnStartBookmarked: document.getElementById('btnStartBookmarked'),
-    bookmarkActionBtn: document.getElementById('bookmarkActionBtn'),
     btnResetProgress: document.getElementById('btnResetProgress'),
-    domainGrid: document.getElementById('domainGrid'),
 
     // Quiz
     quizBackBtn: document.getElementById('quizBackBtn'),
     quizDomainBadge: document.getElementById('quizDomainBadge'),
     quizScorePill: document.getElementById('quizScorePill'),
-    quizBookmarkBtn: document.getElementById('quizBookmarkBtn'),
     questionProgressText: document.getElementById('questionProgressText'),
     questionPercentText: document.getElementById('questionPercentText'),
     quizProgressBarFill: document.getElementById('quizProgressBarFill'),
@@ -91,12 +77,6 @@
     btnPrevQuestion: document.getElementById('btnPrevQuestion'),
     btnAction: document.getElementById('btnAction'),
     btnNextQuestion: document.getElementById('btnNextQuestion'),
-
-    // Revision elements
-    revisionSearchInput: document.getElementById('revisionSearchInput'),
-    revisionTopicFilter: document.getElementById('revisionTopicFilter'),
-    revisionCountDisplay: document.getElementById('revisionCountDisplay'),
-    revisionFeed: document.getElementById('revisionFeed'),
 
     // Modal
     completionModal: document.getElementById('completionModal'),
@@ -135,14 +115,12 @@
   // --- Persistence ---
   function saveState() {
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(state.progress));
-    localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(Array.from(state.bookmarks)));
     updateDashboardStats();
   }
 
   function resetProgress() {
-    if (confirm('Reset all saved practice answers and bookmarks?')) {
+    if (confirm('Reset all saved practice answers and score history?')) {
       state.progress = {};
-      state.bookmarks.clear();
       saveState();
       renderDashboard();
     }
@@ -153,26 +131,12 @@
     state.view = viewName;
     el.dashboardView.classList.toggle('hidden', viewName !== 'dashboard');
     el.quizView.classList.toggle('hidden', viewName !== 'quiz');
-    el.revisionView.classList.toggle('hidden', viewName !== 'revision');
     el.completionModal.classList.add('hidden');
 
     if (viewName === 'dashboard') {
-      state.activeTab = 'practice';
-      el.tabPracticeBtn.classList.add('active');
-      el.tabRevisionBtn.classList.remove('active');
       renderDashboard();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (viewName === 'revision') {
-      state.activeTab = 'revision';
-      el.tabPracticeBtn.classList.remove('active');
-      el.tabRevisionBtn.classList.add('active');
-      renderRevision();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (viewName === 'quiz') {
-      el.tabPracticeBtn.classList.add('active');
-      el.tabRevisionBtn.classList.remove('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // --- Dashboard Logic ---
@@ -189,71 +153,33 @@
 
     const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
     const answeredPercent = total > 0 ? Math.round((answeredCount / total) * 100) : 0;
-    const bookmarkCount = state.bookmarks.size;
 
     el.statTotalQuestions.textContent = total;
     el.statAnsweredCount.textContent = answeredCount;
     el.statAnsweredSub.textContent = `${answeredPercent}% of total`;
     el.statAccuracy.textContent = `${accuracy}%`;
     el.statCorrectSub.textContent = `${correctCount} correct`;
-    el.statBookmarkedCount.textContent = bookmarkCount;
-
-    el.bookmarkActionBtn.textContent = `Review Bookmarks (${bookmarkCount}) →`;
-    el.bookmarkActionBtn.disabled = bookmarkCount === 0;
   }
 
   function renderDashboard() {
     updateDashboardStats();
-    el.domainGrid.innerHTML = '';
-
-    const sections = window.CERT_PREP_DATA?.sections || [];
-    sections.forEach(sec => {
-      const card = document.createElement('div');
-      card.className = 'domain-card';
-
-      const total = sec.questions.length;
-      let answered = 0;
-      let correct = 0;
-
-      sec.questions.forEach(q => {
-        if (state.progress[q.id]?.checked) {
-          answered++;
-          if (state.progress[q.id].isCorrect) correct++;
-        }
-      });
-
-      const pct = total > 0 ? Math.round((answered / total) * 100) : 0;
-      const score = answered > 0 ? Math.round((correct / answered) * 100) : null;
-
-      card.innerHTML = `
-        <div class="domain-card-top">
-          <span class="domain-name">${escapeHtml(sec.title)}</span>
-          <span class="domain-weight-tag">${sec.weight}</span>
-        </div>
-        <div class="domain-progress-row">
-          <div class="domain-stats-meta">
-            <span class="tabular">${answered} / ${total} answered</span>
-            <span class="tabular">${score !== null ? `${score}% accuracy` : '0%'}</span>
-          </div>
-          <div class="track-bar">
-            <div class="track-bar-fill ${pct === 100 ? 'complete' : ''}" style="width: ${pct}%"></div>
-          </div>
-        </div>
-      `;
-
-      card.addEventListener('click', () => startDomainDrill(sec.slug));
-      el.domainGrid.appendChild(card);
-    });
   }
 
   // --- Drill Starters ---
-  function startDomainDrill(slug) {
-    const sec = window.CERT_PREP_DATA.sections.find(s => s.slug === slug);
-    if (!sec) return;
+  function startSequentialDrill() {
+    const all = getAllQuestions();
+    if (!all.length) return;
 
-    state.mode = 'domain';
-    state.activeDomainTitle = sec.title;
-    state.activeQuestions = [...sec.questions];
+    // Sort by original index / reference number
+    const sorted = [...all].sort((a, b) => {
+      const numA = parseInt(a.reference.replace(/\D/g, '')) || 0;
+      const numB = parseInt(b.reference.replace(/\D/g, '')) || 0;
+      return numA - numB;
+    });
+
+    state.mode = 'sequential';
+    state.activeTitle = 'Sequential Practice Drill';
+    state.activeQuestions = sorted;
     startQuiz();
   }
 
@@ -268,19 +194,8 @@
     }
 
     state.mode = 'shuffled';
-    state.activeDomainTitle = 'Shuffled Practice';
+    state.activeTitle = 'Shuffled Mock Exam';
     state.activeQuestions = shuffled;
-    startQuiz();
-  }
-
-  function startBookmarkedDrill() {
-    if (state.bookmarks.size === 0) return;
-    const all = getAllQuestions();
-    const bookmarkedList = all.filter(q => state.bookmarks.has(q.id));
-
-    state.mode = 'bookmarks';
-    state.activeDomainTitle = 'Bookmarked Questions';
-    state.activeQuestions = bookmarkedList;
     startQuiz();
   }
 
@@ -309,16 +224,13 @@
     const currNum = state.currentIndex + 1;
     const pct = Math.round((currNum / total) * 100);
 
-    el.quizDomainBadge.textContent = state.activeDomainTitle;
+    el.quizDomainBadge.textContent = state.activeTitle;
     el.questionProgressText.textContent = `Question ${currNum} of ${total}`;
     el.questionPercentText.textContent = `${pct}%`;
     el.quizProgressBarFill.style.width = `${pct}%`;
 
     const scorePct = state.sessionAnswered > 0 ? Math.round((state.sessionCorrect / state.sessionAnswered) * 100) : 0;
     el.quizScorePill.textContent = `${scorePct}% (${state.sessionCorrect}/${state.sessionAnswered})`;
-
-    const isBookmarked = state.bookmarks.has(q.id);
-    el.quizBookmarkBtn.classList.toggle('bookmarked', isBookmarked);
 
     el.questionPrompt.textContent = q.question;
     el.questionRefTag.textContent = `Ref: ${q.reference}`;
@@ -491,97 +403,6 @@
     }
   }
 
-  function toggleBookmark() {
-    const q = state.activeQuestions[state.currentIndex];
-    if (!q) return;
-
-    if (state.bookmarks.has(q.id)) {
-      state.bookmarks.delete(q.id);
-    } else {
-      state.bookmarks.add(q.id);
-    }
-
-    saveState();
-    el.quizBookmarkBtn.classList.toggle('bookmarked', state.bookmarks.has(q.id));
-  }
-
-  // --- Quick Revision View Logic ---
-  function populateRevisionFilter() {
-    const sections = window.CERT_PREP_DATA?.sections || [];
-    const total = getAllQuestions().length;
-    el.revisionTopicFilter.innerHTML = `<option value="all">All Domains (${total})</option>`;
-    sections.forEach(s => {
-      const opt = document.createElement('option');
-      opt.value = s.slug;
-      opt.textContent = `${s.title} (${s.questions.length})`;
-      el.revisionTopicFilter.appendChild(opt);
-    });
-  }
-
-  function renderRevision() {
-    const all = getAllQuestions();
-    const query = (state.revisionSearch || '').toLowerCase().trim();
-    const topic = state.revisionTopic;
-
-    const filtered = all.filter(q => {
-      if (topic !== 'all' && q.domainSlug !== topic) return false;
-      if (!query) return true;
-
-      const inQuestion = q.question.toLowerCase().includes(query);
-      const inExplanation = (q.whyCorrect || '').toLowerCase().includes(query);
-      const inOptions = Object.values(q.options).some(o => o.toLowerCase().includes(query));
-      const inRef = (q.reference || '').toLowerCase().includes(query);
-
-      return inQuestion || inExplanation || inOptions || inRef;
-    });
-
-    el.revisionCountDisplay.textContent = `Showing ${filtered.length} of ${all.length} questions`;
-    el.revisionFeed.innerHTML = '';
-
-    if (filtered.length === 0) {
-      el.revisionFeed.innerHTML = `
-        <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md);">
-          No matching questions found for "${escapeHtml(query)}".
-        </div>
-      `;
-      return;
-    }
-
-    filtered.forEach((q, idx) => {
-      const card = document.createElement('div');
-      card.className = 'rev-card';
-
-      const optLetters = Object.keys(q.options).sort();
-      const optionsHtml = optLetters.map(letter => {
-        const isCorrect = q.correctAnswers.includes(letter);
-        return `
-          <div class="rev-option-item ${isCorrect ? 'highlight' : ''}">
-            <strong>${letter}.</strong> ${escapeHtml(q.options[letter])} ${isCorrect ? '✓' : ''}
-          </div>
-        `;
-      }).join('');
-
-      card.innerHTML = `
-        <div class="rev-card-header">
-          <span class="rev-domain-tag">${escapeHtml(q.domain)}</span>
-          <span>Ref: ${escapeHtml(q.reference)} (#${idx + 1})</span>
-        </div>
-        <div class="rev-question-text">${escapeHtml(q.question)}</div>
-        <div class="rev-options-list">
-          ${optionsHtml}
-        </div>
-        <div class="rev-explanation-box">
-          <div style="font-weight: 700; margin-bottom: 0.25rem; color: var(--text-heading);">
-            Correct Answer: ${q.correctAnswers.join(', ')}
-          </div>
-          <div>${escapeHtml(q.whyCorrect)}</div>
-        </div>
-      `;
-
-      el.revisionFeed.appendChild(card);
-    });
-  }
-
   // --- Completion Modal ---
   function showCompletionModal() {
     const total = state.activeQuestions.length;
@@ -631,14 +452,9 @@
     el.navBrandBtn.addEventListener('click', () => showView('dashboard'));
     el.quizBackBtn.addEventListener('click', () => showView('dashboard'));
 
-    el.tabPracticeBtn.addEventListener('click', () => showView('dashboard'));
-    el.tabRevisionBtn.addEventListener('click', () => showView('revision'));
-
+    el.btnStartSequential.addEventListener('click', startSequentialDrill);
     el.btnStartShuffled.addEventListener('click', startShuffledDrill);
-    el.btnStartBookmarked.addEventListener('click', startBookmarkedDrill);
     el.btnResetProgress.addEventListener('click', resetProgress);
-
-    el.quizBookmarkBtn.addEventListener('click', toggleBookmark);
 
     el.btnAction.addEventListener('click', handleActionClick);
     el.btnPrevQuestion.addEventListener('click', () => {
@@ -657,17 +473,6 @@
     el.modalBtnRestart.addEventListener('click', restartCurrentDrill);
     el.modalBtnHome.addEventListener('click', () => showView('dashboard'));
 
-    // Revision filters
-    el.revisionSearchInput.addEventListener('input', (e) => {
-      state.revisionSearch = e.target.value;
-      renderRevision();
-    });
-
-    el.revisionTopicFilter.addEventListener('change', (e) => {
-      state.revisionTopic = e.target.value;
-      renderRevision();
-    });
-
     // Keyboard support
     document.addEventListener('keydown', (e) => {
       if (state.view !== 'quiz') return;
@@ -683,7 +488,6 @@
 
   function init() {
     applyTheme(state.theme);
-    populateRevisionFilter();
     initEvents();
     renderDashboard();
   }

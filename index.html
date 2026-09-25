@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Salesforce Platform Sharing & Visibility Architect Exam Prep</title>
-  <meta name="description" content="Salesforce Certified Platform Sharing and Visibility Architect practice platform with domain drills, shuffled mode, and instant revision guide.">
+  <meta name="description" content="Salesforce Certified Platform Sharing and Visibility Architect practice platform with sequential and shuffled mock exam modes.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230284c7%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%231d4ed8%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22url%28%23g%29%22/%3E%3Cpath%20d%3D%22M7.5%2020.5a3.5%203.5%200%200%200%203.5%203.5h11a3.5%203.5%200%200%200%203.4-2.7%204%204%200%200%200-1.4-7.7%205.5%205.5%200%200%200-10.2-1.6%203.8%203.8%200%200%200-6.3%203.5%203.5%200%200%200%200%205z%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E">
@@ -23,12 +23,6 @@
         <span class="brand-name">Cert<span class="brand-name-accent">Prep</span></span>
         <span class="brand-badge">ARC-101</span>
       </div>
-
-      <!-- Navigation Tabs: Practice vs Quick Revision -->
-      <nav class="nav-tabs" aria-label="Main Navigation">
-        <button id="tabPracticeBtn" class="nav-tab-btn active">Practice</button>
-        <button id="tabRevisionBtn" class="nav-tab-btn">Quick Revision</button>
-      </nav>
 
       <div class="header-right">
         <button id="themeToggleBtn" class="icon-button" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
@@ -50,7 +44,7 @@
         <div class="overview-header">
           <div>
             <h1 class="overview-title">Sharing & Visibility Architect Prep</h1>
-            <p class="overview-desc">95 verified exam questions across the official Salesforce Sharing and Visibility Architect domains.</p>
+            <p class="overview-desc">95 verified exam questions with verified solutions and distractor analyses.</p>
           </div>
           <button id="btnResetProgress" class="btn btn-ghost" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;">Reset History</button>
         </div>
@@ -71,50 +65,42 @@
             <div id="statAccuracy" class="kpi-value tabular">0%</div>
             <div id="statCorrectSub" class="kpi-sub">0 correct</div>
           </div>
-          <div class="kpi-box">
-            <div class="kpi-label">Bookmarked</div>
-            <div id="statBookmarkedCount" class="kpi-value tabular">0</div>
-            <div class="kpi-sub">Flagged items</div>
-          </div>
         </div>
       </div>
 
       <!-- Quick Drill Modes -->
       <div class="modes-row">
+        <div class="mode-card" id="btnStartSequential">
+          <div class="mode-card-header">
+            <div class="mode-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h2 class="mode-card-title">Sequential Practice Drill</h2>
+              <p class="mode-card-desc">Work through all 95 questions in order from Q1 to Q95 for complete syllabus coverage.</p>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width: 100%;">Start Sequential Drill →</button>
+        </div>
+
         <div class="mode-card" id="btnStartShuffled">
           <div class="mode-card-header">
             <div class="mode-icon-box">
               <svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/></svg>
             </div>
             <div>
-              <h2 class="mode-card-title">Shuffled Practice Drill</h2>
-              <p class="mode-card-desc">Randomize all 95 questions across every domain for realistic mock simulation.</p>
+              <h2 class="mode-card-title">Shuffled Mock Exam</h2>
+              <p class="mode-card-desc">Randomize all 95 questions across all architectural topics for realistic mock simulation.</p>
             </div>
           </div>
-          <button class="btn btn-primary" style="width: 100%;">Start All Questions Mix →</button>
-        </div>
-
-        <div class="mode-card" id="btnStartBookmarked">
-          <div class="mode-card-header">
-            <div class="mode-icon-box">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <div>
-              <h2 class="mode-card-title">Bookmarked Questions</h2>
-              <p class="mode-card-desc">Target questions you have flagged during practice for focused reinforcement.</p>
-            </div>
-          </div>
-          <button id="bookmarkActionBtn" class="btn btn-ghost" style="width: 100%;" disabled>Review Bookmarks (0) →</button>
-        </div>
-      </div>
-
-      <!-- Domains Section -->
-      <div>
-        <div class="domain-section-title-row">
-          <h2 class="domain-section-title">Exam Domains</h2>
-        </div>
-        <div class="domain-cards-grid" id="domainGrid">
-          <!-- Rendered dynamically -->
+          <button class="btn btn-secondary" style="width: 100%;">Start Shuffled Mix →</button>
         </div>
       </div>
 
@@ -127,25 +113,22 @@
           <button id="quizBackBtn" class="back-link">
             <span>←</span> Exit
           </button>
-          <span id="quizDomainBadge" class="active-domain-tag">Domain</span>
+          <span id="quizDomainBadge" class="active-domain-tag">Practice Drill</span>
         </div>
 
         <div class="practice-meta-right">
           <span id="quizScorePill" class="score-badge tabular">0% (0/0)</span>
-          <button id="quizBookmarkBtn" class="bookmark-toggle" title="Flag / Bookmark for Review">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </button>
         </div>
       </div>
 
       <!-- Linear Progress -->
       <div class="linear-progress">
         <div class="linear-progress-labels">
-          <span id="questionProgressText" class="tabular">Question 1 of 24</span>
-          <span id="questionPercentText" class="tabular">4%</span>
+          <span id="questionProgressText" class="tabular">Question 1 of 95</span>
+          <span id="questionPercentText" class="tabular">1%</span>
         </div>
         <div class="track-bar">
-          <div id="quizProgressBarFill" class="track-bar-fill" style="width: 4%;"></div>
+          <div id="quizProgressBarFill" class="track-bar-fill" style="width: 1%;"></div>
         </div>
       </div>
 
@@ -188,24 +171,6 @@
         <button id="btnPrevQuestion" class="btn btn-ghost" disabled>← Previous</button>
         <button id="btnAction" class="btn btn-primary" disabled>Check Answer</button>
         <button id="btnNextQuestion" class="btn btn-ghost">Next →</button>
-      </div>
-    </section>
-
-    <!-- VIEW 3: QUICK REVISION VIEW -->
-    <section id="revisionView" class="revision-container hidden">
-      <div class="revision-toolbar">
-        <div class="search-filter-box">
-          <input type="text" id="revisionSearchInput" class="search-input" placeholder="Search questions, answers, topics..." autocomplete="off">
-          <select id="revisionTopicFilter" class="filter-select">
-            <option value="all">All Domains (95)</option>
-            <!-- Populated dynamically -->
-          </select>
-        </div>
-        <div class="revision-counter tabular" id="revisionCountDisplay">Showing 95 questions</div>
-      </div>
-
-      <div class="revision-feed" id="revisionFeed">
-        <!-- Rendered dynamically -->
       </div>
     </section>
 

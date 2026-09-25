@@ -356,7 +356,7 @@ button {
 
 .kpi-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
 }
 
@@ -1125,30 +1125,12 @@ button {
   }
 
   .kpi-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 
   .modes-row {
     grid-template-columns: 1fr;
-  }
-
-  .domain-cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .revision-toolbar {
-    top: calc(var(--header-height) + 4px);
-    padding: 0.75rem;
-  }
-
-  .search-filter-box {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .filter-select {
-    width: 100%;
-    max-width: none;
   }
 
   .practice-container {
@@ -1160,53 +1142,25 @@ button {
   }
 }
 
-@media (max-width: 640px) {
-  :root {
-    --header-height: 94px;
+@media (max-width: 520px) {
+  .kpi-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
   }
 
-  .app-header {
-    height: auto;
-    padding: 0.55rem 0 0.5rem 0;
+  .kpi-box {
+    padding: 0.75rem 0.5rem;
   }
 
-  .header-container {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    row-gap: 0.55rem;
-    column-gap: 0.75rem;
-    padding: 0 1rem;
+  .kpi-value {
+    font-size: 1.35rem;
   }
 
-  .brand-section {
-    grid-column: 1;
-    grid-row: 1;
-    gap: 0.5rem;
+  .kpi-label {
+    font-size: 0.7rem;
   }
 
-  .header-right {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-  }
-
-  .nav-tabs {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: 100%;
-    margin: 0;
-    padding: 3px;
-  }
-
-  .nav-tab-btn {
-    flex: 1;
-    text-align: center;
-    padding: 0.45rem 0.5rem;
-    font-size: 0.85rem;
-    white-space: nowrap;
-  }
-
-  .revision-toolbar {
-    top: calc(var(--header-height) + 6px);
+  .kpi-sub {
+    font-size: 0.68rem;
   }
 }
