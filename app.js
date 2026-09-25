@@ -7,7 +7,8 @@
 
   const STORAGE_KEYS = {
     THEME: 'cert_prep_theme_v2',
-    PROGRESS: 'cert_prep_progress_v2'
+    PROGRESS: 'cert_prep_progress_v2',
+    LAST_SEQUENTIAL_INDEX: 'cert_prep_last_sequential_index'
   };
 
   // State
@@ -121,6 +122,7 @@
   function resetProgress() {
     if (confirm('Reset all saved practice answers and score history?')) {
       state.progress = {};
+      localStorage.removeItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX);
       saveState();
       renderDashboard();
     }
@@ -159,6 +161,17 @@
     el.statAnsweredSub.textContent = `${answeredPercent}% of total`;
     el.statAccuracy.textContent = `${accuracy}%`;
     el.statCorrectSub.textContent = `${correctCount} correct`;
+
+    const rawSaved = localStorage.getItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX);
+    const savedIdx = rawSaved !== null ? parseInt(rawSaved, 10) : 0;
+    const seqBtn = el.btnStartSequential ? el.btnStartSequential.querySelector('button') : null;
+    if (seqBtn) {
+      if (!isNaN(savedIdx) && savedIdx > 0 && savedIdx < total) {
+        seqBtn.textContent = `Resume Drill (Question ${savedIdx + 1}) →`;
+      } else {
+        seqBtn.textContent = `Start Sequential Drill →`;
+      }
+    }
   }
 
   function renderDashboard() {
@@ -180,7 +193,12 @@
     state.mode = 'sequential';
     state.activeTitle = 'Sequential Practice Drill';
     state.activeQuestions = sorted;
-    startQuiz();
+
+    const rawSaved = localStorage.getItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX);
+    const savedIdx = rawSaved !== null ? parseInt(rawSaved, 10) : 0;
+    const resumeIndex = (!isNaN(savedIdx) && savedIdx >= 0 && savedIdx < sorted.length) ? savedIdx : 0;
+
+    startQuiz(resumeIndex);
   }
 
   function startShuffledDrill() {
@@ -196,11 +214,11 @@
     state.mode = 'shuffled';
     state.activeTitle = 'Shuffled Mock Exam';
     state.activeQuestions = shuffled;
-    startQuiz();
+    startQuiz(0);
   }
 
-  function startQuiz() {
-    state.currentIndex = 0;
+  function startQuiz(initialIndex = 0) {
+    state.currentIndex = initialIndex;
     state.sessionCorrect = 0;
     state.sessionAnswered = 0;
 
@@ -219,6 +237,10 @@
   function renderCurrentQuestion() {
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
+
+    if (state.mode === 'sequential') {
+      localStorage.setItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX, state.currentIndex);
+    }
 
     const total = state.activeQuestions.length;
     const currNum = state.currentIndex + 1;
@@ -432,8 +454,11 @@
     state.activeQuestions.forEach(q => {
       delete state.progress[q.id];
     });
+    if (state.mode === 'sequential') {
+      localStorage.setItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX, 0);
+    }
     saveState();
-    startQuiz();
+    startQuiz(0);
   }
 
   function escapeHtml(str) {
@@ -449,8 +474,18 @@
   // --- Events ---
   function initEvents() {
     el.themeToggleBtn.addEventListener('click', toggleTheme);
-    el.navBrandBtn.addEventListener('click', () => showView('dashboard'));
-    el.quizBackBtn.addEventListener('click', () => showView('dashboard'));
+    el.navBrandBtn.addEventListener('click', () => {
+      if (state.mode === 'sequential') {
+        localStorage.setItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX, state.currentIndex);
+      }
+      showView('dashboard');
+    });
+    el.quizBackBtn.addEventListener('click', () => {
+      if (state.mode === 'sequential') {
+        localStorage.setItem(STORAGE_KEYS.LAST_SEQUENTIAL_INDEX, state.currentIndex);
+      }
+      showView('dashboard');
+    });
 
     el.btnStartSequential.addEventListener('click', startSequentialDrill);
     el.btnStartShuffled.addEventListener('click', startShuffledDrill);
