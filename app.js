@@ -312,13 +312,120 @@
     });
   }
 
-  // --- Speech Synthesis (Text-to-Speech) ---
+  // --- Realistic Human-Like Speech Synthesis ---
   let speechState = {
     isSpeaking: false,
     activeType: null // 'question' | 'explanation'
   };
+  let cachedNaturalVoice = null;
+  let speechKeepAliveTimer = null;
+
+  function getBestNaturalVoice() {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices || voices.length === 0) return null;
+
+    if (cachedNaturalVoice && voices.some(v => v.name === cachedNaturalVoice.name)) {
+      return cachedNaturalVoice;
+    }
+
+    const enVoices = voices.filter(v => v.lang && v.lang.startsWith('en'));
+    const candidatePool = enVoices.length > 0 ? enVoices : voices;
+
+    function getVoiceScore(voice) {
+      const name = (voice.name || '').toLowerCase();
+      const lang = (voice.lang || '').toLowerCase();
+      let score = 0;
+
+      // Premium neural / natural human voices (Edge, Chrome, Safari, macOS)
+      if (name.includes('natural')) score += 120;
+      if (name.includes('neural')) score += 110;
+      if (name.includes('enhanced')) score += 95;
+      if (name.includes('premium')) score += 90;
+      if (name.includes('siri')) score += 85;
+      if (name.includes('online')) score += 80;
+
+      // Renowned studio-quality voices
+      if (name.includes('google us english')) score += 75;
+      if (name.includes('google uk english')) score += 70;
+      if (name.includes('ava') || name.includes('samantha') || name.includes('zoe') || name.includes('daniel') || name.includes('karen')) score += 65;
+      if (name.includes('alex')) score += 55;
+      if (name.includes('google')) score += 45;
+
+      // Locale preference
+      if (lang === 'en-us') score += 15;
+      else if (lang === 'en-gb') score += 12;
+
+      // Penalize legacy robotic and novelty voices
+      if (name.includes('compact')) score -= 60;
+      if (name.includes('bad news') || name.includes('bahh') || name.includes('bells') || name.includes('boing') ||
+          name.includes('cellos') || name.includes('deranged') || name.includes('fred') || name.includes('good news') ||
+          name.includes('hysterical') || name.includes('pipe organ') || name.includes('trinoids') ||
+          name.includes('whisper') || name.includes('zarvox') || name.includes('albert') || name.includes('junior')) {
+        score -= 300;
+      }
+
+      return score;
+    }
+
+    const sorted = [...candidatePool].sort((a, b) => getVoiceScore(b) - getVoiceScore(a));
+    cachedNaturalVoice = sorted[0] || null;
+    return cachedNaturalVoice;
+  }
+
+  function startKeepAlive() {
+    clearInterval(speechKeepAliveTimer);
+    speechKeepAliveTimer = setInterval(() => {
+      if (window.speechSynthesis && window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+      } else {
+        clearInterval(speechKeepAliveTimer);
+      }
+    }, 9000);
+  }
+
+  function clearKeepAlive() {
+    if (speechKeepAliveTimer) {
+      clearInterval(speechKeepAliveTimer);
+      speechKeepAliveTimer = null;
+    }
+  }
+
+  function formatTextForNaturalSpeech(text) {
+    if (!text) return '';
+    return text
+      // Technical acronym phonetic expansions for natural pronunciation
+      .replace(/\bOWD\b/g, 'O-W-D')
+      .replace(/\bFLS\b/g, 'Field Level Security')
+      .replace(/\bLWC\b/g, 'L-W-C')
+      .replace(/\bCRUD\b/g, 'C-R-U-D')
+      .replace(/\bAPIs\b/g, 'A-P-I-s')
+      .replace(/\bAPI\b/g, 'A-P-I')
+      .replace(/\bSSO\b/g, 'Single Sign-On')
+      .replace(/\bMFA\b/g, 'Multi-Factor Authentication')
+      .replace(/\bLDV\b/g, 'Large Data Volume')
+      .replace(/\bROPC\b/g, 'R-O-P-C')
+      .replace(/\bJWT\b/g, 'J-W-T')
+      .replace(/\bSAML\b/g, 'S-A-M-L')
+      .replace(/\bPoLP\b/g, 'Principle of Least Privilege')
+      .replace(/\bOAuth\b/g, 'O-Auth')
+      .replace(/\bOIDC\b/g, 'O-I-D-C')
+      .replace(/\bIT\b/g, 'I-T')
+      .replace(/\bUI\b/g, 'user interface')
+      .replace(/\be\.g\.,/gi, 'for example,')
+      .replace(/\be\.g\./gi, 'for example,')
+      .replace(/\bi\.e\.,/gi, 'that is,')
+      .replace(/\bi\.e\./gi, 'that is,')
+      .replace(/\bvs\.?\b/gi, 'versus')
+      .replace(/Option ([A-Z]):/g, 'Option $1.')
+      .replace(/["“”]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
 
   function stopSpeech() {
+    clearKeepAlive();
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
@@ -349,6 +456,44 @@
     }
   }
 
+  function speakNaturalUtterance(text, type) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    const naturalVoice = getBestNaturalVoice();
+    if (naturalVoice) {
+      utterance.voice = naturalVoice;
+      utterance.lang = naturalVoice.lang || 'en-US';
+    }
+
+    // Natural human conversational pacing:
+    // 0.93 rate provides deliberate, articulate pronunciation typical of professional instruction
+    utterance.rate = 0.93;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+    utterance.onstart = () => {
+      speechState.isSpeaking = true;
+      speechState.activeType = type;
+      updateSpeechUI();
+      startKeepAlive();
+    };
+
+    utterance.onend = () => {
+      clearKeepAlive();
+      speechState.isSpeaking = false;
+      speechState.activeType = null;
+      updateSpeechUI();
+    };
+
+    utterance.onerror = () => {
+      clearKeepAlive();
+      speechState.isSpeaking = false;
+      speechState.activeType = null;
+      updateSpeechUI();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
   function toggleSpeakQuestion() {
     if (!('speechSynthesis' in window)) {
       alert('Text-to-speech is not supported in this browser.');
@@ -365,35 +510,14 @@
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
 
-    let textToSpeak = `Question ${state.currentIndex + 1}. ${q.question}. `;
+    // Structured cadence with intentional pauses
+    let textToSpeak = `Question ${state.currentIndex + 1}. \n\n ${formatTextForNaturalSpeech(q.question)}. \n\n`;
     const letters = Object.keys(q.options).sort();
     letters.forEach(letter => {
-      textToSpeak += `Option ${letter}: ${q.options[letter]}. `;
+      textToSpeak += `Option ${letter}. ${formatTextForNaturalSpeech(q.options[letter])}. \n\n`;
     });
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-
-    utterance.onstart = () => {
-      speechState.isSpeaking = true;
-      speechState.activeType = 'question';
-      updateSpeechUI();
-    };
-
-    utterance.onend = () => {
-      speechState.isSpeaking = false;
-      speechState.activeType = null;
-      updateSpeechUI();
-    };
-
-    utterance.onerror = () => {
-      speechState.isSpeaking = false;
-      speechState.activeType = null;
-      updateSpeechUI();
-    };
-
-    window.speechSynthesis.speak(utterance);
+    speakNaturalUtterance(textToSpeak, 'question');
   }
 
   function toggleSpeakExplanation() {
@@ -412,39 +536,17 @@
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
 
-    let textToSpeak = `Verified Solution: Correct answer is Option ${q.correctAnswers.join(' and ')}. ${q.whyCorrect}. `;
+    let textToSpeak = `Verified Solution. Correct Answer is Option ${q.correctAnswers.join(' and ')}. \n\n ${formatTextForNaturalSpeech(q.whyCorrect)}. \n\n`;
     const distractors = q.distractors || {};
     const dKeys = Object.keys(distractors).sort();
     if (dKeys.length > 0) {
-      textToSpeak += `Distractor Analysis: `;
+      textToSpeak += `Distractor Analysis. \n\n`;
       dKeys.forEach(k => {
-        textToSpeak += `Option ${k}: ${distractors[k]}. `;
+        textToSpeak += `Option ${k}. ${formatTextForNaturalSpeech(distractors[k])}. \n\n`;
       });
     }
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-
-    utterance.onstart = () => {
-      speechState.isSpeaking = true;
-      speechState.activeType = 'explanation';
-      updateSpeechUI();
-    };
-
-    utterance.onend = () => {
-      speechState.isSpeaking = false;
-      speechState.activeType = null;
-      updateSpeechUI();
-    };
-
-    utterance.onerror = () => {
-      speechState.isSpeaking = false;
-      speechState.activeType = null;
-      updateSpeechUI();
-    };
-
-    window.speechSynthesis.speak(utterance);
+    speakNaturalUtterance(textToSpeak, 'explanation');
   }
 
   // --- Challenge Answer against Salesforce Documentation ---
@@ -860,6 +962,13 @@
     applyTheme(state.theme);
     initEvents();
     renderDashboard();
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.addEventListener('voiceschanged', () => {
+        getBestNaturalVoice();
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
